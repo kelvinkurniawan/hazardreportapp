@@ -19,6 +19,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -41,18 +43,30 @@ public class Users implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 100)
     @Column(name = "id")
     private String id;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 100)
     @Column(name = "name")
     private String name;
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
     @Column(name = "email")
     private String email;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 20)
     @Column(name = "username")
     private String username;
+    // @Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$", message="Invalid phone/fax format, should be as xxx-xxx-xxxx")//if the field contains phone or fax number consider using this annotation to enforce field validation
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 15)
     @Column(name = "phone")
     private String phone;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "admin", fetch = FetchType.LAZY)
