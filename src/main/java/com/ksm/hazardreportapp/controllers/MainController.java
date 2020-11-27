@@ -55,4 +55,9 @@ public class MainController {
         return "manageFloor";
     }
 
+    @GetMapping("/auth/login")
+    public String loginPage() {
+        return "login";
+    }
+
 }
