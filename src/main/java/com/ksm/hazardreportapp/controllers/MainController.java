@@ -14,9 +14,45 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @Controller
 public class MainController {
-    
+
     @GetMapping("")
-    public String index(){
+    public String index() {
         return "dashboard";
     }
+
+    @GetMapping("/admin/manage_report")
+    public String manageReport() {
+        return "manageReport";
+    }
+
+    @GetMapping("/admin/manage_report/create_report")
+    public String newReport() {
+        return "addReport";
+    }
+
+    @GetMapping("/admin/manage_report/update_report")
+    public String updateReport() {
+        return "updateReport";
+    }
+
+    @GetMapping("/admin/action/create_action")
+    public String createAction() {
+        return "createAction";
+    }
+
+    @GetMapping("/admin/action/create_action_temp")
+    public String createTempAction() {
+        return "createActionTemp";
+    }
+
+    @GetMapping("/admin/manage_room")
+    public String manageRoom() {
+        return "manageRoom";
+    }
+
+    @GetMapping("/admin/manage_floor")
+    public String manageFloor() {
+        return "manageFloor";
+    }
+
 }

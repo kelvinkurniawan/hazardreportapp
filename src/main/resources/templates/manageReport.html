@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <div th:replace="fragments/head"></div>
+
+    <body class="">
+        <div class="wrapper ">
+
+            <div th:replace="fragments/sidebar"></div>
+
+            <div class="main-panel">
+                <!-- Navbar -->
+                <div th:replace="fragments/navbar"></div>
+                <!-- End Navbar -->
+                <div class="content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card ">
+                                <div class="card-header ">
+                                    <h5 class="card-title">Manage Report</h5>
+                                    <p class="card-category">Check report and give an action</p>
+                                </div>
+                                <div class="card-body ">
+                                    <table class="table" id="datatable">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Date</th>
+                                                <th scope="col">Originator</th>
+                                                <th scope="col">Location</th>
+                                                <th scope="col">Priority</th>
+                                                <th scope="col">Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>12 Oktober 2020</td>
+                                                <td>Kelvin Kurniawan</td>
+                                                <td>4/CCTV Room</td>
+                                                <td>High</td>
+                                                <td><a class="btn btn-warning btn-sm">Pending</a></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">2</th>
+                                                <td>13 Oktober 2020</td>
+                                                <td>Adnan</td>
+                                                <td>2/435</td>
+                                                <td>High</td>
+                                                <td><a class="btn btn-success btn-sm">Close</a></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">3</th>
+                                                <td>14 Oktober 2020</td>
+                                                <td>Yoga</td>
+                                                <td>1/Control</td>
+                                                <td>High</td>
+                                                <td><a class="btn btn-info btn-sm">New</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="card-footer ">
+                                    <hr>
+                                    <div class="stats">
+                                        <i class="fa fa-history"></i> Updated 3 minutes ago
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div th:replace="fragments/footer"></div>
+            </div>
+        </div>
+        <div th:replace="fragments/script"></div>
+    </body>
+
+</html>
