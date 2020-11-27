@@ -10,7 +10,6 @@ package com.ksm.hazardreportapp.services;
 import com.ksm.hazardreportapp.entities.ImageAttachments;
 import com.ksm.hazardreportapp.repositories.ImageAttachmentsRepository;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,7 +18,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ImageAttachmentsService {
-    @Autowired
+
     ImageAttachmentsRepository repository;
     
     public List<ImageAttachments> getAll(){

@@ -5,12 +5,9 @@
  */
 package com.ksm.hazardreportapp.services;
 
-
-
 import com.ksm.hazardreportapp.entities.Floors;
 import com.ksm.hazardreportapp.repositories.FloorsRepository;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,18 +16,18 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class FloorsService {
-     @Autowired
+
     FloorsRepository repository;
-    
-    public List<Floors> getAll(){
+
+    public List<Floors> getAll() {
         return repository.findAll();
     }
-    
-    public Floors getById(Integer id){
+
+    public Floors getById(Integer id) {
         return repository.findById(id).get();
     }
-    
-    public boolean save(Floors floors){
+
+    public boolean save(Floors floors) {
         try {
             repository.save(floors);
             return true;
@@ -38,8 +35,8 @@ public class FloorsService {
             return false;
         }
     }
-    
-    public boolean delete(Integer id){
+
+    public boolean delete(Integer id) {
         try {
             repository.deleteById(id);
             return true;
@@ -48,12 +45,12 @@ public class FloorsService {
         }
     }
 
-    public boolean update(Floors floors){
+    public boolean update(Floors floors) {
         try {
             repository.save(floors);
             return true;
         } catch (Exception e) {
             return false;
         }
-}    
+    }
 }

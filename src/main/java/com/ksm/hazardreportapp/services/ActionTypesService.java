@@ -8,7 +8,6 @@ package com.ksm.hazardreportapp.services;
 import com.ksm.hazardreportapp.entities.ActionTypes;
 import com.ksm.hazardreportapp.repositories.ActionTypesRepository;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,18 +16,18 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ActionTypesService {
-    @Autowired
+
     ActionTypesRepository repository;
-    
-    public List<ActionTypes> getAll(){
+
+    public List<ActionTypes> getAll() {
         return repository.findAll();
     }
-    
-    public ActionTypes getById(Integer id){
+
+    public ActionTypes getById(Integer id) {
         return repository.findById(id).get();
     }
-    
-    public boolean save(ActionTypes actiontypes){
+
+    public boolean save(ActionTypes actiontypes) {
         try {
             repository.save(actiontypes);
             return true;
@@ -36,8 +35,8 @@ public class ActionTypesService {
             return false;
         }
     }
-    
-    public boolean delete(Integer id){
+
+    public boolean delete(Integer id) {
         try {
             repository.deleteById(id);
             return true;
@@ -45,12 +44,13 @@ public class ActionTypesService {
             return false;
         }
     }
-     public boolean update(ActionTypes actiontypes){
+
+    public boolean update(ActionTypes actiontypes) {
         try {
             repository.save(actiontypes);
             return true;
         } catch (Exception e) {
             return false;
         }
-}
+    }
 }
