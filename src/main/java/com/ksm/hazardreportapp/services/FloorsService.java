@@ -8,6 +8,7 @@ package com.ksm.hazardreportapp.services;
 import com.ksm.hazardreportapp.entities.Floors;
 import com.ksm.hazardreportapp.repositories.FloorsRepository;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class FloorsService {
 
+    @Autowired
     FloorsRepository repository;
 
     public List<Floors> getAll() {

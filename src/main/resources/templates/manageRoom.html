@@ -29,13 +29,13 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr th:each="as : ${rooms}">
-                                                <th scope="row">1</th>
+                                            <tr th:each="as, iterator : ${rooms}">
+                                                <th scope="row" th:text="${iterator.index+1}"></th>
                                                 <td th:text="${as.name}"></td>
                                                 <td th:text="${as.description}"></td>
                                                 <td>
-                                                    <a class="btn btn-danger btn-sm mr-1">Delete</a
-                                                    ><a class="btn btn-info btn-sm">Edit</a>
+                                                    <a th:href="@{/admin/manage_room/perform_delete/} + ${as.id}" class="btn btn-danger btn-sm mr-1">Delete</a>
+                                                    <a th:href="@{/admin/manage_room/update/} + ${as.id}" class="btn btn-info btn-sm">Edit</a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -56,14 +56,15 @@
                                     <p class="card-category">Fill the form and add room data</p>
                                 </div>
                                 <div class="card-body">
-                                    <form action="#">
+                                    <form action="/admin/manage_room" method="post">
+                                        <input type="hidden" th:value="${floor}" name="floor">
                                         <div class="form-group">
                                             <label>Room Name</label>
-                                            <input type="text" class="form-control" />
+                                            <input name="name" type="text" class="form-control" />
                                         </div>
                                         <div class="form-group">
                                             <label>Room Description</label>
-                                            <textarea class="form-control textarea"></textarea>
+                                            <textarea name="description" class="form-control textarea"></textarea>
                                         </div>
                                         <button type="submit" class="btn btn-primary">
                                             Submit

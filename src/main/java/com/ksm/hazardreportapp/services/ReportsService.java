@@ -8,6 +8,7 @@ package com.ksm.hazardreportapp.services;
 import com.ksm.hazardreportapp.entities.Reports;
 import com.ksm.hazardreportapp.repositories.ReportsRepository;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ReportsService {
 
+    @Autowired
     ReportsRepository repository;
 
     public List<Reports> getAll() {

@@ -14,6 +14,6 @@ import org.springframework.stereotype.Repository;
  * @author YOGA
  */
 @Repository
-public interface UsersRepository extends JpaRepository<Users, Integer>{
-    
+public interface UsersRepository extends JpaRepository<Users, String> {
+
 }

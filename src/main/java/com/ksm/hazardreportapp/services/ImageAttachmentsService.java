@@ -5,11 +5,10 @@
  */
 package com.ksm.hazardreportapp.services;
 
-
-
 import com.ksm.hazardreportapp.entities.ImageAttachments;
 import com.ksm.hazardreportapp.repositories.ImageAttachmentsRepository;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,17 +18,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class ImageAttachmentsService {
 
+    @Autowired
     ImageAttachmentsRepository repository;
-    
-    public List<ImageAttachments> getAll(){
+
+    public List<ImageAttachments> getAll() {
         return repository.findAll();
     }
-    
-    public ImageAttachments getById(Integer id){
+
+    public ImageAttachments getById(Integer id) {
         return repository.findById(id).get();
     }
-    
-    public boolean save(ImageAttachments image){
+
+    public boolean save(ImageAttachments image) {
         try {
             repository.save(image);
             return true;
@@ -37,8 +37,8 @@ public class ImageAttachmentsService {
             return false;
         }
     }
-    
-    public boolean delete(Integer id){
+
+    public boolean delete(Integer id) {
         try {
             repository.deleteById(id);
             return true;
@@ -46,12 +46,13 @@ public class ImageAttachmentsService {
             return false;
         }
     }
-    public boolean update(ImageAttachments image){
+
+    public boolean update(ImageAttachments image) {
         try {
             repository.save(image);
             return true;
         } catch (Exception e) {
             return false;
         }
-}    
+    }
 }

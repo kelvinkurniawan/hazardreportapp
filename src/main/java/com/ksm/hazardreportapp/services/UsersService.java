@@ -8,6 +8,7 @@ package com.ksm.hazardreportapp.services;
 import com.ksm.hazardreportapp.entities.Users;
 import com.ksm.hazardreportapp.repositories.UsersRepository;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,13 +17,15 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UsersService {
+
+    @Autowired
     UsersRepository repository;
 
     public List<Users> getAll() {
         return repository.findAll();
     }
 
-    public Users getById(int id) {
+    public Users getById(String id) {
         return repository.findById(id).get();
     }
 

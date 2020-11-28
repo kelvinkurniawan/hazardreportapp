@@ -35,17 +35,18 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "ImageAttachments.findByImagePath", query = "SELECT i FROM ImageAttachments i WHERE i.imagePath = :imagePath")})
 public class ImageAttachments implements Serializable {
 
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 100)
+    @Column(name = "imagePath")
+    private String imagePath;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "imagePath")
-    private String imagePath;
     @JoinColumn(name = "report", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Reports report;
@@ -70,13 +71,6 @@ public class ImageAttachments implements Serializable {
         this.id = id;
     }
 
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
-    }
 
     public Reports getReport() {
         return report;
@@ -109,6 +103,14 @@ public class ImageAttachments implements Serializable {
     @Override
     public String toString() {
         return "com.ksm.hazardreportapp.entities.ImageAttachments[ id=" + id + " ]";
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
 }

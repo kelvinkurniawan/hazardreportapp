@@ -20,21 +20,6 @@ public class MainController {
         return "dashboard";
     }
 
-    @GetMapping("/admin/manage_report")
-    public String manageReport() {
-        return "manageReport";
-    }
-
-    @GetMapping("/admin/manage_report/create_report")
-    public String newReport() {
-        return "addReport";
-    }
-
-    @GetMapping("/admin/manage_report/update_report")
-    public String updateReport() {
-        return "updateReport";
-    }
-
     @GetMapping("/admin/action/create_action")
     public String createAction() {
         return "createAction";
