@@ -26,10 +26,10 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author YOGA
+ * @author kelvi
  */
 @Entity
-@Table(name = "users")
+@Table(name = "users", catalog = "hazardreportdb", schema = "")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Users.findAll", query = "SELECT u FROM Users u")
@@ -69,6 +69,8 @@ public class Users implements Serializable {
     @Size(min = 1, max = 15)
     @Column(name = "phone")
     private String phone;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "originator", fetch = FetchType.LAZY)
+    private List<Reports> reportsList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "admin", fetch = FetchType.LAZY)
     private List<Floors> floorsList;
     @JoinColumn(name = "roles", referencedColumnName = "id")
@@ -131,6 +133,15 @@ public class Users implements Serializable {
     }
 
     @XmlTransient
+    public List<Reports> getReportsList() {
+        return reportsList;
+    }
+
+    public void setReportsList(List<Reports> reportsList) {
+        this.reportsList = reportsList;
+    }
+
+    @XmlTransient
     public List<Floors> getFloorsList() {
         return floorsList;
     }
@@ -171,5 +182,5 @@ public class Users implements Serializable {
     public String toString() {
         return "com.ksm.hazardreportapp.entities.Users[ id=" + id + " ]";
     }
-    
+
 }

@@ -12,6 +12,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -24,10 +26,10 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author YOGA
+ * @author kelvi
  */
 @Entity
-@Table(name = "statuses")
+@Table(name = "statuses", catalog = "hazardreportdb", schema = "")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Statuses.findAll", query = "SELECT s FROM Statuses s")
@@ -38,8 +40,8 @@ public class Statuses implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
@@ -52,8 +54,6 @@ public class Statuses implements Serializable {
     @Size(min = 1, max = 100)
     @Column(name = "message")
     private String message;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "currentStatus", fetch = FetchType.LAZY)
-    private List<Reports> reportsList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "status", fetch = FetchType.LAZY)
     private List<ReportProgresses> reportProgressesList;
 
@@ -95,15 +95,6 @@ public class Statuses implements Serializable {
     }
 
     @XmlTransient
-    public List<Reports> getReportsList() {
-        return reportsList;
-    }
-
-    public void setReportsList(List<Reports> reportsList) {
-        this.reportsList = reportsList;
-    }
-
-    @XmlTransient
     public List<ReportProgresses> getReportProgressesList() {
         return reportProgressesList;
     }
@@ -136,5 +127,5 @@ public class Statuses implements Serializable {
     public String toString() {
         return "com.ksm.hazardreportapp.entities.Statuses[ id=" + id + " ]";
     }
-    
+
 }

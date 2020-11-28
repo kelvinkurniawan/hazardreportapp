@@ -45,14 +45,4 @@ public class MainController {
         return "createActionTemp";
     }
 
-    @GetMapping("/admin/manage_room")
-    public String manageRoom() {
-        return "manageRoom";
-    }
-
-    @GetMapping("/admin/manage_floor")
-    public String manageFloor() {
-        return "manageFloor";
-    }
-
 }

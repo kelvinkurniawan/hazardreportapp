@@ -13,6 +13,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -29,23 +31,23 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author YOGA
+ * @author kelvi
  */
 @Entity
-@Table(name = "reports")
+@Table(name = "reports", catalog = "hazardreportdb", schema = "")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Reports.findAll", query = "SELECT r FROM Reports r")
     , @NamedQuery(name = "Reports.findById", query = "SELECT r FROM Reports r WHERE r.id = :id")
     , @NamedQuery(name = "Reports.findByDate", query = "SELECT r FROM Reports r WHERE r.date = :date")
-    , @NamedQuery(name = "Reports.findByOriginator", query = "SELECT r FROM Reports r WHERE r.originator = :originator")
-    , @NamedQuery(name = "Reports.findByDescription", query = "SELECT r FROM Reports r WHERE r.description = :description")})
+    , @NamedQuery(name = "Reports.findByDescription", query = "SELECT r FROM Reports r WHERE r.description = :description")
+    , @NamedQuery(name = "Reports.findByCurrentStatus", query = "SELECT r FROM Reports r WHERE r.currentStatus = :currentStatus")})
 public class Reports implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
@@ -55,23 +57,22 @@ public class Reports implements Serializable {
     private Date date;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "originator")
-    private String originator;
-    @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "description")
     private String description;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "current_status")
+    private int currentStatus;
+    @JoinColumn(name = "originator", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Users originator;
     @JoinColumn(name = "room", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Rooms room;
     @JoinColumn(name = "priority", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Priority priority;
-    @JoinColumn(name = "current_status", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Statuses currentStatus;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "report", fetch = FetchType.LAZY)
     private List<ImageAttachments> imageAttachmentsList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "report", fetch = FetchType.LAZY)
@@ -84,11 +85,11 @@ public class Reports implements Serializable {
         this.id = id;
     }
 
-    public Reports(Integer id, Date date, String originator, String description) {
+    public Reports(Integer id, Date date, String description, int currentStatus) {
         this.id = id;
         this.date = date;
-        this.originator = originator;
         this.description = description;
+        this.currentStatus = currentStatus;
     }
 
     public Integer getId() {
@@ -107,20 +108,28 @@ public class Reports implements Serializable {
         this.date = date;
     }
 
-    public String getOriginator() {
-        return originator;
-    }
-
-    public void setOriginator(String originator) {
-        this.originator = originator;
-    }
-
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getCurrentStatus() {
+        return currentStatus;
+    }
+
+    public void setCurrentStatus(int currentStatus) {
+        this.currentStatus = currentStatus;
+    }
+
+    public Users getOriginator() {
+        return originator;
+    }
+
+    public void setOriginator(Users originator) {
+        this.originator = originator;
     }
 
     public Rooms getRoom() {
@@ -137,14 +146,6 @@ public class Reports implements Serializable {
 
     public void setPriority(Priority priority) {
         this.priority = priority;
-    }
-
-    public Statuses getCurrentStatus() {
-        return currentStatus;
-    }
-
-    public void setCurrentStatus(Statuses currentStatus) {
-        this.currentStatus = currentStatus;
     }
 
     @XmlTransient
@@ -189,5 +190,5 @@ public class Reports implements Serializable {
     public String toString() {
         return "com.ksm.hazardreportapp.entities.Reports[ id=" + id + " ]";
     }
-    
+
 }

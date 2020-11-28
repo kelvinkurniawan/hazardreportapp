@@ -1,14 +1,27 @@
-
 <!--   Core JS Files   -->
 <script src="/js/core/jquery.min.js"></script>
 <script src="/js/core/popper.min.js"></script>
 <script src="/js/core/bootstrap.min.js"></script>
 <script src="/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+<script
+  type="text/javascript"
+  charset="utf8"
+  src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"
+></script>
 <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-<script src="/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script><!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+<script
+  src="/js/paper-dashboard.min.js?v=2.0.1"
+  type="text/javascript"
+></script>
+<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+<script
+  src="https://cdn.tiny.cloud/1/9t8x1940qnt7p8wcc4greew4zlj67zqby2u8sy3kzz13dkhm/tinymce/5/tinymce.min.js"
+  referrerpolicy="origin"
+></script>
 <script>
-    $(document).ready(function () {
-        $('#datatable').DataTable();
-    });
+  $(document).ready(function () {
+    $("#datatable").DataTable();
+
+    tinymce.init({ selector: "#richEditor", height: 300 });
+  });
 </script>

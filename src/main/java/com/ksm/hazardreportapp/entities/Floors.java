@@ -28,10 +28,10 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author YOGA
+ * @author kelvi
  */
 @Entity
-@Table(name = "floors")
+@Table(name = "floors", catalog = "hazardreportdb", schema = "")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Floors.findAll", query = "SELECT f FROM Floors f")
@@ -140,5 +140,5 @@ public class Floors implements Serializable {
     public String toString() {
         return "com.ksm.hazardreportapp.entities.Floors[ id=" + id + " ]";
     }
-    
+
 }

@@ -11,6 +11,8 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -25,10 +27,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author YOGA
+ * @author kelvi
  */
 @Entity
-@Table(name = "actions")
+@Table(name = "actions", catalog = "hazardreportdb", schema = "")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Actions.findAll", query = "SELECT a FROM Actions a")
@@ -42,8 +44,8 @@ public class Actions implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
@@ -176,5 +178,5 @@ public class Actions implements Serializable {
     public String toString() {
         return "com.ksm.hazardreportapp.entities.Actions[ id=" + id + " ]";
     }
-    
+
 }

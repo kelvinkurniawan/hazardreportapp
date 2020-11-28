@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 25 Nov 2020 pada 14.11
+-- Waktu pembuatan: 27 Nov 2020 pada 21.51
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.10
 
@@ -211,7 +211,8 @@ ALTER TABLE `reports`
   ADD PRIMARY KEY (`id`),
   ADD KEY `room` (`room`),
   ADD KEY `priority` (`priority`),
-  ADD KEY `current_status` (`current_status`);
+  ADD KEY `current_status` (`current_status`),
+  ADD KEY `originator` (`originator`);
 
 --
 -- Indeks untuk tabel `report_progresses`
@@ -252,9 +253,63 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT untuk tabel `actions`
+--
+ALTER TABLE `actions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `action_types`
+--
+ALTER TABLE `action_types`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT untuk tabel `floors`
 --
 ALTER TABLE `floors`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `image_attachments`
+--
+ALTER TABLE `image_attachments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `priority`
+--
+ALTER TABLE `priority`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `reports`
+--
+ALTER TABLE `reports`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `report_progresses`
+--
+ALTER TABLE `report_progresses`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `rooms`
+--
+ALTER TABLE `rooms`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `statuses`
+--
+ALTER TABLE `statuses`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -278,25 +333,22 @@ ALTER TABLE `floors`
 -- Ketidakleluasaan untuk tabel `image_attachments`
 --
 ALTER TABLE `image_attachments`
-  ADD CONSTRAINT `image_attachments_ibfk_1` FOREIGN KEY (`report`) REFERENCES `reports` (`id`),
-  ADD CONSTRAINT `image_attachments_ibfk_2` FOREIGN KEY (`report`) REFERENCES `reports` (`id`);
+  ADD CONSTRAINT `image_attachments_ibfk_1` FOREIGN KEY (`report`) REFERENCES `reports` (`id`);
 
 --
 -- Ketidakleluasaan untuk tabel `reports`
 --
 ALTER TABLE `reports`
-  ADD CONSTRAINT `reports_ibfk_1` FOREIGN KEY (`room`) REFERENCES `rooms` (`id`),
-  ADD CONSTRAINT `reports_ibfk_2` FOREIGN KEY (`priority`) REFERENCES `priority` (`id`),
-  ADD CONSTRAINT `reports_ibfk_3` FOREIGN KEY (`priority`) REFERENCES `priority` (`id`),
-  ADD CONSTRAINT `reports_ibfk_4` FOREIGN KEY (`current_status`) REFERENCES `statuses` (`id`);
+  ADD CONSTRAINT `reports_ibfk_1` FOREIGN KEY (`originator`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `reports_ibfk_2` FOREIGN KEY (`room`) REFERENCES `rooms` (`id`),
+  ADD CONSTRAINT `reports_ibfk_3` FOREIGN KEY (`priority`) REFERENCES `priority` (`id`);
 
 --
 -- Ketidakleluasaan untuk tabel `report_progresses`
 --
 ALTER TABLE `report_progresses`
   ADD CONSTRAINT `report_progresses_ibfk_1` FOREIGN KEY (`report`) REFERENCES `reports` (`id`),
-  ADD CONSTRAINT `report_progresses_ibfk_2` FOREIGN KEY (`report`) REFERENCES `reports` (`id`),
-  ADD CONSTRAINT `report_progresses_ibfk_3` FOREIGN KEY (`status`) REFERENCES `statuses` (`id`);
+  ADD CONSTRAINT `report_progresses_ibfk_2` FOREIGN KEY (`status`) REFERENCES `statuses` (`id`);
 
 --
 -- Ketidakleluasaan untuk tabel `rooms`

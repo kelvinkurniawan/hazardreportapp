@@ -14,6 +14,6 @@ import org.springframework.stereotype.Repository;
  * @author YOGA
  */
 @Repository
-public interface RoomsRepository extends JpaRepository<Rooms, Integer>{
-    
+public interface RoomsRepository extends JpaRepository<Rooms, Integer> {
+
 }

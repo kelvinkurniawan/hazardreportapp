@@ -6,8 +6,10 @@
 package com.ksm.hazardreportapp.services;
 
 import com.ksm.hazardreportapp.entities.Rooms;
+import com.ksm.hazardreportapp.repositories.FloorsRepository;
 import com.ksm.hazardreportapp.repositories.RoomsRepository;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,10 +19,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class RoomsService {
 
+    @Autowired
     RoomsRepository repository;
+
+    @Autowired
+    FloorsRepository floorsRepository;
 
     public List<Rooms> getAll() {
         return repository.findAll();
+    }
+
+    public List<Rooms> getAllByFloor(int floor) {
+        return floorsRepository.findById(floor).get().getRoomsList();
     }
 
     public Rooms getById(int id) {
