@@ -37,18 +37,17 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "ActionTypes.findByName", query = "SELECT a FROM ActionTypes a WHERE a.name = :name")})
 public class ActionTypes implements Serializable {
 
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 30)
-    @Column(name = "name")
-    private String name;
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 30)
+    @Column(name = "name")
+    private String name;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "actionType", fetch = FetchType.LAZY)
     private List<Actions> actionsList;
 
@@ -72,6 +71,13 @@ public class ActionTypes implements Serializable {
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     @XmlTransient
     public List<Actions> getActionsList() {
@@ -105,14 +111,6 @@ public class ActionTypes implements Serializable {
     @Override
     public String toString() {
         return "com.ksm.hazardreportapp.entities.ActionTypes[ id=" + id + " ]";
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
 }

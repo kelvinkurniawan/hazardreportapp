@@ -38,6 +38,12 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Statuses.findByMessage", query = "SELECT s FROM Statuses s WHERE s.message = :message")})
 public class Statuses implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
+    private Integer id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 30)
@@ -48,13 +54,8 @@ public class Statuses implements Serializable {
     @Size(min = 1, max = 100)
     @Column(name = "message")
     private String message;
-
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id")
-    private Integer id;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "currentStatus", fetch = FetchType.LAZY)
+    private List<Reports> reportsList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "status", fetch = FetchType.LAZY)
     private List<ReportProgresses> reportProgressesList;
 
@@ -79,6 +80,30 @@ public class Statuses implements Serializable {
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    @XmlTransient
+    public List<Reports> getReportsList() {
+        return reportsList;
+    }
+
+    public void setReportsList(List<Reports> reportsList) {
+        this.reportsList = reportsList;
+    }
 
     @XmlTransient
     public List<ReportProgresses> getReportProgressesList() {
@@ -112,22 +137,6 @@ public class Statuses implements Serializable {
     @Override
     public String toString() {
         return "com.ksm.hazardreportapp.entities.Statuses[ id=" + id + " ]";
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 
 }

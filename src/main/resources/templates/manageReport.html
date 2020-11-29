@@ -30,16 +30,27 @@
                                                 <th scope="col">Location</th>
                                                 <th scope="col">Priority</th>
                                                 <th scope="col">Status</th>
+                                                <th scope="col">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr th:each="as, iterator : ${reports}">
                                                 <th scope="row" th:text="${iterator.index+1}"></th>
-                                                <td th:text="${as.date}">12 Oktober 2020</td>
-                                                <td th:text="${as.originator.name}">Kelvin Kurniawan</td>
-                                                <td th:text="${as.room.name}">4/CCTV Room</td>
-                                                <td th:text="${as.priority.name}">High</td>
-                                                <td><a class="btn btn-warning btn-sm">Pending</a></td>
+                                                <td th:text="${as.date}"></td>
+                                                <td th:text="${as.originator.name}"></td>
+                                                <td th:text="${as.room.name}"></td>
+                                                <td th:text="${as.priority.name}"></td>
+                                                <td>
+                                                    <div th:switch="${as.currentStatus.id}">
+                                                        <a th:case="1" th:class="@{btn btn-danger btn-sm}" th:text="${as.currentStatus.name}"></a>
+                                                        <a th:case="6" th:class="@{btn btn-success btn-sm}" th:text="${as.currentStatus.name}"></a>
+                                                        <a th:case="*" th:class="@{btn btn-warning btn-sm}" th:text="${as.currentStatus.name}"></a>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <a th:href="@{/admin/manage_report/details/} + ${as.id}" class="btn btn-info btn-sm">Details</a>
+                                                    <a th:href="@{/admin/history/} + ${as.id}" class="btn btn-primary btn-sm">History</a>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>

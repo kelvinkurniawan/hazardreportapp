@@ -17,6 +17,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -39,9 +40,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Reports.findAll", query = "SELECT r FROM Reports r")
     , @NamedQuery(name = "Reports.findById", query = "SELECT r FROM Reports r WHERE r.id = :id")
-    , @NamedQuery(name = "Reports.findByDate", query = "SELECT r FROM Reports r WHERE r.date = :date")
-    , @NamedQuery(name = "Reports.findByDescription", query = "SELECT r FROM Reports r WHERE r.description = :description")
-    , @NamedQuery(name = "Reports.findByCurrentStatus", query = "SELECT r FROM Reports r WHERE r.currentStatus = :currentStatus")})
+    , @NamedQuery(name = "Reports.findByDate", query = "SELECT r FROM Reports r WHERE r.date = :date")})
 public class Reports implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -57,13 +56,10 @@ public class Reports implements Serializable {
     private Date date;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255)
+    @Lob
+    @Size(min = 1, max = 65535)
     @Column(name = "description")
     private String description;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "current_status")
-    private int currentStatus;
     @JoinColumn(name = "originator", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Users originator;
@@ -71,8 +67,11 @@ public class Reports implements Serializable {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Rooms room;
     @JoinColumn(name = "priority", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Priority priority;
+    @JoinColumn(name = "current_status", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Statuses currentStatus;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "report", fetch = FetchType.LAZY)
     private List<ImageAttachments> imageAttachmentsList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "report", fetch = FetchType.LAZY)
@@ -85,11 +84,10 @@ public class Reports implements Serializable {
         this.id = id;
     }
 
-    public Reports(Integer id, Date date, String description, int currentStatus) {
+    public Reports(Integer id, Date date, String description) {
         this.id = id;
         this.date = date;
         this.description = description;
-        this.currentStatus = currentStatus;
     }
 
     public Integer getId() {
@@ -116,14 +114,6 @@ public class Reports implements Serializable {
         this.description = description;
     }
 
-    public int getCurrentStatus() {
-        return currentStatus;
-    }
-
-    public void setCurrentStatus(int currentStatus) {
-        this.currentStatus = currentStatus;
-    }
-
     public Users getOriginator() {
         return originator;
     }
@@ -146,6 +136,14 @@ public class Reports implements Serializable {
 
     public void setPriority(Priority priority) {
         this.priority = priority;
+    }
+
+    public Statuses getCurrentStatus() {
+        return currentStatus;
+    }
+
+    public void setCurrentStatus(Statuses currentStatus) {
+        this.currentStatus = currentStatus;
     }
 
     @XmlTransient

@@ -8,7 +8,6 @@ package com.ksm.hazardreportapp.entities;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -48,7 +47,7 @@ public class Priority implements Serializable {
     @Size(min = 1, max = 30)
     @Column(name = "name")
     private String name;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "priority", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "priority", fetch = FetchType.LAZY)
     private List<Reports> reportsList;
 
     public Priority() {

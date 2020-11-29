@@ -42,6 +42,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Actions.findByActionStatus", query = "SELECT a FROM Actions a WHERE a.actionStatus = :actionStatus")})
 public class Actions implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
+    private Integer id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
@@ -63,13 +69,6 @@ public class Actions implements Serializable {
     @Size(min = 1, max = 30)
     @Column(name = "action_status")
     private String actionStatus;
-
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id")
-    private Integer id;
     @JoinColumn(name = "report_progress", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private ReportProgresses reportProgress;
@@ -97,6 +96,38 @@ public class Actions implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    public String getRisk() {
+        return risk;
+    }
+
+    public void setRisk(String risk) {
+        this.risk = risk;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public String getActionStatus() {
@@ -146,38 +177,6 @@ public class Actions implements Serializable {
     @Override
     public String toString() {
         return "com.ksm.hazardreportapp.entities.Actions[ id=" + id + " ]";
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getResult() {
-        return result;
-    }
-
-    public void setResult(String result) {
-        this.result = result;
-    }
-
-    public String getRisk() {
-        return risk;
-    }
-
-    public void setRisk(String risk) {
-        this.risk = risk;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
 }

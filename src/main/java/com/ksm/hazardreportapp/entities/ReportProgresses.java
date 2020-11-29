@@ -41,18 +41,17 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "ReportProgresses.findByDate", query = "SELECT r FROM ReportProgresses r WHERE r.date = :date")})
 public class ReportProgresses implements Serializable {
 
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "date")
-    @Temporal(TemporalType.DATE)
-    private Date date;
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "date")
+    @Temporal(TemporalType.DATE)
+    private Date date;
     @JoinColumn(name = "report", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Reports report;
@@ -82,6 +81,13 @@ public class ReportProgresses implements Serializable {
         this.id = id;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
     public Reports getReport() {
         return report;
@@ -131,14 +137,6 @@ public class ReportProgresses implements Serializable {
     @Override
     public String toString() {
         return "com.ksm.hazardreportapp.entities.ReportProgresses[ id=" + id + " ]";
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
 }

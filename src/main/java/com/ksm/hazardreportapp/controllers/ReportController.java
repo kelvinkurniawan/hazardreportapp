@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -71,6 +72,15 @@ public class ReportController {
         return "updateReport";
     }
 
+    @GetMapping("/admin/manage_report/details/{id}")
+    public String viewReportDetail(@PathVariable("id") int id, Model model) {
+        model.addAttribute("report", reportsService.getById(id));
+        model.addAttribute("originator", usersService.getById(this.id));
+        model.addAttribute("rooms", roomsService.getAll());
+        model.addAttribute("priority", priorityService.getAll());
+        return "viewReport";
+    }
+
     @PostMapping("admin/manage_report/perform_add")
     public String performAdd(@RequestParam("files") MultipartFile[] files, Reports reports) {
 
@@ -87,5 +97,11 @@ public class ReportController {
         });
 
         return "redirect:/admin/manage_report";
+    }
+
+    @GetMapping("admin/history/{id}")
+    public String reportHistory(@PathVariable("id") int id, Model model) {
+        model.addAttribute("report", reportsService.getById(id));
+        return "reportHistory";
     }
 }
