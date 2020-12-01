@@ -5,8 +5,8 @@
  */
 package com.ksm.hazardreportapp.services;
 
-import com.ksm.hazardreportapp.entities.Floors;
-import com.ksm.hazardreportapp.repositories.FloorsRepository;
+import com.ksm.hazardreportapp.entities.ImageAttachments;
+import com.ksm.hazardreportapp.repositories.ImageAttachmentRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,22 +16,22 @@ import org.springframework.stereotype.Service;
  * @author YOGA
  */
 @Service
-public class FloorsService {
+public class ImageAttachmentService {
 
     @Autowired
-    FloorsRepository repository;
+    ImageAttachmentRepository repository;
 
-    public List<Floors> getAll() {
+    public List<ImageAttachments> getAll() {
         return repository.findAll();
     }
 
-    public Floors getById(Integer id) {
+    public ImageAttachments getById(Integer id) {
         return repository.findById(id).get();
     }
 
-    public boolean save(Floors floors) {
+    public boolean save(ImageAttachments image) {
         try {
-            repository.save(floors);
+            repository.save(image);
             return true;
         } catch (Exception e) {
             return false;
@@ -47,9 +47,9 @@ public class FloorsService {
         }
     }
 
-    public boolean update(Floors floors) {
+    public boolean update(ImageAttachments image) {
         try {
-            repository.save(floors);
+            repository.save(image);
             return true;
         } catch (Exception e) {
             return false;

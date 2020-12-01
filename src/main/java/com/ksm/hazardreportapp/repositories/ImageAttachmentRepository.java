@@ -5,16 +5,15 @@
  */
 package com.ksm.hazardreportapp.repositories;
 
-import com.ksm.hazardreportapp.entities.Priority;
+import com.ksm.hazardreportapp.entities.ImageAttachments;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
 
 /**
  *
  * @author YOGA
  */
 @Repository
-public interface PriorityRepository extends JpaRepository<Priority, Integer> {
+public interface ImageAttachmentRepository extends JpaRepository<ImageAttachments, Integer>{
     
 }

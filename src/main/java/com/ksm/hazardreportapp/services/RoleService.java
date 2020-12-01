@@ -5,8 +5,8 @@
  */
 package com.ksm.hazardreportapp.services;
 
-import com.ksm.hazardreportapp.entities.Statuses;
-import com.ksm.hazardreportapp.repositories.StatusesRepository;
+import com.ksm.hazardreportapp.entities.Roles;
+import com.ksm.hazardreportapp.repositories.RoleRepository;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
@@ -15,23 +15,23 @@ import org.springframework.stereotype.Service;
  * @author Boona
  */
 @Service
-public class StatusesService {
+public class RoleService {
 
-    StatusesRepository repository;
+    RoleRepository repository;
 
-    public List<Statuses> getAll() {
+    public List<Roles> getAll() {
         return repository.findAll();
     }
 
-    public Statuses getById(int id) {
+    public Roles getById(int id) {
         return repository.findById(id).get();
     }
 
-    public Statuses save(Statuses statuses) {
-        return repository.save(statuses);
+    public Roles save(Roles roles) {
+        return repository.save(roles);
     }
 
     public void delete(int id) {
-        repository.delete(new Statuses(id));
+        repository.delete(new Roles(id));
     }
 }

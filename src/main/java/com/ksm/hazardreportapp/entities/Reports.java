@@ -52,7 +52,7 @@ public class Reports implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "date")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date date;
     @Basic(optional = false)
     @NotNull
@@ -68,7 +68,7 @@ public class Reports implements Serializable {
     private Rooms room;
     @JoinColumn(name = "priority", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
-    private Priority priority;
+    private Priorities priority;
     @JoinColumn(name = "current_status", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Statuses currentStatus;
@@ -130,11 +130,11 @@ public class Reports implements Serializable {
         this.room = room;
     }
 
-    public Priority getPriority() {
+    public Priorities getPriority() {
         return priority;
     }
 
-    public void setPriority(Priority priority) {
+    public void setPriority(Priorities priority) {
         this.priority = priority;
     }
 

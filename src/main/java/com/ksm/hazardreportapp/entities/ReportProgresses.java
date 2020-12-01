@@ -50,7 +50,7 @@ public class ReportProgresses implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "date")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date date;
     @JoinColumn(name = "report", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
@@ -60,6 +60,8 @@ public class ReportProgresses implements Serializable {
     private Statuses status;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "reportProgress", fetch = FetchType.LAZY)
     private List<Actions> actionsList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "reportProgress", fetch = FetchType.LAZY)
+    private List<Notifications> notificationsList;
 
     public ReportProgresses() {
     }
@@ -112,6 +114,15 @@ public class ReportProgresses implements Serializable {
 
     public void setActionsList(List<Actions> actionsList) {
         this.actionsList = actionsList;
+    }
+
+    @XmlTransient
+    public List<Notifications> getNotificationsList() {
+        return notificationsList;
+    }
+
+    public void setNotificationsList(List<Notifications> notificationsList) {
+        this.notificationsList = notificationsList;
     }
 
     @Override

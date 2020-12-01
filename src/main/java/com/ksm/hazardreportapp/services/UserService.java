@@ -5,8 +5,8 @@
  */
 package com.ksm.hazardreportapp.services;
 
-import com.ksm.hazardreportapp.entities.Reports;
-import com.ksm.hazardreportapp.repositories.ReportsRepository;
+import com.ksm.hazardreportapp.entities.Users;
+import com.ksm.hazardreportapp.repositories.UserRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,24 +16,24 @@ import org.springframework.stereotype.Service;
  * @author Boona
  */
 @Service
-public class ReportsService {
+public class UserService {
 
     @Autowired
-    ReportsRepository repository;
+    UserRepository repository;
 
-    public List<Reports> getAll() {
+    public List<Users> getAll() {
         return repository.findAll();
     }
 
-    public Reports getById(int id) {
+    public Users getById(String id) {
         return repository.findById(id).get();
     }
 
-    public Reports save(Reports reports) {
-        return repository.save(reports);
+    public Users save(Users users) {
+        return repository.save(users);
     }
 
-    public void delete(int id) {
-        repository.delete(new Reports(id));
+    public void delete(String id) {
+        repository.delete(new Users(id));
     }
 }

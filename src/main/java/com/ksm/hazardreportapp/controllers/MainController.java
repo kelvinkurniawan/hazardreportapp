@@ -5,7 +5,7 @@
  */
 package com.ksm.hazardreportapp.controllers;
 
-import com.ksm.hazardreportapp.services.ImageAttachmentsService;
+import com.ksm.hazardreportapp.services.ImageAttachmentService;
 import com.ksm.hazardreportapp.services.ImageStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -23,26 +23,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class MainController {
 
     @Autowired
-    ImageAttachmentsService imageAttachmentsService;
+    ImageAttachmentService imageAttachmentService;
 
     @Autowired
     ImageStorageService imageStorageService;
 
-    @GetMapping("")
+    // Rouotes for admin as HSE
+    @GetMapping("/admin")
     public String index() {
         return "dashboard";
     }
 
-    @GetMapping("/admin/action/create_action")
-    public String createAction() {
-        return "createAction";
-    }
-
-    @GetMapping("/admin/action/create_action_temp")
-    public String createTempAction() {
-        return "createActionTemp";
-    }
-
+    // Other routes
     @GetMapping("/files/{filename:.+}")
     public ResponseEntity<Resource> getFile(@PathVariable String filename) {
         Resource file = imageStorageService.load(filename);

@@ -5,7 +5,7 @@
  */
 package com.ksm.hazardreportapp.repositories;
 
-import com.ksm.hazardreportapp.entities.ImageAttachments;
+import com.ksm.hazardreportapp.entities.Statuses;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,6 +14,6 @@ import org.springframework.stereotype.Repository;
  * @author YOGA
  */
 @Repository
-public interface ImageAttachmentsRepository extends JpaRepository<ImageAttachments, Integer>{
+public interface StatusRepository extends JpaRepository<Statuses, Integer>{
     
 }

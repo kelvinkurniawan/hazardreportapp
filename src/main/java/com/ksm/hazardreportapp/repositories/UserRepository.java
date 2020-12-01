@@ -5,7 +5,7 @@
  */
 package com.ksm.hazardreportapp.repositories;
 
-import com.ksm.hazardreportapp.entities.Roles;
+import com.ksm.hazardreportapp.entities.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,6 +14,6 @@ import org.springframework.stereotype.Repository;
  * @author YOGA
  */
 @Repository
-public interface RolesRepository extends JpaRepository<Roles, Integer>{
-    
+public interface UserRepository extends JpaRepository<Users, String> {
+
 }

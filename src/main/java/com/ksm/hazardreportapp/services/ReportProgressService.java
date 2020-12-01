@@ -6,7 +6,7 @@
 package com.ksm.hazardreportapp.services;
 
 import com.ksm.hazardreportapp.entities.ReportProgresses;
-import com.ksm.hazardreportapp.repositories.ReportProgressesRepository;
+import com.ksm.hazardreportapp.repositories.ReportProgressRepository;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +15,9 @@ import org.springframework.stereotype.Service;
  * @author Boona
  */
 @Service
-public class ReportProgressesSevice {
+public class ReportProgressService {
 
-    ReportProgressesRepository repository;
+    ReportProgressRepository repository;
 
     public List<ReportProgresses> getAll() {
         return repository.findAll();

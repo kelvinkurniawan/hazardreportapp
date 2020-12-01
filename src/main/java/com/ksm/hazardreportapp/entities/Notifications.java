@@ -6,7 +6,6 @@
 package com.ksm.hazardreportapp.entities;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,27 +13,26 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author kelvi
  */
 @Entity
-@Table(name = "priority", catalog = "hazardreportdb", schema = "")
+@Table(name = "notifications", catalog = "hazardreportdb", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Priority.findAll", query = "SELECT p FROM Priority p")
-    , @NamedQuery(name = "Priority.findById", query = "SELECT p FROM Priority p WHERE p.id = :id")
-    , @NamedQuery(name = "Priority.findByName", query = "SELECT p FROM Priority p WHERE p.name = :name")})
-public class Priority implements Serializable {
+    @NamedQuery(name = "Notifications.findAll", query = "SELECT n FROM Notifications n")
+    , @NamedQuery(name = "Notifications.findById", query = "SELECT n FROM Notifications n WHERE n.id = :id")
+    , @NamedQuery(name = "Notifications.findByReadStatus", query = "SELECT n FROM Notifications n WHERE n.readStatus = :readStatus")})
+public class Notifications implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -44,22 +42,25 @@ public class Priority implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 30)
-    @Column(name = "name")
-    private String name;
-    @OneToMany(mappedBy = "priority", fetch = FetchType.LAZY)
-    private List<Reports> reportsList;
+    @Column(name = "read_status")
+    private int readStatus;
+    @JoinColumn(name = "report_progress", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private ReportProgresses reportProgress;
+    @JoinColumn(name = "user", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Users user;
 
-    public Priority() {
+    public Notifications() {
     }
 
-    public Priority(Integer id) {
+    public Notifications(Integer id) {
         this.id = id;
     }
 
-    public Priority(Integer id, String name) {
+    public Notifications(Integer id, int readStatus) {
         this.id = id;
-        this.name = name;
+        this.readStatus = readStatus;
     }
 
     public Integer getId() {
@@ -70,21 +71,28 @@ public class Priority implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public int getReadStatus() {
+        return readStatus;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setReadStatus(int readStatus) {
+        this.readStatus = readStatus;
     }
 
-    @XmlTransient
-    public List<Reports> getReportsList() {
-        return reportsList;
+    public ReportProgresses getReportProgress() {
+        return reportProgress;
     }
 
-    public void setReportsList(List<Reports> reportsList) {
-        this.reportsList = reportsList;
+    public void setReportProgress(ReportProgresses reportProgress) {
+        this.reportProgress = reportProgress;
+    }
+
+    public Users getUser() {
+        return user;
+    }
+
+    public void setUser(Users user) {
+        this.user = user;
     }
 
     @Override
@@ -97,10 +105,10 @@ public class Priority implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Priority)) {
+        if (!(object instanceof Notifications)) {
             return false;
         }
-        Priority other = (Priority) object;
+        Notifications other = (Notifications) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -109,7 +117,7 @@ public class Priority implements Serializable {
 
     @Override
     public String toString() {
-        return "com.ksm.hazardreportapp.entities.Priority[ id=" + id + " ]";
+        return "com.ksm.hazardreportapp.entities.Notifications[ id=" + id + " ]";
     }
 
 }

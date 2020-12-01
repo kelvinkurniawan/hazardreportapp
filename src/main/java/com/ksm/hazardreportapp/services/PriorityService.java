@@ -5,8 +5,8 @@
  */
 package com.ksm.hazardreportapp.services;
 
-import com.ksm.hazardreportapp.entities.Priority;
-import com.ksm.hazardreportapp.repositories.PriorityRepository;
+import com.ksm.hazardreportapp.entities.Priorities;
+import com.ksm.hazardreportapp.repositories.PrioritiesRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,17 +19,17 @@ import org.springframework.stereotype.Service;
 public class PriorityService {
 
     @Autowired
-    PriorityRepository repository;
+    PrioritiesRepository repository;
 
-    public List<Priority> getAll() {
+    public List<Priorities> getAll() {
         return repository.findAll();
     }
 
-    public Priority getById(Integer id) {
+    public Priorities getById(Integer id) {
         return repository.findById(id).get();
     }
 
-    public boolean save(Priority priority) {
+    public boolean save(Priorities priority) {
         try {
             repository.save(priority);
             return true;
@@ -47,7 +47,7 @@ public class PriorityService {
         }
     }
 
-    public boolean update(Priority priority) {
+    public boolean update(Priorities priority) {
         try {
             repository.save(priority);
             return true;

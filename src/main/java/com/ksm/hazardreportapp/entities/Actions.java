@@ -38,8 +38,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Actions.findByDescription", query = "SELECT a FROM Actions a WHERE a.description = :description")
     , @NamedQuery(name = "Actions.findByResult", query = "SELECT a FROM Actions a WHERE a.result = :result")
     , @NamedQuery(name = "Actions.findByRisk", query = "SELECT a FROM Actions a WHERE a.risk = :risk")
-    , @NamedQuery(name = "Actions.findByDate", query = "SELECT a FROM Actions a WHERE a.date = :date")
-    , @NamedQuery(name = "Actions.findByActionStatus", query = "SELECT a FROM Actions a WHERE a.actionStatus = :actionStatus")})
+    , @NamedQuery(name = "Actions.findByDate", query = "SELECT a FROM Actions a WHERE a.date = :date")})
 public class Actions implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -59,16 +58,9 @@ public class Actions implements Serializable {
     @Size(max = 100)
     @Column(name = "risk")
     private String risk;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "date")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date date;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 30)
-    @Column(name = "action_status")
-    private String actionStatus;
     @JoinColumn(name = "report_progress", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private ReportProgresses reportProgress;
@@ -83,11 +75,10 @@ public class Actions implements Serializable {
         this.id = id;
     }
 
-    public Actions(Integer id, String description, Date date, String actionStatus) {
+    public Actions(Integer id, String description, Date date) {
         this.id = id;
         this.description = description;
         this.date = date;
-        this.actionStatus = actionStatus;
     }
 
     public Integer getId() {
@@ -128,14 +119,6 @@ public class Actions implements Serializable {
 
     public void setDate(Date date) {
         this.date = date;
-    }
-
-    public String getActionStatus() {
-        return actionStatus;
-    }
-
-    public void setActionStatus(String actionStatus) {
-        this.actionStatus = actionStatus;
     }
 
     public ReportProgresses getReportProgress() {

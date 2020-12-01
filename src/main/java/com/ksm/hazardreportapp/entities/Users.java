@@ -73,6 +73,8 @@ public class Users implements Serializable {
     private List<Reports> reportsList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "admin", fetch = FetchType.LAZY)
     private List<Floors> floorsList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Notifications> notificationsList;
     @JoinColumn(name = "roles", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Roles roles;
@@ -148,6 +150,15 @@ public class Users implements Serializable {
 
     public void setFloorsList(List<Floors> floorsList) {
         this.floorsList = floorsList;
+    }
+
+    @XmlTransient
+    public List<Notifications> getNotificationsList() {
+        return notificationsList;
+    }
+
+    public void setNotificationsList(List<Notifications> notificationsList) {
+        this.notificationsList = notificationsList;
     }
 
     public Roles getRoles() {

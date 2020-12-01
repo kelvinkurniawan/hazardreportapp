@@ -34,8 +34,8 @@
                                                 <td th:text="${as.name}"></td>
                                                 <td th:text="${as.description}"></td>
                                                 <td>
-                                                    <a th:href="@{/admin/manage_room/perform_delete/} + ${as.id}" class="btn btn-danger btn-sm mr-1">Delete</a
-                                                    ><a class="btn btn-info btn-sm">Edit</a>
+                                                    <a th:href="@{/fladmin/room/perform_delete/} + ${as.id}" class="btn btn-danger btn-sm mr-1">Delete</a>
+                                                    <a th:href="@{/fladmin/room/update/} + ${as.id}" class="btn btn-info btn-sm">Edit</a>
                                                 </td>
                                             </tr>
                                         </tbody>

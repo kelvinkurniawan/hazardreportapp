@@ -13,6 +13,8 @@
     <class>com.ksm.hazardreportapp.entities.Users</class>
     <class>com.ksm.hazardreportapp.entities.Floors</class>
     <class>com.ksm.hazardreportapp.entities.ReportProgresses</class>
+    <class>com.ksm.hazardreportapp.entities.Priorities</class>
+    <class>com.ksm.hazardreportapp.entities.Notifications</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/hazardreportdb?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

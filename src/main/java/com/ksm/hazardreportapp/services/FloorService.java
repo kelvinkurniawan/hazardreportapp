@@ -5,9 +5,10 @@
  */
 package com.ksm.hazardreportapp.services;
 
-import com.ksm.hazardreportapp.entities.ActionTypes;
-import com.ksm.hazardreportapp.repositories.ActionTypesRepository;
+import com.ksm.hazardreportapp.entities.Floors;
+import com.ksm.hazardreportapp.repositories.FloorRepository;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,21 +16,22 @@ import org.springframework.stereotype.Service;
  * @author YOGA
  */
 @Service
-public class ActionTypesService {
+public class FloorService {
 
-    ActionTypesRepository repository;
+    @Autowired
+    FloorRepository repository;
 
-    public List<ActionTypes> getAll() {
+    public List<Floors> getAll() {
         return repository.findAll();
     }
 
-    public ActionTypes getById(Integer id) {
+    public Floors getById(Integer id) {
         return repository.findById(id).get();
     }
 
-    public boolean save(ActionTypes actiontypes) {
+    public boolean save(Floors floors) {
         try {
-            repository.save(actiontypes);
+            repository.save(floors);
             return true;
         } catch (Exception e) {
             return false;
@@ -45,9 +47,9 @@ public class ActionTypesService {
         }
     }
 
-    public boolean update(ActionTypes actiontypes) {
+    public boolean update(Floors floors) {
         try {
-            repository.save(actiontypes);
+            repository.save(floors);
             return true;
         } catch (Exception e) {
             return false;

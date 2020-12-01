@@ -5,10 +5,9 @@
  */
 package com.ksm.hazardreportapp.services;
 
-import com.ksm.hazardreportapp.entities.ImageAttachments;
-import com.ksm.hazardreportapp.repositories.ImageAttachmentsRepository;
+import com.ksm.hazardreportapp.entities.ActionTypes;
+import com.ksm.hazardreportapp.repositories.ActionTypeRepository;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,22 +15,21 @@ import org.springframework.stereotype.Service;
  * @author YOGA
  */
 @Service
-public class ImageAttachmentsService {
+public class ActionTypeService {
 
-    @Autowired
-    ImageAttachmentsRepository repository;
+    ActionTypeRepository repository;
 
-    public List<ImageAttachments> getAll() {
+    public List<ActionTypes> getAll() {
         return repository.findAll();
     }
 
-    public ImageAttachments getById(Integer id) {
+    public ActionTypes getById(Integer id) {
         return repository.findById(id).get();
     }
 
-    public boolean save(ImageAttachments image) {
+    public boolean save(ActionTypes actiontypes) {
         try {
-            repository.save(image);
+            repository.save(actiontypes);
             return true;
         } catch (Exception e) {
             return false;
@@ -47,9 +45,9 @@ public class ImageAttachmentsService {
         }
     }
 
-    public boolean update(ImageAttachments image) {
+    public boolean update(ActionTypes actiontypes) {
         try {
-            repository.save(image);
+            repository.save(actiontypes);
             return true;
         } catch (Exception e) {
             return false;

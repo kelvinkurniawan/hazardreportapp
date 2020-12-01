@@ -5,7 +5,7 @@
  */
 package com.ksm.hazardreportapp.repositories;
 
-import com.ksm.hazardreportapp.entities.Rooms;
+import com.ksm.hazardreportapp.entities.ActionTypes;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,6 +14,6 @@ import org.springframework.stereotype.Repository;
  * @author YOGA
  */
 @Repository
-public interface RoomsRepository extends JpaRepository<Rooms, Integer> {
-
+public interface ActionTypeRepository extends JpaRepository<ActionTypes, Integer> {
+    
 }
