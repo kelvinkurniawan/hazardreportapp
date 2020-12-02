@@ -83,9 +83,17 @@ public class ReportController {
         return "updateReport";
     }
 
+    @PostMapping("/admin/report/modify/{id}/priority")
+    public String setPriority(@PathVariable("id") int id, Reports reports){
+        reportService.setPriority(id, reports.getPriority().getId());
+        reportService.updateStatus(2, id);
+        return "redirect:/admin/report/details/" + id;
+    }
+
     @GetMapping("/admin/report/details/{id}")
     public String viewReportDetail(@PathVariable("id") int id, Model model) {
         model.addAttribute("report", reportService.getById(id));
+        model.addAttribute("reportId", id);
         model.addAttribute("originator", userService.getById(this.id));
         model.addAttribute("rooms", roomService.getAll());
         model.addAttribute("priority", priorityService.getAll());

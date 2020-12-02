@@ -8,6 +8,8 @@ package com.ksm.hazardreportapp.services;
 import com.ksm.hazardreportapp.entities.Roles;
 import com.ksm.hazardreportapp.repositories.RoleRepository;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,6 +19,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class RoleService {
 
+    @Autowired
     RoleRepository repository;
 
     public List<Roles> getAll() {

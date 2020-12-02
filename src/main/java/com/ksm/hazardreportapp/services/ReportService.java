@@ -28,6 +28,9 @@ public class ReportService {
     @Autowired
     StatusRepository statusRepository;
 
+    @Autowired
+    PriorityService priorityService;
+
     public List<Reports> getAll() {
         return repository.findAll();
     }
@@ -52,5 +55,16 @@ public class ReportService {
 
         List<ReportProgresses> reportProgresses = reports.getReportProgressesList();
         return reportProgresses.get(reportProgresses.size() - 1);
+    }
+
+    public boolean setPriority(int id, int priority){
+        Reports reports = repository.findById(id).get();
+        reports.setPriority(priorityService.getById(priority));
+        try{
+            repository.save(reports);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 }

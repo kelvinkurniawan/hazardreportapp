@@ -75,7 +75,7 @@
                                     <p class="card-category">Before set priority, check the report first</p>
                                 </div>
                                 <div class="card-body">
-                                    <form action="/admin/manage_report/perform_add" method="post">
+                                    <form th:action="@{/admin/report/modify/} + ${reportId} + @{/priority}" method="post">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
