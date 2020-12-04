@@ -5,8 +5,10 @@
  */
 package com.ksm.hazardreportapp.controllers;
 
+import com.ksm.hazardreportapp.entities.Floors;
 import com.ksm.hazardreportapp.entities.Rooms;
 import com.ksm.hazardreportapp.services.FloorService;
+import com.ksm.hazardreportapp.services.RoleService;
 import com.ksm.hazardreportapp.services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,13 +30,24 @@ public class RoomController {
     @Autowired
     FloorService floorService;
 
+    @Autowired
+    RoleService roleService;
+
     String id = "USER-00101";
     int floor = 1;
 
     // Routes for admin as HSE
     @GetMapping("/admin/floor")
-    public String manageFloor() {
+    public String manageFloor(Model model) {
+        model.addAttribute("floors", floorService.getAll());
+        model.addAttribute("floorWarden", roleService.getById(2).getUsersList());
         return "manageFloor";
+    }
+
+    @PostMapping("/admin/floor")
+    public String performAddFloor(Floors floors){
+        floorService.save(floors);
+        return "redirect:/admin/floor";
     }
 
     // Routes for admin as FLadmin

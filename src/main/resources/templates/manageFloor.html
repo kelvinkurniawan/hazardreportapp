@@ -30,35 +30,16 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>CCTV Floor</td>
-                        <td>Ruangan CCTV</td>
-                        <td>Kelvin</td>
+                      <tr th:each="as, iterator : ${floors} ">
+                        <th scope="row" th:text="${iterator.index + 1}"></th>
+                        <td th:text="${as.name}"></td>
+                        <td th:text="${as.description}"></td>
+                        <td th:text="${as.admin.name}"></td>
                         <td>
-                          <a class="btn btn-danger btn-sm mr-1">Delete</a
-                          ><a class="btn btn-info btn-sm">Edit</a>
+                          <a class="btn btn-info btn-sm m-1">Edit</a>
+                          <a class="btn btn-danger btn-sm m-1">Delete</a>
                         </td>
                       </tr>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>CCTV Floor</td>
-                        <td>Ruangan CCTV</td>
-                        <td>Adnan</td>
-                        <td>
-                          <a class="btn btn-danger btn-sm mr-1">Delete</a
-                          ><a class="btn btn-info btn-sm">Edit</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>CCTV Floor</td>
-                        <td>Ruangan CCTV</td>
-                        <td>Yoga</td>
-                        <td>
-                          <a class="btn btn-danger btn-sm mr-1">Delete</a
-                          ><a class="btn btn-info btn-sm">Edit</a>
-                        </td>
                       </tr>
                     </tbody>
                   </table>
@@ -78,21 +59,19 @@
                   <p class="card-category">Fill the form and add Floor data</p>
                 </div>
                 <div class="card-body">
-                  <form action="#">
+                  <form th:action="@{/admin/floor}" method="post">
                     <div class="form-group">
                       <label>Floor Name</label>
-                      <input type="text" class="form-control" />
+                      <input name="name" type="text" class="form-control" />
                     </div>
                     <div class="form-group">
                       <label>Floor Description</label>
-                      <textarea class="form-control textarea"></textarea>
+                      <textarea name="description" class="form-control textarea"></textarea>
                     </div>
                     <div class="form-group">
                       <label>Floor Warden</label>
-                      <select class="form-control">
-                        <option>Kelvin</option>
-                        <option>Adnan</option>
-                        <option>Yoga</option>
+                      <select class="form-control" name="admin">
+                        <option th:each="as : ${floorWarden}" th:value="${as.id}" th:text="${as.name}"></option>
                       </select>
                     </div>
                     <button type="submit" class="btn btn-primary">
