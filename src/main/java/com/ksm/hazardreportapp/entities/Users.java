@@ -47,51 +47,35 @@ public class Users implements Serializable {
     @Size(min = 1, max = 100)
     @Column(name = "id")
     private String id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
+    @Size(max = 100)
     @Column(name = "name")
     private String name;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
+    @Size(max = 50)
     @Column(name = "email")
     private String email;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 20)
+    @Size(max = 20)
     @Column(name = "username")
     private String username;
     // @Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$", message="Invalid phone/fax format, should be as xxx-xxx-xxxx")//if the field contains phone or fax number consider using this annotation to enforce field validation
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 15)
+    @Size(max = 15)
     @Column(name = "phone")
     private String phone;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "originator", fetch = FetchType.LAZY)
     private List<Reports> reportsList;
+    @JoinColumn(name = "roles", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Roles roles;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "admin", fetch = FetchType.LAZY)
     private List<Floors> floorsList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
     private List<Notifications> notificationsList;
-    @JoinColumn(name = "roles", referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Roles roles;
 
     public Users() {
     }
 
     public Users(String id) {
         this.id = id;
-    }
-
-    public Users(String id, String name, String email, String username, String phone) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.username = username;
-        this.phone = phone;
     }
 
     public String getId() {
@@ -143,6 +127,14 @@ public class Users implements Serializable {
         this.reportsList = reportsList;
     }
 
+    public Roles getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Roles roles) {
+        this.roles = roles;
+    }
+
     @XmlTransient
     public List<Floors> getFloorsList() {
         return floorsList;
@@ -159,14 +151,6 @@ public class Users implements Serializable {
 
     public void setNotificationsList(List<Notifications> notificationsList) {
         this.notificationsList = notificationsList;
-    }
-
-    public Roles getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Roles roles) {
-        this.roles = roles;
     }
 
     @Override

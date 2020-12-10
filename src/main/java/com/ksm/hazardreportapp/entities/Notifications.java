@@ -5,10 +5,9 @@
  */
 package com.ksm.hazardreportapp.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,6 +20,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -34,7 +35,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Notifications.findAll", query = "SELECT n FROM Notifications n")
     , @NamedQuery(name = "Notifications.findById", query = "SELECT n FROM Notifications n WHERE n.id = :id")
-    , @NamedQuery(name = "Notifications.findByReadStatus", query = "SELECT n FROM Notifications n WHERE n.readStatus = :readStatus")})
+    , @NamedQuery(name = "Notifications.findByReadStatus", query = "SELECT n FROM Notifications n WHERE n.readStatus = :readStatus")
+    , @NamedQuery(name = "Notifications.findByDatetime", query = "SELECT n FROM Notifications n WHERE n.datetime = :datetime")})
 public class Notifications implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,12 +49,21 @@ public class Notifications implements Serializable {
     @NotNull
     @Column(name = "read_status")
     private int readStatus;
-    @JoinColumn(name = "report_progress", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private ReportProgresses reportProgress;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "datetime")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date datetime;
     @JoinColumn(name = "user", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JsonIgnore
     private Users user;
+    @JoinColumn(name = "notification_message", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private NotificationMessages notificationMessage;
+    @JoinColumn(name = "report", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Reports report;
 
     public Notifications() {
     }
@@ -61,9 +72,10 @@ public class Notifications implements Serializable {
         this.id = id;
     }
 
-    public Notifications(Integer id, int readStatus) {
+    public Notifications(Integer id, int readStatus, Date datetime) {
         this.id = id;
         this.readStatus = readStatus;
+        this.datetime = datetime;
     }
 
     public Integer getId() {
@@ -82,12 +94,12 @@ public class Notifications implements Serializable {
         this.readStatus = readStatus;
     }
 
-    public ReportProgresses getReportProgress() {
-        return reportProgress;
+    public Date getDatetime() {
+        return datetime;
     }
 
-    public void setReportProgress(ReportProgresses reportProgress) {
-        this.reportProgress = reportProgress;
+    public void setDatetime(Date datetime) {
+        this.datetime = datetime;
     }
 
     public Users getUser() {
@@ -96,6 +108,22 @@ public class Notifications implements Serializable {
 
     public void setUser(Users user) {
         this.user = user;
+    }
+
+    public NotificationMessages getNotificationMessage() {
+        return notificationMessage;
+    }
+
+    public void setNotificationMessage(NotificationMessages notificationMessage) {
+        this.notificationMessage = notificationMessage;
+    }
+
+    public Reports getReport() {
+        return report;
+    }
+
+    public void setReport(Reports report) {
+        this.report = report;
     }
 
     @Override

@@ -1,4 +1,10 @@
 .form-group input[type="file"] {
-  opacity: 1;
-  position: relative;
+    opacity: 1;
+    position: relative;
+}
+.unread{
+    background:#f1f0f0;
+}
+.new-notif{
+    color: #51cbce;
 }

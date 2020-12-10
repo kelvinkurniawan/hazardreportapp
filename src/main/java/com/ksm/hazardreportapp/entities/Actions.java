@@ -15,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -35,9 +36,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Actions.findAll", query = "SELECT a FROM Actions a")
     , @NamedQuery(name = "Actions.findById", query = "SELECT a FROM Actions a WHERE a.id = :id")
-    , @NamedQuery(name = "Actions.findByDescription", query = "SELECT a FROM Actions a WHERE a.description = :description")
-    , @NamedQuery(name = "Actions.findByResult", query = "SELECT a FROM Actions a WHERE a.result = :result")
-    , @NamedQuery(name = "Actions.findByRisk", query = "SELECT a FROM Actions a WHERE a.risk = :risk")
     , @NamedQuery(name = "Actions.findByDate", query = "SELECT a FROM Actions a WHERE a.date = :date")})
 public class Actions implements Serializable {
 
@@ -49,15 +47,20 @@ public class Actions implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255)
+    @Lob
+    @Size(min = 1, max = 65535)
     @Column(name = "description")
     private String description;
-    @Size(max = 100)
+    @Lob
+    @Size(max = 65535)
     @Column(name = "result")
     private String result;
-    @Size(max = 100)
+    @Lob
+    @Size(max = 65535)
     @Column(name = "risk")
     private String risk;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;

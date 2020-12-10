@@ -9,8 +9,9 @@ import com.ksm.hazardreportapp.entities.ImageAttachments;
 import com.ksm.hazardreportapp.entities.Reports;
 import com.ksm.hazardreportapp.providers.CustomUser;
 import com.ksm.hazardreportapp.services.*;
-
+import com.pusher.rest.Pusher;
 import java.util.Arrays;
+import java.util.Collections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -86,7 +87,11 @@ public class ReportController {
     }
 
     @PostMapping("/admin/report/modify/{id}/priority")
-    public String setPriority(@PathVariable("id") int id, Reports reports){
+    public String setPriority(@PathVariable("id") int id, Reports reports) {
+        Pusher pusher = new Pusher("1121252", "75b839e2c030a656a41c", "f17af836b1f4bcfeeffe");
+        pusher.setCluster("ap1");
+        pusher.setEncrypted(true);
+        pusher.trigger("my-channel", "updateNotif", Collections.singletonMap("message", "success"));
         reportService.setPriority(id, reports.getPriority().getId());
         reportService.updateStatus(2, id);
         return "redirect:/admin/report/details/" + id;

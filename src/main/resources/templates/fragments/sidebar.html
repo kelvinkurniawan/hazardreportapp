@@ -11,20 +11,20 @@
     </div>
     <div class="sidebar-wrapper">
         <ul class="nav">
-            <li class="active">
+            <li class="dashboard-link">
                 <a th:href="@{/admin}">
                     <i class="nc-icon nc-bank"></i>
                     <p>Dashboard</p>
                 </a>
             </li>
-            <li>
+            <li class="report-link">
                 <a th:href="@{/admin/report}">
                     <i class="nc-icon nc-paper"></i>
                     <p>Manage Report</p>
                 </a>
             </li>
             <div sec:authorize="hasAuthority('HSE')">
-                <li>
+                <li class="floor-link">
                     <a th:href="@{/admin/floor}">
                         <i class="nc-icon nc-layout-11"></i>
                         <p>Manage Floor</p>
@@ -32,7 +32,7 @@
                 </li>
             </div>
             <div sec:authorize="hasAuthority('FW')">
-                <li>
+                <li class="room-link">
                     <a th:href="@{/fladmin/room}">
                         <i class="nc-icon nc-box-2"></i>
                         <p>Manage Room</p>
@@ -40,13 +40,13 @@
                 </li>
             </div>
             <div sec:authorize="hasAuthority('HSE')">
-                <li>
+                <li class="recap-link">
                     <a th:href="@{/admin/recap}">
                         <i class="nc-icon nc-email-85"></i>
                         <p>Recap Report</p>
                     </a>
                 </li>
-                <li>
+                <li class="user-link">
                     <a th:href="@{/admin/user}">
                         <i class="nc-icon nc-single-02"></i>
                         <p>Manage User</p>

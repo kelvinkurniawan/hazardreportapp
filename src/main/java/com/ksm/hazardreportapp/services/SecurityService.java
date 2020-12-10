@@ -19,7 +19,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  */
 @Configuration
 @EnableWebSecurity
-public class LoginRestService extends WebSecurityConfigurerAdapter {
+public class SecurityService extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private CustomAuthenticationProvider authProvider;
@@ -46,6 +46,10 @@ public class LoginRestService extends WebSecurityConfigurerAdapter {
                 .antMatchers("/forgotpassword/**").permitAll()
                 .antMatchers("/uploads/**").permitAll()
                 .antMatchers("/api/**").permitAll()
+                .antMatchers("/fladmin/**").hasAuthority("FW")
+                .antMatchers("/admin/user/**").hasAuthority("HSE")
+                .antMatchers("/admin/floor/**").hasAuthority("HSE")
+                .antMatchers("/admin/recap/**").hasAuthority("HSE")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

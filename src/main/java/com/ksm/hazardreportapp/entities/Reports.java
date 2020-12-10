@@ -6,7 +6,7 @@
 package com.ksm.hazardreportapp.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -39,6 +39,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "reports", catalog = "hazardreportdb", schema = "")
 @XmlRootElement
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @NamedQueries({
     @NamedQuery(name = "Reports.findAll", query = "SELECT r FROM Reports r")
     , @NamedQuery(name = "Reports.findById", query = "SELECT r FROM Reports r WHERE r.id = :id")
@@ -55,29 +56,40 @@ public class Reports implements Serializable {
     @NotNull
     @Column(name = "date")
     @Temporal(TemporalType.TIMESTAMP)
+    @JsonIgnore
     private Date date;
     @Basic(optional = false)
     @NotNull
     @Lob
     @Size(min = 1, max = 65535)
     @Column(name = "description")
+    @JsonIgnore
     private String description;
     @JoinColumn(name = "originator", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JsonIgnore
     private Users originator;
     @JoinColumn(name = "room", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JsonIgnore
     private Rooms room;
     @JoinColumn(name = "priority", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     private Priorities priority;
     @JoinColumn(name = "current_status", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JsonIgnore
     private Statuses currentStatus;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "report", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<ImageAttachments> imageAttachmentsList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "report", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<ReportProgresses> reportProgressesList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "report", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Notifications> notificationsList;
 
     public Reports() {
     }
@@ -164,6 +176,15 @@ public class Reports implements Serializable {
 
     public void setReportProgressesList(List<ReportProgresses> reportProgressesList) {
         this.reportProgressesList = reportProgressesList;
+    }
+
+    @XmlTransient
+    public List<Notifications> getNotificationsList() {
+        return notificationsList;
+    }
+
+    public void setNotificationsList(List<Notifications> notificationsList) {
+        this.notificationsList = notificationsList;
     }
 
     @Override

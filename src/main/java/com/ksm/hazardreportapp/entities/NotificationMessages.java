@@ -5,6 +5,8 @@
  */
 package com.ksm.hazardreportapp.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -29,14 +31,14 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author kelvi
  */
 @Entity
-@Table(name = "statuses", catalog = "hazardreportdb", schema = "")
+@Table(name = "notification_messages", catalog = "hazardreportdb", schema = "")
 @XmlRootElement
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @NamedQueries({
-    @NamedQuery(name = "Statuses.findAll", query = "SELECT s FROM Statuses s")
-    , @NamedQuery(name = "Statuses.findById", query = "SELECT s FROM Statuses s WHERE s.id = :id")
-    , @NamedQuery(name = "Statuses.findByName", query = "SELECT s FROM Statuses s WHERE s.name = :name")
-    , @NamedQuery(name = "Statuses.findByMessage", query = "SELECT s FROM Statuses s WHERE s.message = :message")})
-public class Statuses implements Serializable {
+    @NamedQuery(name = "NotificationMessages.findAll", query = "SELECT n FROM NotificationMessages n")
+    , @NamedQuery(name = "NotificationMessages.findById", query = "SELECT n FROM NotificationMessages n WHERE n.id = :id")
+    , @NamedQuery(name = "NotificationMessages.findByMessage", query = "SELECT n FROM NotificationMessages n WHERE n.message = :message")})
+public class NotificationMessages implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -46,29 +48,22 @@ public class Statuses implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 30)
-    @Column(name = "name")
-    private String name;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
+    @Size(min = 1, max = 255)
     @Column(name = "message")
     private String message;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "currentStatus", fetch = FetchType.LAZY)
-    private List<Reports> reportsList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status", fetch = FetchType.LAZY)
-    private List<ReportProgresses> reportProgressesList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "notificationMessage", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Notifications> notificationsList;
 
-    public Statuses() {
+    public NotificationMessages() {
     }
 
-    public Statuses(Integer id) {
+    public NotificationMessages(Integer id) {
         this.id = id;
     }
 
-    public Statuses(Integer id, String name, String message) {
+    public NotificationMessages(Integer id, String message) {
         this.id = id;
-        this.name = name;
         this.message = message;
     }
 
@@ -80,14 +75,6 @@ public class Statuses implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getMessage() {
         return message;
     }
@@ -97,21 +84,12 @@ public class Statuses implements Serializable {
     }
 
     @XmlTransient
-    public List<Reports> getReportsList() {
-        return reportsList;
+    public List<Notifications> getNotificationsList() {
+        return notificationsList;
     }
 
-    public void setReportsList(List<Reports> reportsList) {
-        this.reportsList = reportsList;
-    }
-
-    @XmlTransient
-    public List<ReportProgresses> getReportProgressesList() {
-        return reportProgressesList;
-    }
-
-    public void setReportProgressesList(List<ReportProgresses> reportProgressesList) {
-        this.reportProgressesList = reportProgressesList;
+    public void setNotificationsList(List<Notifications> notificationsList) {
+        this.notificationsList = notificationsList;
     }
 
     @Override
@@ -124,10 +102,10 @@ public class Statuses implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Statuses)) {
+        if (!(object instanceof NotificationMessages)) {
             return false;
         }
-        Statuses other = (Statuses) object;
+        NotificationMessages other = (NotificationMessages) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -136,7 +114,7 @@ public class Statuses implements Serializable {
 
     @Override
     public String toString() {
-        return "com.ksm.hazardreportapp.entities.Statuses[ id=" + id + " ]";
+        return "com.ksm.hazardreportapp.entities.NotificationMessages[ id=" + id + " ]";
     }
 
 }
