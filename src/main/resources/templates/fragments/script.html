@@ -26,6 +26,10 @@
         $.get("/api/get/notification", function (data) {
             var html = "";
 
+            if (data.length < 1) {
+                html += '<a class="dropdown-item">No Notifications</a>';
+            }
+
             for (var row in data) {
                 var rowData = Object.values(data[row]);
                 var id = rowData[0];

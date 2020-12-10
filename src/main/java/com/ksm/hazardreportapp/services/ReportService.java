@@ -5,13 +5,16 @@
  */
 package com.ksm.hazardreportapp.services;
 
+import com.ksm.hazardreportapp.entities.Floors;
 import com.ksm.hazardreportapp.entities.ReportProgresses;
 import com.ksm.hazardreportapp.entities.Reports;
+import com.ksm.hazardreportapp.entities.Rooms;
 import com.ksm.hazardreportapp.entities.Statuses;
+import com.ksm.hazardreportapp.entities.Users;
 import com.ksm.hazardreportapp.repositories.ReportRepository;
-import java.util.List;
-
 import com.ksm.hazardreportapp.repositories.StatusRepository;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,8 +34,34 @@ public class ReportService {
     @Autowired
     PriorityService priorityService;
 
+    @Autowired
+    UserService userService;
+
+    @Autowired
+    FloorService floorService;
+
     public List<Reports> getAll() {
         return repository.findAll();
+    }
+
+    public List<Reports> getAllByUser(String id) {
+        Users user = userService.getById(id);
+        List<Floors> floors = user.getFloorsList();
+        List<Rooms> finalRooms = new ArrayList<>();
+
+        floors.forEach((floor) -> {
+            List<Rooms> rooms = floor.getRoomsList();
+            rooms.forEach((room) -> {
+                finalRooms.add(room);
+            });
+        });
+        System.out.println(finalRooms);
+        return repository.findByRoomIn(finalRooms);
+
+    }
+
+    public List<Reports> getAllByOriginator(Users user) {
+        return repository.findByOriginator(user);
     }
 
     public Reports getById(int id) {
@@ -47,7 +76,7 @@ public class ReportService {
         repository.delete(new Reports(id));
     }
 
-    public ReportProgresses updateStatus(int status, int id){
+    public ReportProgresses updateStatus(int status, int id) {
         Reports reports = repository.findById(id).get();
         Statuses statuses = statusRepository.findById(status).get();
         reports.setCurrentStatus(statuses);
@@ -57,13 +86,13 @@ public class ReportService {
         return reportProgresses.get(reportProgresses.size() - 1);
     }
 
-    public boolean setPriority(int id, int priority){
+    public boolean setPriority(int id, int priority) {
         Reports reports = repository.findById(id).get();
         reports.setPriority(priorityService.getById(priority));
-        try{
+        try {
             repository.save(reports);
             return true;
-        }catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
     }

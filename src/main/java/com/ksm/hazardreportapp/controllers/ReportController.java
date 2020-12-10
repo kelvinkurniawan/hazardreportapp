@@ -7,6 +7,7 @@ package com.ksm.hazardreportapp.controllers;
 
 import com.ksm.hazardreportapp.entities.ImageAttachments;
 import com.ksm.hazardreportapp.entities.Reports;
+import com.ksm.hazardreportapp.entities.Users;
 import com.ksm.hazardreportapp.providers.CustomUser;
 import com.ksm.hazardreportapp.services.*;
 import com.pusher.rest.Pusher;
@@ -50,7 +51,17 @@ public class ReportController {
     // Routes for admin as HSE
     @GetMapping("/admin/report")
     public String manageReport(Model model) {
-        model.addAttribute("reports", reportService.getAll());
+        CustomUser user = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String id = user.getId();
+        if (user.getAuthorities().stream().anyMatch(role -> role.getAuthority().equals("FW"))) {
+            model.addAttribute("reports", reportService.getAllByUser(id));
+        } else if (user.getAuthorities().stream().anyMatch(role -> role.getAuthority().equals("HSE"))) {
+            model.addAttribute("reports", reportService.getAll());
+        } else if (user.getAuthorities().stream().anyMatch(role -> role.getAuthority().equals("EMPLOYEE"))) {
+            Users localUser = userService.getById(id);
+            model.addAttribute("reports", reportService.getAllByOriginator(localUser));
+        }
+
         return "manageReport";
     }
 

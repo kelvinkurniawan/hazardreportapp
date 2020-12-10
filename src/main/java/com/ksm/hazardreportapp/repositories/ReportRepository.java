@@ -6,7 +6,12 @@
 package com.ksm.hazardreportapp.repositories;
 
 import com.ksm.hazardreportapp.entities.Reports;
+import com.ksm.hazardreportapp.entities.Rooms;
+import com.ksm.hazardreportapp.entities.Users;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -15,5 +20,9 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ReportRepository extends JpaRepository<Reports, Integer> {
-    
+
+    @Query("Select r from Reports r where r.room IN (:room)")
+    public List<Reports> findByRoomIn(@Param("room") List<Rooms> room);
+
+    public List<Reports> findByOriginator(@Param("originator") Users originator);
 }
