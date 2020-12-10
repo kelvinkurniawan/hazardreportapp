@@ -32,6 +32,7 @@ public class LoginRestService extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .csrf().disable()
                 .cors()
                 .and()
                 .authorizeRequests()
@@ -39,7 +40,9 @@ public class LoginRestService extends WebSecurityConfigurerAdapter {
                 .antMatchers("/register/**").anonymous()
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/js/**").permitAll()
-                .antMatchers("/images/**").permitAll()
+                .antMatchers("/fonts/**").permitAll()
+                .antMatchers("/demo/**").permitAll()
+                .antMatchers("/img/**").permitAll()
                 .antMatchers("/forgotpassword/**").permitAll()
                 .antMatchers("/uploads/**").permitAll()
                 .antMatchers("/api/**").permitAll()

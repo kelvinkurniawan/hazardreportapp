@@ -18,8 +18,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 /**
@@ -39,33 +37,50 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
     LoginInput loginInput = new LoginInput();
     Users user = new Users();
+
     LoginOutput loginOutput;
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String name = authentication.getName(); //email
         String password = authentication.getCredentials().toString();
+        boolean enabled = true;
+        boolean accountNonExpired = true;
+        boolean credentialsNonExpired = true;
+        boolean accountNonLocked = true;
 
         loginInput.setEmail(name);
         loginInput.setPassword(password);
 
         loginOutput = loginService.login(loginInput);
 
-
         //System.out.println("Email : "+ loginOutput.getUser().getEmail());
-
         if (loginOutput.getStatus().equalsIgnoreCase("Verified")) {
 
-            user = userService.getByEmail(loginOutput.getUser().getEmail());
-
-            if(!user.getId().equalsIgnoreCase(loginOutput.getUser().getId())){
+            user = userService.getByEmail(name);
+            System.out.println("segywu@digital10network.com");
+            if (!user.getId().equalsIgnoreCase(loginOutput.getUser().getId())) {
                 System.out.println("Local id = " + user.getId());
                 System.out.println("Server id = " + loginOutput.getUser().getId());
                 userService.syncLocalUserIdAndServerUserId(loginOutput.getUser().getId(), loginOutput.getUser().getEmail());
             }
+
             final List<GrantedAuthority> grantedAuths = new ArrayList<>();
-            grantedAuths.add(new SimpleGrantedAuthority(loginOutput.getUser().getRoles().get(0)));
-            final UserDetails principal = new User(name, password, grantedAuths);
+
+            grantedAuths.add(new SimpleGrantedAuthority(user.getRoles().getId() + ""));
+
+            final CustomUser principal = new CustomUser(
+                    name,
+                    password,
+                    enabled,
+                    accountNonExpired,
+                    credentialsNonExpired,
+                    accountNonLocked,
+                    grantedAuths,
+                    loginOutput.getUser().getId()
+            );
+
+            System.out.println("User ID From login = " + principal.getId());
             final Authentication auth = new UsernamePasswordAuthenticationToken(principal, password, grantedAuths);
 
             return auth;

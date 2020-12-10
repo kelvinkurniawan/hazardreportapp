@@ -21,33 +21,34 @@ public class UserController {
     RoleService roleService;
 
     @GetMapping("admin/user")
-    public String manageUser(Model model){
+    public String manageUser(Model model) {
         model.addAttribute("users", userService.getAll());
         return "manageUser";
     }
 
     @GetMapping("admin/user/{username}")
-    public  String viewUser(@PathVariable("username") String username, Model model){
+    public String viewUser(@PathVariable("username") String username, Model model) {
         model.addAttribute("user", userService.getByUsername(username));
         model.addAttribute("roles", roleService.getAll());
         return "viewUser";
     }
 
     @GetMapping("admin/user/add")
-    public String addUser(Model model){
+    public String addUser(Model model) {
         model.addAttribute("universities", userService.getUniversities());
         model.addAttribute("majors", userService.getMajors());
         return "addUser";
     }
 
     @PostMapping("admin/user/add")
-    public String performAddUsr(RegisterInput input){
+    public String performAddUser(RegisterInput input) {
+        System.out.println("Post Method Running");
         userService.register(input);
         return "redirect:/admin/user";
     }
 
     @PostMapping("admin/user/setrole")
-    public String performSetRole(Users users){
+    public String performSetRole(Users users) {
         System.out.println(users.getRoles().getId());
         Users oldUser = new Users();
         oldUser = userService.getByUsername(users.getUsername());

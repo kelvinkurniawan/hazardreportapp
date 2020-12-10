@@ -47,29 +47,29 @@ public class UserService {
     }
 
     public RegisterOutput register(RegisterInput input) {
-        try{
+        try {
             HttpEntity<RegisterInput> request = new HttpEntity<>(input, null);
             ResponseEntity<Boolean> responseEntity = restTemplate.exchange(
                     uri + "register",
                     HttpMethod.POST,
                     request,
                     new ParameterizedTypeReference<Boolean>() {
-                    });
+            });
             System.out.println(responseEntity);
             registerOutput.setStatus(true);
             registerOutput.setMessage("register_success");
 
-            newUser.setId("TEMP-000" + this.getAll().size()+1);
+            newUser.setId("TEMP-000" + this.getAll().size() + 1);
             newUser.setEmail(input.getEmail());
             newUser.setName(input.getName());
             newUser.setPhone(input.getPhone());
             newUser.setUsername(input.getUsername());
-            newUser.setRoles(roleService.getById(1));
+            newUser.setRoles(roleService.getById(3));
 
             this.save(newUser);
 
             return registerOutput;
-        }catch(HttpStatusCodeException e){
+        } catch (HttpStatusCodeException e) {
             registerOutput.setStatus(false);
             String message = e.getMessage().split(":")[1].replace("[", "").replace("]", "");
             registerOutput.setMessage(message);
@@ -91,62 +91,67 @@ public class UserService {
         repository.delete(new Users(id));
     }
 
-    public List<Majors> getMajors(){
+    public List<Majors> getMajors() {
         List<Majors> result;
 
         ResponseEntity<List<Majors>> response = restTemplate.exchange(uri + "get/majors",
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<Majors>>() {
-                });
+        });
 
         result = response.getBody();
         return result;
     }
 
-    public List<Universities> getUniversities(){
+    public List<Universities> getUniversities() {
         List<Universities> result;
 
         ResponseEntity<List<Universities>> response = restTemplate.exchange(uri + "get/universities",
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<Universities>>() {
-                });
+        });
 
         result = response.getBody();
         return result;
     }
 
-    public Users getByUsername(String username){
+    public Users getByUsername(String username) {
         return repository.findByUsername(username);
     }
 
-    public Users getByEmail(String email){
-        return repository.findByEmail(email);
+    public Users getByEmail(String email) {
+        try {
+            return repository.findByEmail(email);
+        } catch (Exception e) {
+            System.out.println("GetByEmail error : " + e);
+            return null;
+        }
     }
 
-    public int syncLocalUserIdAndServerUserId(String id, String email){
-        try{
+    public int syncLocalUserIdAndServerUserId(String id, String email) {
+        try {
             return repository.syncLocalUserIdAndServerUserId(id, email);
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Error in updating ID : " + e);
             return 0;
         }
     }
 
-    public boolean updateRole(String username, int role){
+    public boolean updateRole(String username, int role) {
         Users users = new Users();
-        try{
+        try {
             users = repository.findByUsername(username);
             users.setRoles(roleService.getById(role));
             repository.save(users);
             return true;
-        }catch (Exception e) {
+        } catch (Exception e) {
             return false;
         }
     }
 
-    public List<Notifications> getNotification(String id){
+    public List<Notifications> getNotification(String id) {
         return repository.findById(id).get().getNotificationsList();
     }
 }

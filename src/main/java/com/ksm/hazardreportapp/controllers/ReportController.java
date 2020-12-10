@@ -7,10 +7,12 @@ package com.ksm.hazardreportapp.controllers;
 
 import com.ksm.hazardreportapp.entities.ImageAttachments;
 import com.ksm.hazardreportapp.entities.Reports;
+import com.ksm.hazardreportapp.providers.CustomUser;
 import com.ksm.hazardreportapp.services.*;
 
 import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,8 +46,6 @@ public class ReportController {
     @Autowired
     ImageStorageService imageStorageService;
 
-    String id = "USER-00101";
-
     // Routes for admin as HSE
     @GetMapping("/admin/report")
     public String manageReport(Model model) {
@@ -55,6 +55,8 @@ public class ReportController {
 
     @GetMapping("/admin/report/new")
     public String newReport(Model model) {
+        CustomUser user = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String id = user.getId();
         model.addAttribute("originator", userService.getById(id));
         model.addAttribute("rooms", roomService.getAll());
         return "addReport";
@@ -92,9 +94,11 @@ public class ReportController {
 
     @GetMapping("/admin/report/details/{id}")
     public String viewReportDetail(@PathVariable("id") int id, Model model) {
+        CustomUser user = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userId = user.getId();
         model.addAttribute("report", reportService.getById(id));
         model.addAttribute("reportId", id);
-        model.addAttribute("originator", userService.getById(this.id));
+        model.addAttribute("originator", userService.getById(userId));
         model.addAttribute("rooms", roomService.getAll());
         model.addAttribute("priority", priorityService.getAll());
         return "viewReport";
