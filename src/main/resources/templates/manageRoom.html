@@ -12,13 +12,20 @@
                 <!-- End Navbar -->
                 <div class="content">
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
                                     <h5 class="card-title">Manage Room</h5>
                                     <p class="card-category">Create, update, delete room</p>
                                 </div>
                                 <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-12 text-right">
+                                            <button type="button" class="btn btn-primary add-modal" data-toggle="modal" data-target="#roomModal">
+                                                Add Data
+                                            </button>
+                                        </div>
+                                    </div>
                                     <table class="table" id="datatable">
                                         <thead>
                                             <tr>
@@ -35,7 +42,14 @@
                                                 <td th:text="${as.description}"></td>
                                                 <td>
                                                     <a th:href="@{/fladmin/room/perform_delete/} + ${as.id}" class="btn btn-danger btn-sm mr-1">Delete</a>
-                                                    <a th:href="@{/fladmin/room/update/} + ${as.id}" class="btn btn-info btn-sm">Edit</a>
+                                                    <a href="#"
+                                                       class="btn btn-info btn-sm edit-modal"
+                                                       data-toggle="modal"
+                                                       data-target="#roomModal"
+                                                       th:data-id="${as.id}"
+                                                       th:data-name="${as.name}"
+                                                       th:data-description="${as.description}"
+                                                    >Edit</a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -49,42 +63,30 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h5 class="card-title">New Room</h5>
-                                    <p class="card-category">Fill the form and add room data</p>
-                                </div>
-                                <div class="card-body">
-                                    <form action="/fladmin/room" method="post">
-                                        <input type="hidden" th:value="${floor}" name="floor">
-                                        <div class="form-group">
-                                            <label>Room Name</label>
-                                            <input name="name" type="text" class="form-control" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Room Description</label>
-                                            <textarea name="description" class="form-control textarea"></textarea>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary">
-                                            Submit
-                                        </button>
-                                    </form>
-                                </div>
-                                <div class="card-footer">
-                                    <hr />
-                                    <div class="stats">
-                                        <i class="fas fa-check-double"></i> Check your form again
-                                        before submit
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div th:replace="fragments/footer"></div>
             </div>
         </div>
+        <div th:replace="fragments/modals/roomModal"></div>
         <div th:replace="fragments/script"></div>
+        <script>
+            $(document).on("click", ".edit-modal", function () {
+
+                 var id = $(this).data('id');
+                 var name = $(this).data('name');
+                 var description = $(this).data('description');
+
+                 $(".modal-body #id").val( id );
+                 $(".modal-body #name").val( name );
+                 $(".modal-body #description").val( description );
+            });
+
+            $(document).on("click", ".add-modal", function () {
+                 $(".modal-body #id").val( "" );
+                 $(".modal-body #name").val( "" );
+                 $(".modal-body #description").val( "" );
+            });
+        </script>
     </body>
 </html>

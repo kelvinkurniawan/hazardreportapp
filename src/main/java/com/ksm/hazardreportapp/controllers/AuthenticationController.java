@@ -8,6 +8,7 @@ package com.ksm.hazardreportapp.controllers;
 import com.ksm.hazardreportapp.entities.rest.LoginInput;
 import com.ksm.hazardreportapp.services.rest.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +33,12 @@ public class AuthenticationController {
     @PostMapping("/auth/perform_login")
     public String loginPerform(LoginInput loginInput) {
         System.out.println(loginService.login(loginInput));
+        return "redirect:/";
+    }
+
+    @GetMapping("/logout")
+    public String logoutPerform(){
+        SecurityContextHolder.getContext().setAuthentication(null);
         return "redirect:/";
     }
 

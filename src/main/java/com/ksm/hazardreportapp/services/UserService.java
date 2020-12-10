@@ -5,6 +5,7 @@
  */
 package com.ksm.hazardreportapp.services;
 
+import com.ksm.hazardreportapp.entities.Notifications;
 import com.ksm.hazardreportapp.entities.Users;
 import com.ksm.hazardreportapp.entities.rest.Majors;
 import com.ksm.hazardreportapp.entities.rest.RegisterInput;
@@ -58,7 +59,7 @@ public class UserService {
             registerOutput.setStatus(true);
             registerOutput.setMessage("register_success");
 
-            newUser.setId("USER-000" + this.getAll().size()+1);
+            newUser.setId("TEMP-000" + this.getAll().size()+1);
             newUser.setEmail(input.getEmail());
             newUser.setName(input.getName());
             newUser.setPhone(input.getPhone());
@@ -120,6 +121,19 @@ public class UserService {
         return repository.findByUsername(username);
     }
 
+    public Users getByEmail(String email){
+        return repository.findByEmail(email);
+    }
+
+    public int syncLocalUserIdAndServerUserId(String id, String email){
+        try{
+            return repository.syncLocalUserIdAndServerUserId(id, email);
+        }catch (Exception e){
+            System.out.println("Error in updating ID : " + e);
+            return 0;
+        }
+    }
+
     public boolean updateRole(String username, int role){
         Users users = new Users();
         try{
@@ -130,5 +144,9 @@ public class UserService {
         }catch (Exception e) {
             return false;
         }
+    }
+
+    public List<Notifications> getNotification(String id){
+        return repository.findById(id).get().getNotificationsList();
     }
 }

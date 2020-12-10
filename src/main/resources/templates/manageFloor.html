@@ -12,13 +12,20 @@
         <!-- End Navbar -->
         <div class="content">
           <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12">
               <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">Manage Floor</h5>
                   <p class="card-category">Create, update, delete Floor</p>
                 </div>
                 <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-12 text-right">
+                      <button type="button" class="btn btn-primary add-modal" data-toggle="modal" data-target="#floorModal">
+                        Add Data
+                      </button>
+                    </div>
+                  </div>
                   <table class="table" id="datatable">
                     <thead>
                       <tr>
@@ -36,7 +43,15 @@
                         <td th:text="${as.description}"></td>
                         <td th:text="${as.admin.name}"></td>
                         <td>
-                          <a class="btn btn-info btn-sm m-1">Edit</a>
+                          <a href="#"
+                             class="btn btn-info btn-sm m-1 edit-modal"
+                             data-toggle="modal"
+                             data-target="#floorModal"
+                             th:data-id="${as.id}"
+                             th:data-name="${as.name}"
+                             th:data-description="${as.description}"
+                             th:data-admin="${as.admin.id}"
+                          >Edit</a>
                           <a class="btn btn-danger btn-sm m-1">Delete</a>
                         </td>
                       </tr>
@@ -52,47 +67,33 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="card">
-                <div class="card-header">
-                  <h5 class="card-title">New Floor</h5>
-                  <p class="card-category">Fill the form and add Floor data</p>
-                </div>
-                <div class="card-body">
-                  <form th:action="@{/admin/floor}" method="post">
-                    <div class="form-group">
-                      <label>Floor Name</label>
-                      <input name="name" type="text" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                      <label>Floor Description</label>
-                      <textarea name="description" class="form-control textarea"></textarea>
-                    </div>
-                    <div class="form-group">
-                      <label>Floor Warden</label>
-                      <select class="form-control" name="admin">
-                        <option th:each="as : ${floorWarden}" th:value="${as.id}" th:text="${as.name}"></option>
-                      </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary">
-                      Submit
-                    </button>
-                  </form>
-                </div>
-                <div class="card-footer">
-                  <hr />
-                  <div class="stats">
-                    <i class="fas fa-check-double"></i> Check your form again
-                    before submit
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
         <div th:replace="fragments/footer"></div>
       </div>
     </div>
+    <div th:replace="fragments/modals/floorModal"></div>
     <div th:replace="fragments/script"></div>
+    <script>
+          $(document).on("click", ".edit-modal", function () {
+
+             var id = $(this).data('id');
+             var name = $(this).data('name');
+             var description = $(this).data('description');
+             var admin = $(this).data('admin');
+
+             $(".modal-body #id").val( id );
+             $(".modal-body #name").val( name );
+             $(".modal-body #description").val( description );
+             $(".modal-body #admin").val( admin );
+        });
+
+        $(document).on("click", ".add-modal", function () {
+             $(".modal-body #id").val( "" );
+             $(".modal-body #name").val( "" );
+             $(".modal-body #description").val( "" );
+             $(".modal-body #admin").val( "" );
+        });
+    </script>
   </body>
 </html>

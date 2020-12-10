@@ -5,6 +5,7 @@
  */
 package com.ksm.hazardreportapp.controllers;
 
+import com.ksm.hazardreportapp.entities.NotificationJson;
 import com.ksm.hazardreportapp.entities.Notifications;
 import com.ksm.hazardreportapp.repositories.NotificationRepository;
 import com.ksm.hazardreportapp.services.ImageAttachmentService;
@@ -55,8 +56,7 @@ public class MainController {
 
     @ResponseBody
     @GetMapping("api/get/notification")
-    public List<Notifications> getNotification(){
-        System.out.println(notificationService.getByUserId(id));
-        return notificationRepository.findByUserId(id);
+    public void getNotification(){
+        notificationService.getByUserId(id);
     }
 }
