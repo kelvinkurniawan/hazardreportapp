@@ -68,7 +68,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4" sec:authorize="hasAnyAuthority('HSE', 'FW')">
                             <div class="card">
                                 <div class="card-header">
                                     <h5 class="card-title">Set Priority</h5>
@@ -101,6 +101,19 @@
                                     <div class="stats">
                                         <i class="fas fa-check-double"></i> Check your form again
                                         before submit
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title">Action List</h5>
+                                    <p class="card-category">below is a list of actions</p>
+                                </div>
+                                <div class="card-body">
+                                    <a href="#" class="btn btn-danger">Add Action</a>
+                                    <div class="list-group list-group-flush">
+                                        <a href="#" class="list-group-item list-group-item-action">Cras justo odio </a>
+                                        <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
                                     </div>
                                 </div>
                             </div>

@@ -58,7 +58,6 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         if (loginOutput.getStatus().equalsIgnoreCase("Verified")) {
 
             user = userService.getByEmail(name);
-            System.out.println("segywu@digital10network.com");
             if (!user.getId().equalsIgnoreCase(loginOutput.getUser().getId())) {
                 System.out.println("Local id = " + user.getId());
                 System.out.println("Server id = " + loginOutput.getUser().getId());
@@ -66,8 +65,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
             }
 
             final List<GrantedAuthority> grantedAuths = new ArrayList<>();
-
-            grantedAuths.add(new SimpleGrantedAuthority(user.getRoles().getId() + ""));
+            grantedAuths.add(new SimpleGrantedAuthority(user.getRoles().getName()));
 
             final CustomUser principal = new CustomUser(
                     name,

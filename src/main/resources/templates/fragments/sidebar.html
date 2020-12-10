@@ -23,30 +23,36 @@
                     <p>Manage Report</p>
                 </a>
             </li>
-            <li>
-                <a th:href="@{/admin/floor}">
-                    <i class="nc-icon nc-layout-11"></i>
-                    <p>Manage Floor</p>
-                </a>
-            </li>
-            <li>
-                <a th:href="@{/fladmin/room}">
-                    <i class="nc-icon nc-box-2"></i>
-                    <p>Manage Room</p>
-                </a>
-            </li>
-            <li>
-                <a th:href="@{/admin/recap}">
-                    <i class="nc-icon nc-email-85"></i>
-                    <p>Recap Report</p>
-                </a>
-            </li>
-            <li>
-                <a th:href="@{/admin/user}">
-                    <i class="nc-icon nc-single-02"></i>
-                    <p>Manage User</p>
-                </a>
-            </li>
+            <div sec:authorize="hasAuthority('HSE')">
+                <li>
+                    <a th:href="@{/admin/floor}">
+                        <i class="nc-icon nc-layout-11"></i>
+                        <p>Manage Floor</p>
+                    </a>
+                </li>
+            </div>
+            <div sec:authorize="hasAuthority('FW')">
+                <li>
+                    <a th:href="@{/fladmin/room}">
+                        <i class="nc-icon nc-box-2"></i>
+                        <p>Manage Room</p>
+                    </a>
+                </li>
+            </div>
+            <div sec:authorize="hasAuthority('HSE')">
+                <li>
+                    <a th:href="@{/admin/recap}">
+                        <i class="nc-icon nc-email-85"></i>
+                        <p>Recap Report</p>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/admin/user}">
+                        <i class="nc-icon nc-single-02"></i>
+                        <p>Manage User</p>
+                    </a>
+                </li>
+            </div>
         </ul>
     </div>
 </div>

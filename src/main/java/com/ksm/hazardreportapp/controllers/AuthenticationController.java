@@ -7,6 +7,7 @@ package com.ksm.hazardreportapp.controllers;
 
 import com.ksm.hazardreportapp.entities.rest.LoginInput;
 import com.ksm.hazardreportapp.services.rest.LoginService;
+import com.ksm.hazardreportapp.utils.Auth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,13 @@ public class AuthenticationController {
 
     @GetMapping("/auth/login")
     public String loginPage(Model model) {
+
+        if (Auth.isLogged()) {
+            return "redirect:/admin";
+        }
+
+        System.out.println("Logged in");
+
         model.addAttribute("user", new LoginInput());
         return "login";
     }
@@ -37,7 +45,7 @@ public class AuthenticationController {
     }
 
     @GetMapping("/logout")
-    public String logoutPerform(){
+    public String logoutPerform() {
         SecurityContextHolder.getContext().setAuthentication(null);
         return "redirect:/";
     }

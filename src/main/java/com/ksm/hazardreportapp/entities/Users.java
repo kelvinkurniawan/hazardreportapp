@@ -5,8 +5,6 @@
  */
 package com.ksm.hazardreportapp.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -78,7 +76,7 @@ public class Users implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
     private List<Notifications> notificationsList;
     @JoinColumn(name = "roles", referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Roles roles;
 
     public Users() {

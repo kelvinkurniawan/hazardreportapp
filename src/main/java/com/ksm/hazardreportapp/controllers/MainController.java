@@ -13,17 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.security.Principal;
-
-import java.util.List;
 
 /**
  *
@@ -45,8 +39,10 @@ public class MainController {
     @GetMapping("/admin")
     public String index() {
         CustomUser user = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
         String id = user.getId();
-        System.out.println("USER ID : "+ id + "");
+        System.out.println("USER ID : " + id + "");
+        System.out.println("ROLES : " + user.getAuthorities());
         return "dashboard";
     }
 
@@ -60,7 +56,7 @@ public class MainController {
 
     @ResponseBody
     @GetMapping("api/get/notification")
-    public void getNotification(){
+    public void getNotification() {
         CustomUser user = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String id = user.getId();
         notificationService.getByUserId(id);
