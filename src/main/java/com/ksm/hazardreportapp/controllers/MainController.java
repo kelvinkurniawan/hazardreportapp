@@ -70,4 +70,9 @@ public class MainController {
         String id = user.getId();
         return notificationService.getByUserId(id);
     }
+
+    @GetMapping("/access_denied")
+    public String accessDenied() {
+        return "access_denied";
+    }
 }

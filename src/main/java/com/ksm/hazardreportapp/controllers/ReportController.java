@@ -56,12 +56,18 @@ public class ReportController {
         if (user.getAuthorities().stream().anyMatch(role -> role.getAuthority().equals("FW"))) {
             model.addAttribute("reports", reportService.getAllByUser(id));
         } else if (user.getAuthorities().stream().anyMatch(role -> role.getAuthority().equals("HSE"))) {
-            model.addAttribute("reports", reportService.getAll());
+            model.addAttribute("reports", reportService.getAllByCurrentStatus());
         } else if (user.getAuthorities().stream().anyMatch(role -> role.getAuthority().equals("EMPLOYEE"))) {
             Users localUser = userService.getById(id);
             model.addAttribute("reports", reportService.getAllByOriginator(localUser));
         }
 
+        return "manageReport";
+    }
+
+    @GetMapping("/admin/recap")
+    public String recapReport(Model model) {
+        model.addAttribute("reports", reportService.getAll());
         return "manageReport";
     }
 

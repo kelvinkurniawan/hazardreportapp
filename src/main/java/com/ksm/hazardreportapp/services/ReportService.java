@@ -64,6 +64,15 @@ public class ReportService {
         return repository.findByOriginator(user);
     }
 
+    public List<Reports> getAllByCurrentStatus() {
+        List<Statuses> currentStatus = new ArrayList<>();
+        currentStatus.add(statusRepository.findById(4).get());
+        currentStatus.add(statusRepository.findById(5).get());
+        currentStatus.add(statusRepository.findById(6).get());
+
+        return repository.findByCurrentStatusIn(currentStatus);
+    }
+
     public Reports getById(int id) {
         return repository.findById(id).get();
     }

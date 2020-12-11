@@ -7,6 +7,7 @@ package com.ksm.hazardreportapp.repositories;
 
 import com.ksm.hazardreportapp.entities.Reports;
 import com.ksm.hazardreportapp.entities.Rooms;
+import com.ksm.hazardreportapp.entities.Statuses;
 import com.ksm.hazardreportapp.entities.Users;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -25,4 +26,6 @@ public interface ReportRepository extends JpaRepository<Reports, Integer> {
     public List<Reports> findByRoomIn(@Param("room") List<Rooms> room);
 
     public List<Reports> findByOriginator(@Param("originator") Users originator);
+
+    public List<Reports> findByCurrentStatusIn(List<Statuses> currentStatus);
 }
