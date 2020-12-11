@@ -33,7 +33,7 @@ public class AuthenticationController {
         }
 
         System.out.println("Logged in");
-
+        model.addAttribute("title", "Sign In");
         model.addAttribute("user", new LoginInput());
         return "login";
     }

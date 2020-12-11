@@ -61,6 +61,7 @@ public class ReportController {
             Users localUser = userService.getById(id);
             model.addAttribute("reports", reportService.getAllByOriginator(localUser));
         }
+        model.addAttribute("title", "Manage Report");
 
         return "manageReport";
     }
@@ -68,6 +69,7 @@ public class ReportController {
     @GetMapping("/admin/recap")
     public String recapReport(Model model) {
         model.addAttribute("reports", reportService.getAll());
+        model.addAttribute("title", "Recap Report");
         return "recapReport";
     }
 
@@ -77,6 +79,7 @@ public class ReportController {
         String id = user.getId();
         model.addAttribute("originator", userService.getById(id));
         model.addAttribute("rooms", roomService.getAll());
+        model.addAttribute("title", "Create Report");
         return "addReport";
     }
 
@@ -123,12 +126,14 @@ public class ReportController {
         model.addAttribute("originator", userService.getById(userId));
         model.addAttribute("rooms", roomService.getAll());
         model.addAttribute("priority", priorityService.getAll());
+        model.addAttribute("title", "Report Detail");
         return "viewReport";
     }
 
     @GetMapping("admin/report/history/{id}")
     public String reportHistory(@PathVariable("id") int id, Model model) {
         model.addAttribute("report", reportService.getById(id));
+        model.addAttribute("title", "Report Progress History");
         return "reportHistory";
     }
 }

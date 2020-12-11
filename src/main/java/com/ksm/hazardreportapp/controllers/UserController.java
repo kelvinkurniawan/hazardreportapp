@@ -23,6 +23,7 @@ public class UserController {
     @GetMapping("admin/user")
     public String manageUser(Model model) {
         model.addAttribute("users", userService.getAll());
+        model.addAttribute("title", "Manage User");
         return "manageUser";
     }
 
@@ -30,6 +31,7 @@ public class UserController {
     public String viewUser(@PathVariable("username") String username, Model model) {
         model.addAttribute("user", userService.getByUsername(username));
         model.addAttribute("roles", roleService.getAll());
+        model.addAttribute("title", "User Detail");
         return "viewUser";
     }
 

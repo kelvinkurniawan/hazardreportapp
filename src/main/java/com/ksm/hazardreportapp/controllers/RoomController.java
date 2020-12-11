@@ -45,6 +45,7 @@ public class RoomController {
     public String manageFloor(Model model) {
         model.addAttribute("floors", floorService.getAll());
         model.addAttribute("floorWarden", roleService.getById(2).getUsersList());
+        model.addAttribute("title", "Manage Floor");
         return "manageFloor";
     }
 
@@ -64,6 +65,7 @@ public class RoomController {
         model.addAttribute("rooms", roomService.getAllByFloor(id));
         model.addAttribute("floors", userService.getById(id).getFloorsList());
         model.addAttribute("newRoom", new Rooms());
+        model.addAttribute("title", "Manage Room");
         return "manageRoom";
     }
 

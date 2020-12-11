@@ -17,6 +17,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,12 +41,13 @@ public class MainController {
 
     // Rouotes for admin as HSE
     @GetMapping("/admin")
-    public String index() {
+    public String index(Model model) {
         CustomUser user = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         String id = user.getId();
         System.out.println("USER ID : " + id + "");
         System.out.println("ROLES : " + user.getAuthorities());
+        model.addAttribute("title", "Dashboard");
         return "dashboard";
     }
 
