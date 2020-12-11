@@ -21,7 +21,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
 <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
 <script>
-
     function loadNotification() {
         $.get("/api/get/notification", function (data) {
             var html = "";
@@ -53,10 +52,45 @@
 
     $(document).ready(function () {
 
-        loadNotification();
+        // Alerts Handling
+
+        var url_string = window.location.href;
+        var url = new URL(url_string);
+        var error = url.searchParams.get("error");
+        var res = url.searchParams.get("res");
+
+        if (error == "login-error") {
+
+            $('.alert-login-error').addClass('show');
+            setTimeout(function () {
+                $('.alert-login-error').removeClass('show');
+            }, 3000);
+
+        }
+
+        if (res == "addup") {
+            $('.alert-addup').addClass('show');
+            setTimeout(function () {
+                $('.alert-addup').removeClass('show');
+            }, 3000);
+        }
+
+        if (res == "priority-setup") {
+            $('.alert-priority').addClass('show');
+            setTimeout(function () {
+                $('.alert-priority').removeClass('show');
+            }, 3000);
+        }
+
+        var path = window.location.pathname;
+
+        if (path.split('/')[1] != "auth") {
+            loadNotification();
+        }
+
         // Pusher Config
         // Enable pusher logging - don't include this in production
-        Pusher.logToConsole = true;
+        Pusher.logToConsole = false;
 
         var pusher = new Pusher('75b839e2c030a656a41c', {
             cluster: 'ap1'
@@ -75,7 +109,6 @@
         });
         // End pusher
 
-
         // DataTable
         $("#datatable").DataTable();
 
@@ -83,7 +116,6 @@
         tinymce.init({selector: ".richEditor", height: 300});
 
         // Navigation Control
-        var path = window.location.pathname;
         path = path.split('/');
         $('.' + path[2] + '-link').addClass('active');
 

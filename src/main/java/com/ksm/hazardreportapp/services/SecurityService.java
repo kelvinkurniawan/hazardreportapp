@@ -56,7 +56,7 @@ public class SecurityService extends WebSecurityConfigurerAdapter {
                 .loginPage("/auth/login")
                 .loginProcessingUrl("/perform_login")
                 .defaultSuccessUrl("/admin", true)
-                .failureUrl("/login?error=true")
+                .failureUrl("/auth/login?error=login-error")
                 .and()
                 .httpBasic()
                 .and()

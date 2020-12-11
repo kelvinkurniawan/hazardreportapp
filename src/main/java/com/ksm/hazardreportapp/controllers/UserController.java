@@ -44,7 +44,7 @@ public class UserController {
     public String performAddUser(RegisterInput input) {
         System.out.println("Post Method Running");
         userService.register(input);
-        return "redirect:/admin/user";
+        return "redirect:/admin/user?res=added";
     }
 
     @PostMapping("admin/user/setrole")
@@ -55,6 +55,6 @@ public class UserController {
         oldUser.setRoles(roleService.getById(users.getRoles().getId()));
 
         userService.save(oldUser);
-        return "redirect:/admin/user";
+        return "redirect:/admin/user?res=addup";
     }
 }

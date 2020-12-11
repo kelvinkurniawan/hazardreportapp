@@ -111,7 +111,7 @@ public class ReportController {
         pusher.trigger("my-channel", "updateNotif", Collections.singletonMap("message", "success"));
         reportService.setPriority(id, reports.getPriority().getId());
         reportService.updateStatus(2, id);
-        return "redirect:/admin/report/details/" + id;
+        return "redirect:/admin/report/details/" + id + "?res=priority-setup";
     }
 
     @GetMapping("/admin/report/details/{id}")

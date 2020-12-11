@@ -33,9 +33,9 @@ public class ActionController {
     public String addNewAction(@PathVariable("id") int id, Model model) {
         int priority = reportService.getById(id).getPriority().getId();
 
-        if(priority == 3){
+        if (priority == 3) {
             model.addAttribute("actionType", 1);
-        }else{
+        } else {
             model.addAttribute("actionType", 2);
         }
 
@@ -45,7 +45,7 @@ public class ActionController {
     }
 
     @GetMapping("/admin/report/{id}/action/view/{actionId}")
-    public String viewAction(@PathVariable("actionId") int actionId, Model model){
+    public String viewAction(@PathVariable("actionId") int actionId, Model model) {
         model.addAttribute("action", actionService.getById(actionId));
         return "viewAction";
     }
@@ -56,16 +56,16 @@ public class ActionController {
 
         int priority = reports.getPriority().getId();
 
-        if(priority == 3){
+        if (priority == 3) {
             actions.setReportProgress(reportService.updateStatus(3, id));
             actions.setReportProgress(reportService.updateStatus(4, id));
-        }else{
+        } else {
             actions.setReportProgress(reportService.updateStatus(3, id));
             actions.setReportProgress(reportService.updateStatus(6, id));
         }
 
         actionService.save(actions);
-        return "redirect:/admin/report/{id}/action";
+        return "redirect:/admin/report/details/{id}?res=added";
     }
 
 }

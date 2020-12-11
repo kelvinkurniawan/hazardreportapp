@@ -45,9 +45,9 @@ public class RoomController {
     }
 
     @PostMapping("/admin/floor")
-    public String performAddFloor(Floors floors){
+    public String performAddFloor(Floors floors) {
         floorService.save(floors);
-        return "redirect:/admin/floor";
+        return "redirect:/admin/floor?res=addup";
     }
 
     // Routes for admin as FLadmin
@@ -62,14 +62,7 @@ public class RoomController {
     @PostMapping("/fladmin/room")
     public String performAddRoom(Rooms rooms) {
         roomService.save(rooms);
-        return "redirect:/fladmin/room?res=added";
-    }
-
-    @GetMapping("/fladmin/room/update/{id}")
-    public String updateRoom(Model model, @PathVariable("id") int id) {
-        model.addAttribute("rooms", roomService.getAllByFloor(floor));
-        model.addAttribute("room", roomService.getById(id));
-        return "manageRoomUpdate";
+        return "redirect:/fladmin/room?res=addup";
     }
 
     @GetMapping("/fladmin/room/perform_delete/{id}")
