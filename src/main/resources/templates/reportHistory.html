@@ -30,10 +30,6 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <strong class="font-weight-normal" th:text="${history.status.message}"></strong>
-                                                        <span th:switch="${history.status.id}">
-                                                            <a th:case="3" th:href="@{/admin/report/} + ${as.id} + @{/action/view/} + ${history.actionsList[0].id}">View Response</a>
-                                                            <a th:case="5" th:href="@{/admin/report/} + ${as.id} + @{/action/view/} + ${history.actionsList[1].id}">View Response</a>
-                                                        </span>
                                                     </div>
                                                     <div class="col-md-4 text-sm font-weight-bold text-muted" th:text="${#dates.format(history.date, 'HH:mm, dd MMMM yyyy')}"></div>
                                                 </div>

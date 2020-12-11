@@ -22,15 +22,6 @@
                                     <form action="/admin/report/new" method="post" enctype="multipart/form-data">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Date</label>
-                                                    <input
-                                                        type="text"
-                                                        class="form-control"
-                                                        placeholder="Date"
-                                                        name="date"
-                                                        />
-                                                </div>
                                                 <div class="form-group" th:each="as : ${originator}">
                                                     <label>Originator</label>
                                                     <input type="hidden" th:value="${as.id}" name="originator">

@@ -11,8 +11,10 @@ import com.ksm.hazardreportapp.entities.Users;
 import com.ksm.hazardreportapp.providers.CustomUser;
 import com.ksm.hazardreportapp.services.*;
 import com.pusher.rest.Pusher;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -48,6 +50,9 @@ public class ReportController {
     @Autowired
     ImageStorageService imageStorageService;
 
+    @Autowired
+    ActionService actionService;
+
     // Routes for admin as HSE
     @GetMapping("/admin/report")
     public String manageReport(Model model) {
@@ -75,8 +80,10 @@ public class ReportController {
 
     @GetMapping("/admin/report/new")
     public String newReport(Model model) {
+
         CustomUser user = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String id = user.getId();
+
         model.addAttribute("originator", userService.getById(id));
         model.addAttribute("rooms", roomService.getAll());
         model.addAttribute("title", "Create Report");
@@ -86,6 +93,15 @@ public class ReportController {
     @PostMapping("/admin/report/new")
     public String performAdd(@RequestParam("files") MultipartFile[] files, Reports reports) {
 
+        Pusher pusher = new Pusher("1121252", "75b839e2c030a656a41c", "f17af836b1f4bcfeeffe");
+        pusher.setCluster("ap1");
+        pusher.setEncrypted(true);
+        pusher.trigger("my-channel", "updateNotif", Collections.singletonMap("message", "success"));
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+        Date date = new Date(System.currentTimeMillis());
+
+        reports.setDate(date);
         reportService.save(reports);
         System.out.println("report id = " + reports.getId());
 
@@ -122,10 +138,11 @@ public class ReportController {
         CustomUser user = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String userId = user.getId();
         model.addAttribute("report", reportService.getById(id));
+        model.addAttribute("action", actionService.getByReportProgress(id));
         model.addAttribute("reportId", id);
         model.addAttribute("originator", userService.getById(userId));
         model.addAttribute("rooms", roomService.getAll());
-        model.addAttribute("priority", priorityService.getAll());
+        model.addAttribute("priority", priorityService.getPriorities());
         model.addAttribute("title", "Report Detail");
         return "viewReport";
     }

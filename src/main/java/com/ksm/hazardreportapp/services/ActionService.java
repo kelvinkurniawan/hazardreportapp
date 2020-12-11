@@ -21,8 +21,18 @@ public class ActionService {
     @Autowired
     ActionRepository repository;
 
+    @Autowired
+    ReportProgressService reportProgressService;
+
+    @Autowired
+    ReportService reportService;
+
     public List<Actions> getAll() {
         return repository.findAll();
+    }
+
+    public List<Actions> getByReportProgress(int id) {
+        return repository.FindByReportProgressIn(reportService.getById(id).getReportProgressesList());
     }
 
     public Actions getById(Integer id) {

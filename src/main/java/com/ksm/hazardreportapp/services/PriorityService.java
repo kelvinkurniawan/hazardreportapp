@@ -7,6 +7,7 @@ package com.ksm.hazardreportapp.services;
 
 import com.ksm.hazardreportapp.entities.Priorities;
 import com.ksm.hazardreportapp.repositories.PrioritiesRepository;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,12 @@ public class PriorityService {
 
     public List<Priorities> getAll() {
         return repository.findAll();
+    }
+
+    public List<Priorities> getPriorities() {
+        List<Integer> notIn = new ArrayList<>();
+        notIn.add(4);
+        return repository.findByIdNotIn(notIn);
     }
 
     public Priorities getById(Integer id) {

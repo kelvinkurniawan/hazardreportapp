@@ -51,10 +51,13 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-12 justify-content-between">
-                                                <button type="reset" class="btn btn-danger">
+                                            <div class="col-md-12">
+                                                <a href="/admin/report" class="btn btn-danger">
                                                     Back to report list
-                                                </button>
+                                                </a>
+                                                <a th:href="@{/admin/report/history/} + ${reportId}" class="btn btn-info">
+                                                    History
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -68,8 +71,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4" sec:authorize="hasAnyAuthority('HSE', 'FW')">
-                            <div class="card">
+                        <div class="col-md-4">
+                            <div th:each="as : ${report}" th:if="${as.priority.id == 4}" class="card" sec:authorize="hasAnyAuthority('HSE', 'FW')">
                                 <div class="card-header">
                                     <h5 class="card-title">Set Priority</h5>
                                     <p class="card-category">Before set priority, check the report first</p>
@@ -104,16 +107,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card">
+                            <div th:each="as : ${report}" th:if="${as.priority.id != 4}" class="card">
                                 <div class="card-header">
                                     <h5 class="card-title">Action List</h5>
                                     <p class="card-category">below is a list of actions</p>
                                 </div>
                                 <div class="card-body">
-                                    <a href="#" class="btn btn-danger">Add Action</a>
+                                    <a th:if="${as.currentStatus.id != 6}" th:href="@{/admin/report/} + ${reportId} + @{/action/new/}" class="btn btn-danger" sec:authorize="hasAnyAuthority('HSE', 'FW')">Add Action</a>
                                     <div class="list-group list-group-flush">
-                                        <a href="#" class="list-group-item list-group-item-action">Cras justo odio </a>
-                                        <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
+                                        <a th:each="as, iterator : ${action}"
+                                           th:href="@{/admin/report/} + ${reportId} + @{/action/view/} + ${as.id}"
+                                           class="list-group-item list-group-item-action" th:text="${iterator.index + 1} + '. ' + ${#dates.format(as.date, 'HH:mm, dd MMMM yyyy')}"></a>
                                     </div>
                                 </div>
                             </div>

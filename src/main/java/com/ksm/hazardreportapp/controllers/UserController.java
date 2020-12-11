@@ -39,6 +39,7 @@ public class UserController {
     public String addUser(Model model) {
         model.addAttribute("universities", userService.getUniversities());
         model.addAttribute("majors", userService.getMajors());
+        model.addAttribute("title", "Create User");
         return "addUser";
     }
 
