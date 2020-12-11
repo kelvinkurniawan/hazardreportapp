@@ -68,7 +68,7 @@ public class ReportController {
     @GetMapping("/admin/recap")
     public String recapReport(Model model) {
         model.addAttribute("reports", reportService.getAll());
-        return "manageReport";
+        return "recapReport";
     }
 
     @GetMapping("/admin/report/new")

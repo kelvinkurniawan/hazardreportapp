@@ -31,9 +31,10 @@
 
             for (var row in data) {
                 var rowData = Object.values(data[row]);
+
                 var id = rowData[0];
                 var status = rowData[1];
-                var time = moment(rowData[2]).fromNow();
+                var time = moment(rowData[2], "YYYY-MM-DD HH:mm:ss").fromNow();
                 var message = rowData[3].message;
                 var reportId = rowData[4].id;
                 var classes = "";
