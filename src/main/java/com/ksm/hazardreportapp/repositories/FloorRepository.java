@@ -6,6 +6,8 @@
 package com.ksm.hazardreportapp.repositories;
 
 import com.ksm.hazardreportapp.entities.Floors;
+import com.ksm.hazardreportapp.entities.Users;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Repository;
  * @author YOGA
  */
 @Repository
-public interface FloorRepository extends JpaRepository<Floors, Integer>{
-    
+public interface FloorRepository extends JpaRepository<Floors, Integer> {
+
+    public List<Floors> findByAdmin(Users admin);
 }

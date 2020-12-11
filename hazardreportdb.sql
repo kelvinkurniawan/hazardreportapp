@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2020 at 10:01 AM
+-- Generation Time: Dec 11, 2020 at 04:57 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -38,14 +38,6 @@ CREATE TABLE `actions` (
   `report_progress` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `actions`
---
-
-INSERT INTO `actions` (`id`, `description`, `result`, `risk`, `date`, `action_type`, `report_progress`) VALUES
-(4, '<p><span style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</span></p>', '', '<p><span style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</span></p>', '2020-12-01 16:32:16', 2, 94),
-(5, '<p><span style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">Duis lobortis velit magna, interdum egestas ex cursus sed. Aliquam tristique dui non ligula ultricies pretium. Mauris eget lorem arcu. Integer ut tempor sem. Quisque ultricies sagittis varius. Nam varius non dolor id pharetra. Curabitur sit amet libero massa. Sed tortor lectus, porttitor eu vulputate ac, tempor at lectus. Maecenas sed quam ipsum. Aliquam ac libero quam. Donec tempus lectus ut mauris tempus laoreet. Nulla scelerisque dolor in ante efficitur, et cursus nunc auctor.</span></p>', '', '', '2020-12-01 16:34:14', 1, 98);
-
 -- --------------------------------------------------------
 
 --
@@ -56,14 +48,6 @@ CREATE TABLE `action_types` (
   `id` int(11) NOT NULL,
   `name` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `action_types`
---
-
-INSERT INTO `action_types` (`id`, `name`) VALUES
-(1, 'LONG_TERM'),
-(2, 'IMMEDIATE_ACTION');
 
 -- --------------------------------------------------------
 
@@ -78,14 +62,6 @@ CREATE TABLE `floors` (
   `admin` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `floors`
---
-
-INSERT INTO `floors` (`id`, `name`, `description`, `admin`) VALUES
-(1, 'Basement', 'Parking area and toilet', 'USER-00101'),
-(2, 'Lantai 1', 'Cafetaria, tempat nongkrong, tempat santai', 'USER-00200');
-
 -- --------------------------------------------------------
 
 --
@@ -98,16 +74,6 @@ CREATE TABLE `image_attachments` (
   `report` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `image_attachments`
---
-
-INSERT INTO `image_attachments` (`id`, `image_path`, `report`) VALUES
-(8, '8199OS_12_01.jpg', 6),
-(9, 'stones.bmp', 6),
-(10, 'msedge_G69vFpW4Yn.jpg', 7),
-(11, 'rasulullah-jatuh-pingsan-mendengar-keadaan-neraka-dan-penghuninya-1-z0G-thumb.jpg', 7);
-
 -- --------------------------------------------------------
 
 --
@@ -116,24 +82,39 @@ INSERT INTO `image_attachments` (`id`, `image_path`, `report`) VALUES
 
 CREATE TABLE `notifications` (
   `id` int(11) NOT NULL,
-  `report_progress` int(30) NOT NULL,
+  `notification_message` int(11) NOT NULL,
+  `report` int(11) NOT NULL,
   `read_status` int(1) NOT NULL,
+  `datetime` timestamp NOT NULL DEFAULT current_timestamp(),
   `user` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `notifications`
+-- Table structure for table `notification_messages`
 --
 
-INSERT INTO `notifications` (`id`, `report_progress`, `read_status`, `user`) VALUES
-(44, 92, 0, 'USER-00101'),
-(45, 93, 0, 'USER-00101'),
-(46, 94, 0, 'USER-00101'),
-(47, 95, 0, 'USER-00101'),
-(48, 96, 0, 'USER-00101'),
-(49, 97, 0, 'USER-00101'),
-(50, 98, 0, 'USER-00101'),
-(51, 99, 0, 'USER-00101');
+CREATE TABLE `notification_messages` (
+  `id` int(11) NOT NULL,
+  `message` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `notification_messages`
+--
+
+INSERT INTO `notification_messages` (`id`, `message`) VALUES
+(1, 'Report sent successfully'),
+(2, 'Report was successfully added to queue'),
+(3, 'Your report has been responded to by the floor warden'),
+(4, 'Your report is being forwarded to HSE'),
+(5, 'Your report has been responded to by the HSE'),
+(6, 'Your report is complete'),
+(7, 'There\'s a new report'),
+(8, 'Floor warden forwarded report to you'),
+(9, 'Report is complete and closed'),
+(10, 'Your report is forwarded to HSE');
 
 -- --------------------------------------------------------
 
@@ -145,16 +126,6 @@ CREATE TABLE `priorities` (
   `id` int(11) NOT NULL,
   `name` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `priorities`
---
-
-INSERT INTO `priorities` (`id`, `name`) VALUES
-(1, 'Low'),
-(2, 'Medium'),
-(3, 'High'),
-(4, 'Default');
 
 -- --------------------------------------------------------
 
@@ -173,30 +144,47 @@ CREATE TABLE `reports` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `reports`
---
-
-INSERT INTO `reports` (`id`, `date`, `originator`, `room`, `description`, `priority`, `current_status`) VALUES
-(6, '2020-11-11 10:00:00', 'USER-00101', 1, '<p><strong style=\"margin: 0px; padding: 0px; font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">Lorem Ipsum</strong><span style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span></p>', 2, 6),
-(7, '2021-08-11 10:00:00', 'USER-00101', 5, '<p><span style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam auctor enim vitae diam eleifend tincidunt. Aenean nec finibus augue, sit amet placerat lectus. Aenean tincidunt ante orci, eu euismod augue maximus sed. Aenean vitae nunc a metus convallis maximus. Integer convallis gravida enim, ac pretium lacus dictum tincidunt. Aenean sit amet nisl ut tortor volutpat placerat. Donec pretium eget orci eu varius. Aliquam erat volutpat.</span></p>', 3, 4);
-
---
 -- Triggers `reports`
 --
 DELIMITER $$
 CREATE TRIGGER `create_notification` AFTER UPDATE ON `reports` FOR EACH ROW BEGIN
 IF !(new.current_status <=> old.current_status) THEN
-INSERT INTO notifications (report_progress, read_status, user) values ((SELECT id from report_progresses WHERE report = new.id and status = new.current_status), 0, new.originator);
+INSERT INTO notifications (notification_message, report, read_status, user) values (new.current_status, new.id, 0, new.originator);
+
+IF(new.current_status = 4) 
+THEN
+INSERT INTO notifications (notification_message, report, read_status, user) values (10, new.id, 0, (SELECT admin FROM floors, rooms WHERE floors.id = rooms.floor and rooms.id = new.room));
+END IF;
+
+IF(new.current_status = 4) 
+THEN
+INSERT INTO notifications (notification_message, report, read_status, user) values (10, new.id, 0, (SELECT admin FROM floors, rooms WHERE floors.id = rooms.floor and rooms.id = new.room)), (8, new.id, 0, (SELECT id FROM users WHERE roles = 1));
+END IF;
+
+IF(new.current_status = 6) 
+THEN
+INSERT INTO notifications (notification_message, report, read_status, user) values (9, new.id, 0, (SELECT admin FROM floors, rooms WHERE floors.id = rooms.floor and rooms.id = new.room)), (9, new.id, 0, (SELECT id FROM users WHERE roles = 1));
+END IF;
+
 END IF;
 END
 $$
 DELIMITER ;
 DELIMITER $$
-CREATE TRIGGER `initial_notification` AFTER INSERT ON `reports` FOR EACH ROW INSERT INTO notifications (report_progress, read_status, user) values ((SELECT id from report_progresses WHERE report = new.id and status = new.current_status), 0, new.originator)
+CREATE TRIGGER `initial_notification` AFTER INSERT ON `reports` FOR EACH ROW INSERT INTO notifications (notification_message,report, read_status, user) values (1, new.id, 0, new.originator), (7, new.id, 0, (SELECT admin FROM floors, rooms WHERE floors.id = rooms.floor and rooms.id = new.room)), (7, new.id, 0, (SELECT id FROM users WHERE roles = 1))
 $$
 DELIMITER ;
 DELIMITER $$
 CREATE TRIGGER `initial_progress` AFTER INSERT ON `reports` FOR EACH ROW INSERT INTO report_progresses(status,report) VALUES (new.current_status, new.id)
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `on_delete` BEFORE DELETE ON `reports` FOR EACH ROW BEGIN
+DELETE from image_attachments WHERE report = old.id;
+DELETE from notifications WHERE report = old.id;
+DELETE from actions WHERE report_progress IN (SELECT id from report_progresses WHERE report = old.id);
+DELETE from report_progresses WHERE report = old.id;
+END
 $$
 DELIMITER ;
 DELIMITER $$
@@ -221,20 +209,6 @@ CREATE TABLE `report_progresses` (
   `date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `report_progresses`
---
-
-INSERT INTO `report_progresses` (`id`, `status`, `report`, `date`) VALUES
-(92, 1, 6, '2020-12-01 23:29:51'),
-(93, 2, 6, '2020-12-01 23:31:22'),
-(94, 3, 6, '2020-12-01 23:32:16'),
-(95, 6, 6, '2020-12-01 23:32:16'),
-(96, 1, 7, '2020-12-01 23:33:31'),
-(97, 2, 7, '2020-12-01 23:33:42'),
-(98, 3, 7, '2020-12-01 23:34:14'),
-(99, 4, 7, '2020-12-01 23:34:14');
-
 -- --------------------------------------------------------
 
 --
@@ -246,15 +220,6 @@ CREATE TABLE `roles` (
   `name` varchar(100) NOT NULL,
   `description` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `roles`
---
-
-INSERT INTO `roles` (`id`, `name`, `description`) VALUES
-(1, 'HSE', 'HSE Position'),
-(2, 'FW', 'FLOOR WARDEN POSITION'),
-(3, 'EMPLOYEE', 'EMPLOYEE POSITION');
 
 -- --------------------------------------------------------
 
@@ -268,15 +233,6 @@ CREATE TABLE `rooms` (
   `description` varchar(255) DEFAULT NULL,
   `floor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `rooms`
---
-
-INSERT INTO `rooms` (`id`, `name`, `description`, `floor`) VALUES
-(1, 'Parking area', 'parking area', 1),
-(5, 'Toilet 1', 'Toilet sebelah kiri', 1),
-(6, 'Security room', 'sebelah kanan pintu masuk', 1);
 
 -- --------------------------------------------------------
 
@@ -322,9 +278,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `username`, `phone`, `roles`) VALUES
-('USER-00101', 'Kelvin Kurniawan Oktavianto', '672018149@student.uksw.edu', 'kelvink', '082226733123', 2),
-('USER-00121', 'Hazard Report Employee ', 'segywu@digital10network.com', 'hremp1', '082123231313', 3),
-('USER-00200', 'Adnan Gofar Manaf', 'adnan@mail.com', 'adnan', '082123131231', 2);
+('USER-00101', 'Kelvin Kurniawan Oktavianto', '672018149@student.uksw.edu', 'kelvink', '082226733123', 1),
+('USER-00200', 'Adnan Gofar Manaf', 'adnan@mail.com', 'adnan', '082123131231', 2),
+('USER-00210', 'Hazard Report Employee ', 'segywu@digital10network.com', 'hremp1', '082123231313', 3),
+('USER-00211', 'Hazard Report FW', 'beledufy@ivyandmarj.com', 'hrfw1', '0888888213', 2);
 
 --
 -- Indexes for dumped tables
@@ -363,8 +320,15 @@ ALTER TABLE `image_attachments`
 --
 ALTER TABLE `notifications`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `report_progress` (`report_progress`),
-  ADD KEY `user` (`user`);
+  ADD KEY `user` (`user`),
+  ADD KEY `notification_message` (`notification_message`),
+  ADD KEY `report` (`report`);
+
+--
+-- Indexes for table `notification_messages`
+--
+ALTER TABLE `notification_messages`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `priorities`
@@ -424,61 +388,67 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `actions`
 --
 ALTER TABLE `actions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `action_types`
 --
 ALTER TABLE `action_types`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `floors`
 --
 ALTER TABLE `floors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `image_attachments`
 --
 ALTER TABLE `image_attachments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `notification_messages`
+--
+ALTER TABLE `notification_messages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `priorities`
 --
 ALTER TABLE `priorities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `reports`
 --
 ALTER TABLE `reports`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `report_progresses`
 --
 ALTER TABLE `report_progresses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `statuses`
@@ -513,8 +483,9 @@ ALTER TABLE `image_attachments`
 -- Constraints for table `notifications`
 --
 ALTER TABLE `notifications`
-  ADD CONSTRAINT `notifications_ibfk_2` FOREIGN KEY (`report_progress`) REFERENCES `report_progresses` (`id`),
-  ADD CONSTRAINT `notifications_ibfk_3` FOREIGN KEY (`user`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `notifications_ibfk_3` FOREIGN KEY (`user`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `notifications_ibfk_4` FOREIGN KEY (`notification_message`) REFERENCES `notification_messages` (`id`),
+  ADD CONSTRAINT `notifications_ibfk_5` FOREIGN KEY (`report`) REFERENCES `reports` (`id`);
 
 --
 -- Constraints for table `reports`

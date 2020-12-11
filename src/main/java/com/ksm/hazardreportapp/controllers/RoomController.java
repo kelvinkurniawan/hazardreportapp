@@ -7,10 +7,13 @@ package com.ksm.hazardreportapp.controllers;
 
 import com.ksm.hazardreportapp.entities.Floors;
 import com.ksm.hazardreportapp.entities.Rooms;
+import com.ksm.hazardreportapp.providers.CustomUser;
 import com.ksm.hazardreportapp.services.FloorService;
 import com.ksm.hazardreportapp.services.RoleService;
 import com.ksm.hazardreportapp.services.RoomService;
+import com.ksm.hazardreportapp.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,7 +36,8 @@ public class RoomController {
     @Autowired
     RoleService roleService;
 
-    String id = "USER-00101";
+    @Autowired
+    UserService userService;
     int floor = 1;
 
     // Routes for admin as HSE
@@ -53,9 +57,13 @@ public class RoomController {
     // Routes for admin as FLadmin
     @GetMapping("/fladmin/room")
     public String manageRoom(Model model) {
-        model.addAttribute("rooms", roomService.getAllByFloor(floor));
+
+        CustomUser user = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String id = user.getId();
+
+        model.addAttribute("rooms", roomService.getAllByFloor(id));
+        model.addAttribute("floors", userService.getById(id).getFloorsList());
         model.addAttribute("newRoom", new Rooms());
-        model.addAttribute("floor", floor);
         return "manageRoom";
     }
 

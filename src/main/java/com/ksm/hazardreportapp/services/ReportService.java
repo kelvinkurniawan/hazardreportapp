@@ -45,17 +45,22 @@ public class ReportService {
     }
 
     public List<Reports> getAllByUser(String id) {
+
+        //System.out.println("User ID from Service = " + id);
         Users user = userService.getById(id);
+
+        // System.out.println("Floor = " + user.getFloorsList());
         List<Floors> floors = user.getFloorsList();
         List<Rooms> finalRooms = new ArrayList<>();
 
         floors.forEach((floor) -> {
             List<Rooms> rooms = floor.getRoomsList();
+            //System.out.println("Room in floor = " + floor.getRoomsList());
             rooms.forEach((room) -> {
                 finalRooms.add(room);
+                //System.out.println("Each room : " + room.getName() + " in floor : " + floor.getName());
             });
         });
-        System.out.println(finalRooms);
         return repository.findByRoomIn(finalRooms);
 
     }

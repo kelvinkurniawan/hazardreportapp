@@ -7,6 +7,7 @@ package com.ksm.hazardreportapp.services;
 
 import com.ksm.hazardreportapp.entities.Floors;
 import com.ksm.hazardreportapp.repositories.FloorRepository;
+import com.ksm.hazardreportapp.repositories.UserRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,8 +22,15 @@ public class FloorService {
     @Autowired
     FloorRepository repository;
 
+    @Autowired
+    UserRepository userRepository;
+
     public List<Floors> getAll() {
         return repository.findAll();
+    }
+
+    public List<Floors> getAllByUser(String user) {
+        return repository.findByAdmin(userRepository.findById(user).get());
     }
 
     public Floors getById(Integer id) {

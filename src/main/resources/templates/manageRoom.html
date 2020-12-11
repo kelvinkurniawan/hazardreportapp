@@ -31,6 +31,7 @@
                                             <tr>
                                                 <th scope="col">#</th>
                                                 <th scope="col">Name</th>
+                                                <th scope="col">FLoor</th>
                                                 <th scope="col">Description</th>
                                                 <th scope="col">Action</th>
                                             </tr>
@@ -39,6 +40,7 @@
                                             <tr th:each="as, iterator : ${rooms}">
                                                 <th scope="row" th:text="${iterator.index+1}"></th>
                                                 <td th:text="${as.name}"></td>
+                                                <td th:text="${as.floor.name}"></td>
                                                 <td th:text="${as.description}"></td>
                                                 <td>
                                                     <a th:href="@{/fladmin/room/perform_delete/} + ${as.id}" class="btn btn-danger btn-sm mr-1">Delete</a>
@@ -49,7 +51,7 @@
                                                        th:data-id="${as.id}"
                                                        th:data-name="${as.name}"
                                                        th:data-description="${as.description}"
-                                                    >Edit</a>
+                                                       >Edit</a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -73,19 +75,19 @@
         <script>
             $(document).on("click", ".edit-modal", function () {
 
-                 var id = $(this).data('id');
-                 var name = $(this).data('name');
-                 var description = $(this).data('description');
+                var id = $(this).data('id');
+                var name = $(this).data('name');
+                var description = $(this).data('description');
 
-                 $(".modal-body #id").val( id );
-                 $(".modal-body #name").val( name );
-                 $(".modal-body #description").val( description );
+                $(".modal-body #id").val(id);
+                $(".modal-body #name").val(name);
+                $(".modal-body #description").val(description);
             });
 
             $(document).on("click", ".add-modal", function () {
-                 $(".modal-body #id").val( "" );
-                 $(".modal-body #name").val( "" );
-                 $(".modal-body #description").val( "" );
+                $(".modal-body #id").val("");
+                $(".modal-body #name").val("");
+                $(".modal-body #description").val("");
             });
         </script>
     </body>

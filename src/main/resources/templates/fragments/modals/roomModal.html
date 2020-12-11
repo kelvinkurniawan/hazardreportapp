@@ -9,11 +9,16 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" th:value="${floor}" name="floor">
                     <input type="hidden" id="id" name="id">
                     <div class="form-group">
                         <label>Room Name</label>
                         <input name="name" type="text" class="form-control" id="name" />
+                    </div>
+                    <div class="form-group">
+                        <label>Floor Name</label>
+                        <select name="floor" class="form-control">
+                            <option th:each="as : ${floors}" th:value="${as.id}" th:text="${as.name} + ' - ' + ${as.description}"></option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label>Room Description</label>
