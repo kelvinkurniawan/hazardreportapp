@@ -24,7 +24,11 @@ public class NotificationService {
         if (limit == 0) {
             return notificationRepository.findByUserIdAndReadStatusOrderByIdDesc(userId, 0);
         } else {
-            return notificationRepository.findByUserIdAndReadStatusOrderByIdDesc(userId, 0).subList(0, limit);
+            if (notificationRepository.findByUserIdAndReadStatusOrderByIdDesc(userId, 0).size() < 5) {
+                return notificationRepository.findByUserIdAndReadStatusOrderByIdDesc(userId, 0);
+            } else {
+                return notificationRepository.findByUserIdAndReadStatusOrderByIdDesc(userId, 0).subList(0, limit);
+            }
         }
     }
 
