@@ -11,10 +11,14 @@ import com.ksm.hazardreportapp.entities.Users;
 import com.ksm.hazardreportapp.providers.CustomUser;
 import com.ksm.hazardreportapp.services.*;
 import com.pusher.rest.Pusher;
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -52,6 +56,9 @@ public class ReportController {
 
     @Autowired
     ActionService actionService;
+    
+    @Autowired
+    MailingService mailingService;
 
     // Routes for admin as HSE
     @GetMapping("/admin/report")
@@ -87,6 +94,7 @@ public class ReportController {
         model.addAttribute("originator", userService.getById(id));
         model.addAttribute("rooms", roomService.getAll());
         model.addAttribute("title", "Create Report");
+        
         return "addReport";
     }
 
@@ -113,6 +121,23 @@ public class ReportController {
             imageStorageService.save(file);
             imageAttachmentService.save(imageAttachments);
         });
+        
+        try {
+            mailingService.sendEmail(
+                    "adnangofar.ag@gmail.com"
+                    ,"<html>"+
+                            "<body>"+
+                            "<h3>Hello "+reports.getOriginator().getName()+",</h3>"+
+                            "<h2>Report is added with Description :</h2>"+
+                            reports.getDescription()+
+                            "</body>"+
+                     "<html>"
+                    ,"this Topic"
+                    
+            );
+        } catch (MessagingException | UnsupportedEncodingException ex) {
+            Logger.getLogger(ReportController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         return "redirect:/admin/report?res=added";
     }

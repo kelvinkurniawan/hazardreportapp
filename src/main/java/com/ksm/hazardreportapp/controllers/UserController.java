@@ -2,8 +2,13 @@ package com.ksm.hazardreportapp.controllers;
 
 import com.ksm.hazardreportapp.entities.Users;
 import com.ksm.hazardreportapp.entities.rest.RegisterInput;
+import com.ksm.hazardreportapp.services.MailingService;
 import com.ksm.hazardreportapp.services.RoleService;
 import com.ksm.hazardreportapp.services.UserService;
+import java.io.UnsupportedEncodingException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +24,9 @@ public class UserController {
 
     @Autowired
     RoleService roleService;
+    
+    @Autowired
+    MailingService mailingService;
 
     @GetMapping("admin/user")
     public String manageUser(Model model) {
@@ -47,6 +55,24 @@ public class UserController {
     public String performAddUser(RegisterInput input) {
         System.out.println("Post Method Running");
         userService.register(input);
+                
+        try {
+            mailingService.sendEmail(
+                    "adnangofar.ag@gmail.com"
+                    ,"<html>"+
+                            "<body>"+
+                            "<h3>Hello "+",</h3>"+
+                            "<h2>Report is added with Description :</h2>"+
+                            
+                            "</body>"+
+                     "<html>"
+                    ,"this Topic"
+                    
+            );
+        } catch (MessagingException | UnsupportedEncodingException ex) {
+            Logger.getLogger(ReportController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         return "redirect:/admin/user?res=added";
     }
 
