@@ -132,7 +132,7 @@
                                     <div class="list-group">
                                         <a class="list-group-item list-group-item-action"
                                            th:each="as : ${notifications}"
-                                           href="#"
+                                           th:href="@{/open/} + ${as.id} + @{?url=/admin/report/details/} + ${as.report.id}"
                                            th:text="${as.notificationMessage.message}"
                                            >
                                         </a>
