@@ -75,7 +75,8 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
                     credentialsNonExpired,
                     accountNonLocked,
                     grantedAuths,
-                    loginOutput.getUser().getId()
+                    loginOutput.getUser().getId(),
+                    loginOutput.getUser().getName()
             );
 
             System.out.println("User ID From login = " + principal.getId());

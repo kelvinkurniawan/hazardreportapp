@@ -1,13 +1,13 @@
 package com.ksm.hazardreportapp.providers;
 
+import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
-
-import java.util.Collection;
 
 public class CustomUser extends User {
 
     private String id;
+    private String fullname;
 
     public String getId() {
         return id;
@@ -17,8 +17,17 @@ public class CustomUser extends User {
         this.id = id;
     }
 
-    public CustomUser(String username, String password, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities,String id) {
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
+    public CustomUser(String username, String password, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities, String id, String fullname) {
         super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
         setId(id);
+        setFullname(fullname);
     }
 }

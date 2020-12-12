@@ -21,6 +21,32 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
 <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
 <script>
+    function editButton() {
+        $(".form-control").attr("readonly", false);
+        $(".form-control").removeClass("plaintext");
+        $(".editable").addClass("true");
+        $('#gender').prop("disabled", false);
+        $('#university').prop("disabled", false);
+        $('#major').prop("disabled", false);
+        $('#province').prop("disabled", false);
+        $('#city').prop("disabled", false);
+        $(".editButton").hide();
+        $(".hidden").show();
+    }
+
+    function cancelButton() {
+        $(".form-control").attr("readonly", true);
+        $(".form-control").addClass("plaintext");
+        $(".editable").removeClass("true");
+        $('#gender').prop("disabled", true);
+        $('#university').prop("disabled", true);
+        $('#major').prop("disabled", true);
+        $('#province').prop("disabled", true);
+        $('#city').prop("disabled", true);
+        $(".editButton").show();
+        $(".hidden").hide();
+    }
+
     function loadNotification() {
         $.get("/api/get/notification", function (data) {
             var html = "";
