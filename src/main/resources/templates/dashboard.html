@@ -26,7 +26,7 @@
                                         <div class="col-7 col-md-8">
                                             <div class="numbers">
                                                 <p class="card-category">Reported</p>
-                                                <p class="card-title">70 case<p>
+                                                <p class="card-title" th:text="${totalReport} + ' case'"><p>
                                             </div>
                                         </div>
                                     </div>
@@ -51,8 +51,8 @@
                                         </div>
                                         <div class="col-7 col-md-8">
                                             <div class="numbers">
-                                                <p class="card-category">Closed</p>
-                                                <p class="card-title">50 case<p>
+                                                <p class="card-category">Finished</p>
+                                                <p class="card-title" th:text="${finishedReport} + ' case'"><p>
                                             </div>
                                         </div>
                                     </div>
@@ -78,7 +78,7 @@
                                         <div class="col-7 col-md-8">
                                             <div class="numbers">
                                                 <p class="card-category">Need action</p>
-                                                <p class="card-title">20 case<p>
+                                                <p class="card-title" th:text="${newReport} + ' case'"><p>
                                             </div>
                                         </div>
                                     </div>
@@ -104,7 +104,7 @@
                                         <div class="col-7 col-md-8">
                                             <div class="numbers">
                                                 <p class="card-category">On Process</p>
-                                                <p class="card-title">5 case<p>
+                                                <p class="card-title" th:text="${onProcessReport} + ' case'"><p>
                                             </div>
                                         </div>
                                     </div>
@@ -120,65 +120,62 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-8">
                             <div class="card ">
                                 <div class="card-header ">
-                                    <h5 class="card-title">Users Behavior</h5>
-                                    <p class="card-category">24 Hours performance</p>
+                                    <h5 class="card-title">Recent Notifications</h5>
+                                    <p class="card-category">
+                                        displays the latest notifications
+                                    </p>
                                 </div>
-                                <div class="card-body ">
-                                    <canvas id=chartHours width="400" height="100"></canvas>
+                                <div class="card-body">
+                                    <div class="list-group">
+                                        <a class="list-group-item list-group-item-action"
+                                           th:each="as : ${notifications}"
+                                           href="#"
+                                           th:text="${as.notificationMessage.message}"
+                                           >
+                                        </a>
+                                    </div>
                                 </div>
-                                <div class="card-footer ">
+                                <div class="card-footer">
                                     <hr>
                                     <div class="stats">
-                                        <i class="fa fa-history"></i> Updated 3 minutes ago
+                                        <i class="fa fa-history"></i> Welcome to hazardReport
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-md-4">
                             <div class="card ">
                                 <div class="card-header ">
-                                    <h5 class="card-title">Email Statistics</h5>
-                                    <p class="card-category">Last Campaign Performance</p>
-                                </div>
-                                <div class="card-body ">
-                                    <canvas id="chartEmail"></canvas>
-                                </div>
-                                <div class="card-footer ">
-                                    <div class="legend">
-                                        <i class="fa fa-circle text-primary"></i> Opened
-                                        <i class="fa fa-circle text-warning"></i> Read
-                                        <i class="fa fa-circle text-danger"></i> Deleted
-                                        <i class="fa fa-circle text-gray"></i> Unopened
-                                    </div>
-                                    <hr>
-                                    <div class="stats">
-                                        <i class="fa fa-calendar"></i> Number of emails sent
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card card-chart">
-                                <div class="card-header">
-                                    <h5 class="card-title">NASDAQ: AAPL</h5>
-                                    <p class="card-category">Line Chart with Points</p>
+                                    <h5 class="card-title">User Information</h5>
+                                    <p class="card-category">
+                                        information about you
+                                    </p>
                                 </div>
                                 <div class="card-body">
-                                    <canvas id="speedChart" width="400" height="100"></canvas>
+                                    <div class="form-group">
+                                        <label>Name</label>
+                                        <input type="text" readonly="readonly" th:value="${user.name}" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Username</label>
+                                        <input type="text" readonly="readonly" th:value="${user.username}" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Email</label>
+                                        <input type="text" readonly="readonly" th:value="${user.email}" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Logged In as</label>
+                                        <input type="text" readonly="readonly" th:value="${user.roles.name}" class="form-control">
+                                    </div>
                                 </div>
                                 <div class="card-footer">
-                                    <div class="chart-legend">
-                                        <i class="fa fa-circle text-info"></i> Tesla Model S
-                                        <i class="fa fa-circle text-warning"></i> BMW 5 Series
-                                    </div>
-                                    <hr />
-                                    <div class="card-stats">
-                                        <i class="fa fa-check"></i> Data information certified
+                                    <hr>
+                                    <div class="stats">
+                                        <i class="fa fa-history"></i> Welcome to hazardReport
                                     </div>
                                 </div>
                             </div>

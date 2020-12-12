@@ -12,6 +12,7 @@ import com.ksm.hazardreportapp.repositories.NotificationRepository;
 import com.ksm.hazardreportapp.services.ImageStorageService;
 import com.ksm.hazardreportapp.services.NotificationService;
 import com.ksm.hazardreportapp.services.ReportService;
+import com.ksm.hazardreportapp.services.UserService;
 import com.ksm.hazardreportapp.utils.GeneratePdfReport;
 import com.ksm.hazardreportapp.utils.GenerateSheetReport;
 import java.io.ByteArrayInputStream;
@@ -54,6 +55,9 @@ public class MainController {
     NotificationRepository notificationRepository;
 
     @Autowired
+    UserService userService;
+
+    @Autowired
     ReportService reportService;
 
     // Rouotes for admin as HSE
@@ -65,6 +69,14 @@ public class MainController {
         System.out.println("USER ID : " + id + "");
         System.out.println("ROLES : " + user.getAuthorities());
         model.addAttribute("title", "Dashboard");
+
+        model.addAttribute("totalReport", reportService.getAll().size());
+        model.addAttribute("finishedReport", reportService.getFinished().size());
+        model.addAttribute("newReport", reportService.getNew().size());
+        model.addAttribute("onProcessReport", reportService.getOnProcess().size());
+        model.addAttribute("user", userService.getById(id));
+        model.addAttribute("notifications", notificationService.getByUserUnSeen(id, 5));
+
         return "dashboard";
     }
 
@@ -87,7 +99,7 @@ public class MainController {
     public List<Notifications> getNotification() {
         CustomUser user = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String id = user.getId();
-        return notificationService.getByUserId(id);
+        return notificationService.getByUserUnSeen(id, 0);
     }
 
     @GetMapping("/access_denied")

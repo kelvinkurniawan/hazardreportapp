@@ -69,11 +69,34 @@ public class ReportService {
         return repository.findByOriginator(user);
     }
 
+    public List<Reports> getFinished() {
+        List<Statuses> currentStatus = new ArrayList<>();
+        currentStatus.add(statusRepository.findById(6).get());
+
+        return repository.findByCurrentStatusIn(currentStatus);
+    }
+
+    public List<Reports> getNew() {
+        List<Statuses> currentStatus = new ArrayList<>();
+        currentStatus.add(statusRepository.findById(1).get());
+
+        return repository.findByCurrentStatusIn(currentStatus);
+    }
+
+    public List<Reports> getOnProcess() {
+        List<Statuses> currentStatus = new ArrayList<>();
+        currentStatus.add(statusRepository.findById(2).get());
+        currentStatus.add(statusRepository.findById(3).get());
+        currentStatus.add(statusRepository.findById(4).get());
+        currentStatus.add(statusRepository.findById(5).get());
+
+        return repository.findByCurrentStatusIn(currentStatus);
+    }
+
     public List<Reports> getAllByCurrentStatus() {
         List<Statuses> currentStatus = new ArrayList<>();
         currentStatus.add(statusRepository.findById(4).get());
         currentStatus.add(statusRepository.findById(5).get());
-        currentStatus.add(statusRepository.findById(6).get());
 
         return repository.findByCurrentStatusIn(currentStatus);
     }
