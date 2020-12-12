@@ -4,11 +4,15 @@ import com.ksm.hazardreportapp.entities.Actions;
 import com.ksm.hazardreportapp.entities.Reports;
 import com.ksm.hazardreportapp.providers.CustomUser;
 import com.ksm.hazardreportapp.services.ActionService;
+import com.ksm.hazardreportapp.services.MailingService;
 import com.ksm.hazardreportapp.services.ReportService;
+import com.ksm.hazardreportapp.utils.MailingTemplate;
 import com.pusher.rest.Pusher;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -34,6 +38,9 @@ public class ActionController {
 
     @Autowired
     ReportService reportService;
+
+    @Autowired
+    MailingService mailingService;
 
     @GetMapping("/admin/report/{id}/action/new")
     public String addNewAction(@PathVariable("id") int id, Model model) {
@@ -76,13 +83,65 @@ public class ActionController {
             if (user.getAuthorities().stream().anyMatch(role -> role.getAuthority().equals("FW"))) {
                 actions.setReportProgress(reportService.updateStatus(3, id));
                 actions.setReportProgress(reportService.updateStatus(4, id));
+                try {
+                    mailingService.sendEmail(
+                            reports.getOriginator().getEmail(),
+                            MailingTemplate.notifyProgress(
+                                    new Date(System.currentTimeMillis()),
+                                    "The floor warden has responded and taken temporary action on your report, and the report will now be forwarded to HSE",
+                                    reports.getId()),
+                            "Report Progress update"
+                    );
+                } catch (Exception ex) {
+                    Logger.getLogger(ReportController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } else if (user.getAuthorities().stream().anyMatch(role -> role.getAuthority().equals("HSE"))) {
                 actions.setReportProgress(reportService.updateStatus(5, id));
                 actions.setReportProgress(reportService.updateStatus(6, id));
+                try {
+                    mailingService.sendEmail(
+                            reports.getOriginator().getEmail(),
+                            MailingTemplate.notifyProgress(
+                                    new Date(System.currentTimeMillis()),
+                                    "Your report has been responded to by HSE, and the report will be closed",
+                                    reports.getId()),
+                            "Report Progress update"
+                    );
+                    mailingService.sendEmail(
+                            reports.getOriginator().getEmail(),
+                            MailingTemplate.notifyProgressEnd(
+                                    new Date(System.currentTimeMillis()),
+                                    "thank you for reporting, and now the problem has been handled and resolved by HSE",
+                                    reports.getId()),
+                            "Report Progress update"
+                    );
+                } catch (Exception ex) {
+                    Logger.getLogger(ReportController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         } else {
             actions.setReportProgress(reportService.updateStatus(3, id));
             actions.setReportProgress(reportService.updateStatus(6, id));
+            try {
+                mailingService.sendEmail(
+                        reports.getOriginator().getEmail(),
+                        MailingTemplate.notifyProgress(
+                                new Date(System.currentTimeMillis()),
+                                "Your report has been responded to by Floor warden, and the report will be closed",
+                                reports.getId()),
+                        "Report Progress update"
+                );
+                mailingService.sendEmail(
+                        reports.getOriginator().getEmail(),
+                        MailingTemplate.notifyProgressEnd(
+                                new Date(System.currentTimeMillis()),
+                                "thank you for reporting, and now the problem has been handled and resolved by Floor warden",
+                                reports.getId()),
+                        "Report Progress update"
+                );
+            } catch (Exception ex) {
+                Logger.getLogger(ReportController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");

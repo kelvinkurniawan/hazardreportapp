@@ -83,6 +83,10 @@ public class UserService {
         return repository.findById(id).get();
     }
 
+    public List<Users> getByRoles(int id) {
+        return repository.findByRoles(roleService.getById(id));
+    }
+
     public Users save(Users users) {
         return repository.save(users);
     }

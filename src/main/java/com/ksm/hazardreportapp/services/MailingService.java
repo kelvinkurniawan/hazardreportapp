@@ -6,6 +6,9 @@
 package com.ksm.hazardreportapp.services;
 
 import java.io.UnsupportedEncodingException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +30,32 @@ public class MailingService {
         System.out.println("Sending");
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage);
-        
-        mimeMessageHelper.setFrom("nanatamvan.nt@gmail.com", "Kapita Metrodata");
+
+        mimeMessageHelper.setFrom("hrappksm@gmail.com", "Kapita Metrodata");
         mimeMessageHelper.setTo(to);
         mimeMessageHelper.setSubject(topic);
-        mimeMessageHelper.setText(body,true);
+        mimeMessageHelper.setText(body, true);
         javaMailSender.send(mimeMessage);
         System.out.println("Sent");
+    }
+
+    public void sendBulkEmail(List<String> to, String body, String topic) throws MessagingException, UnsupportedEncodingException {
+        System.out.println("Sending");
+        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage);
+
+        to.forEach(email -> {
+            try {
+                mimeMessageHelper.setFrom("hrappksm@gmail.com", "Kapita Metrodata");
+                mimeMessageHelper.setTo(email);
+                mimeMessageHelper.setSubject(topic);
+                mimeMessageHelper.setText(body, true);
+                javaMailSender.send(mimeMessage);
+                System.out.println("Sent");
+            } catch (MessagingException | UnsupportedEncodingException ex) {
+                Logger.getLogger(MailingService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+
     }
 }

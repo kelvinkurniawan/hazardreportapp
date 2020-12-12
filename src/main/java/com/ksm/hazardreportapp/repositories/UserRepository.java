@@ -5,7 +5,9 @@
  */
 package com.ksm.hazardreportapp.repositories;
 
+import com.ksm.hazardreportapp.entities.Roles;
 import com.ksm.hazardreportapp.entities.Users;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -23,6 +25,8 @@ public interface UserRepository extends JpaRepository<Users, String> {
     public Users findByUsername(@Param("username") String username);
 
     public Users findByEmail(@Param("email") String email);
+
+    public List<Users> findByRoles(@Param("roles") Roles roles);
 
     @Modifying(clearAutomatically = true)
     @Transactional

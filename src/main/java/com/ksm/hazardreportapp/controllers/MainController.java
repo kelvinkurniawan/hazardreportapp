@@ -10,6 +10,7 @@ import com.ksm.hazardreportapp.entities.Reports;
 import com.ksm.hazardreportapp.providers.CustomUser;
 import com.ksm.hazardreportapp.repositories.NotificationRepository;
 import com.ksm.hazardreportapp.services.ImageStorageService;
+import com.ksm.hazardreportapp.services.MailingService;
 import com.ksm.hazardreportapp.services.NotificationService;
 import com.ksm.hazardreportapp.services.ReportService;
 import com.ksm.hazardreportapp.services.UserService;
@@ -59,6 +60,9 @@ public class MainController {
 
     @Autowired
     ReportService reportService;
+
+    @Autowired
+    MailingService mailingService;
 
     // Rouotes for admin as HSE
     @GetMapping("/admin")

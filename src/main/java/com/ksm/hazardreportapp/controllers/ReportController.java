@@ -10,15 +10,14 @@ import com.ksm.hazardreportapp.entities.Reports;
 import com.ksm.hazardreportapp.entities.Users;
 import com.ksm.hazardreportapp.providers.CustomUser;
 import com.ksm.hazardreportapp.services.*;
+import com.ksm.hazardreportapp.utils.MailingTemplate;
 import com.pusher.rest.Pusher;
-import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -56,7 +55,7 @@ public class ReportController {
 
     @Autowired
     ActionService actionService;
-    
+
     @Autowired
     MailingService mailingService;
 
@@ -94,7 +93,7 @@ public class ReportController {
         model.addAttribute("originator", userService.getById(id));
         model.addAttribute("rooms", roomService.getAll());
         model.addAttribute("title", "Create Report");
-        
+
         return "addReport";
     }
 
@@ -121,21 +120,39 @@ public class ReportController {
             imageStorageService.save(file);
             imageAttachmentService.save(imageAttachments);
         });
-        
+
         try {
             mailingService.sendEmail(
-                    "adnangofar.ag@gmail.com"
-                    ,"<html>"+
-                            "<body>"+
-                            "<h3>Hello "+reports.getOriginator().getName()+",</h3>"+
-                            "<h2>Report is added with Description :</h2>"+
-                            reports.getDescription()+
-                            "</body>"+
-                     "<html>"
-                    ,"this Topic"
-                    
+                    "672018149@student.uksw.edu",
+                    MailingTemplate.newReportToHSE(
+                            reports.getDate(),
+                            reports.getOriginator().getName(),
+                            reports.getDescription(),
+                            reports.getId()),
+                    "New Report!!"
             );
-        } catch (MessagingException | UnsupportedEncodingException ex) {
+
+            mailingService.sendEmail(
+                    reports.getRoom().getFloor().getAdmin().getEmail(),
+                    MailingTemplate.newReportToHSE(
+                            reports.getDate(),
+                            reports.getOriginator().getName(),
+                            reports.getDescription(),
+                            reports.getId()),
+                    "New Report!!"
+            );
+
+            mailingService.sendEmail(
+                    reports.getOriginator().getEmail(),
+                    MailingTemplate.newReportToOriginator(
+                            reports.getDate(),
+                            reports.getOriginator().getName(),
+                            reports.getDescription(),
+                            reports.getId()),
+                    "New Report!!"
+            );
+
+        } catch (Exception ex) {
             Logger.getLogger(ReportController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -149,12 +166,33 @@ public class ReportController {
 
     @PostMapping("/admin/report/modify/{id}/priority")
     public String setPriority(@PathVariable("id") int id, Reports reports) {
+
         Pusher pusher = new Pusher("1121252", "75b839e2c030a656a41c", "f17af836b1f4bcfeeffe");
         pusher.setCluster("ap1");
         pusher.setEncrypted(true);
         pusher.trigger("my-channel", "updateNotif", Collections.singletonMap("message", "success"));
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+        Date date = new Date();
+
+        Reports detailReports = reportService.getById(reports.getId());
+
+        try {
+            mailingService.sendEmail(
+                    detailReports.getOriginator().getEmail(),
+                    MailingTemplate.notifyProgress(
+                            date,
+                            "Your report is added to queue",
+                            reports.getId()),
+                    "Report Progress update"
+            );
+        } catch (Exception ex) {
+            System.out.println("Mail error :" + ex);
+        }
+
         reportService.setPriority(id, reports.getPriority().getId());
         reportService.updateStatus(2, id);
+
         return "redirect:/admin/report/details/" + id + "?res=priority-setup";
     }
 
@@ -162,6 +200,7 @@ public class ReportController {
     public String viewReportDetail(@PathVariable("id") int id, Model model) {
         CustomUser user = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String userId = user.getId();
+
         model.addAttribute("report", reportService.getById(id));
         model.addAttribute("action", actionService.getByReportProgress(id));
         model.addAttribute("reportId", id);

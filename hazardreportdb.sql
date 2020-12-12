@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 11, 2020 at 06:59 PM
+-- Generation Time: Dec 12, 2020 at 12:48 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -43,11 +43,7 @@ CREATE TABLE `actions` (
 --
 
 INSERT INTO `actions` (`id`, `description`, `result`, `risk`, `date`, `action_type`, `report_progress`) VALUES
-(7, '<p><span style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc cursus aliquam mauris ut ultrices. Proin volutpat fermentum malesuada. Vivamus placerat maximus dignissim. Fusce sit amet blandit dui, non consequat nisi. Sed pellentesque tortor ac nibh volutpat iaculis. Fusce porta aliquam sem sit amet dignissim. Integer a sodales nulla, eu placerat nisi. Fusce hendrerit suscipit commodo. Fusce ut iaculis urna. Praesent pellentesque erat vitae massa venenatis, convallis tristique nibh mollis.</span></p>', '<p><span style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">Integer elit urna, efficitur a odio congue, dapibus imperdiet orci. Etiam egestas finibus interdum. Pellentesque tempus lobortis nulla, in suscipit nisl tristique at. Sed euismod neque non gravida ullamcorper. Sed rutrum dui a hendrerit vehicula. Pellentesque quis sollicitudin nibh, fringilla aliquet ante. Ut gravida orci urna, vitae pretium justo lacinia eu. Cras iaculis pretium dui, non accumsan orci viverra pharetra. Aenean quis lorem et tortor euismod aliquet. Donec auctor euismod sapien a finibus. In scelerisque hendrerit leo, eget fermentum magna dignissim nec.</span></p>', '<p><span style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam et dolor venenatis, gravida dui ac, luctus velit. Donec congue mollis orci, a tincidunt leo maximus ac. Nullam ullamcorper eu elit sit amet fringilla. Phasellus quis vehicula nunc, quis lobortis felis. Vivamus feugiat at lectus facilisis sagittis. Pellentesque ac dui iaculis, pharetra magna vitae, condimentum tellus. Nunc sollicitudin justo scelerisque, tempor dolor varius, semper dolor. Pellentesque lobortis tincidunt convallis.</span></p>', '2020-12-11 00:59:22', 2, 127),
-(8, '<p><span style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">Integer elit urna, efficitur a odio congue, dapibus imperdiet orci. Etiam egestas finibus interdum. Pellentesque tempus lobortis nulla, in suscipit nisl tristique at. Sed euismod neque non gravida ullamcorper. Sed rutrum dui a hendrerit vehicula. Pellentesque quis sollicitudin nibh, fringilla aliquet ante. Ut gravida orci urna, vitae pretium justo lacinia eu. Cras iaculis pretium dui, non accumsan orci viverra pharetra. Aenean quis lorem et tortor euismod aliquet. Donec auctor euismod sapien a finibus. In scelerisque hendrerit leo, eget fermentum magna dignissim nec.</span></p>', '<p><span style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">Integer elit urna, efficitur a odio congue, dapibus imperdiet orci. Etiam egestas finibus interdum. Pellentesque tempus lobortis nulla, in suscipit nisl tristique at. Sed euismod neque non gravida ullamcorper. Sed rutrum dui a hendrerit vehicula. Pellentesque quis sollicitudin nibh, fringilla aliquet ante. Ut gravida orci urna, vitae pretium justo lacinia eu. Cras iaculis pretium dui, non accumsan orci viverra pharetra. Aenean quis lorem et tortor euismod aliquet. Donec auctor euismod sapien a finibus. In scelerisque hendrerit leo, eget fermentum magna dignissim nec.</span></p>', '<p><span style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">Integer elit urna, efficitur a odio congue, dapibus imperdiet orci. Etiam egestas finibus interdum. Pellentesque tempus lobortis nulla, in suscipit nisl tristique at. Sed euismod neque non gravida ullamcorper. Sed rutrum dui a hendrerit vehicula. Pellentesque quis sollicitudin nibh, fringilla aliquet ante. Ut gravida orci urna, vitae pretium justo lacinia eu. Cras iaculis pretium dui, non accumsan orci viverra pharetra. Aenean quis lorem et tortor euismod aliquet. Donec auctor euismod sapien a finibus. In scelerisque hendrerit leo, eget fermentum magna dignissim nec.</span></p>', '2020-12-11 01:13:31', 1, 131),
-(9, '<p><span style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">Aliquam ut gravida sapien. Donec pharetra tortor at consequat accumsan. Donec nec porta mauris, at pretium nulla. Donec sit amet porta risus, et condimentum velit. Sed commodo arcu eu erat imperdiet semper. Nulla hendrerit interdum risus, sit amet semper nisl tincidunt id. Fusce laoreet ligula ut elementum mattis.</span></p>', '<p><span style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">Aliquam ut gravida sapien. Donec pharetra tortor at consequat accumsan. Donec nec porta mauris, at pretium nulla. Donec sit amet porta risus, et condimentum velit. Sed commodo arcu eu erat imperdiet semper. Nulla hendrerit interdum risus, sit amet semper nisl tincidunt id. Fusce laoreet ligula ut elementum mattis.</span></p>', '<p><span style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">Aliquam ut gravida sapien. Donec pharetra tortor at consequat accumsan. Donec nec porta mauris, at pretium nulla. Donec sit amet porta risus, et condimentum velit. Sed commodo arcu eu erat imperdiet semper. Nulla hendrerit interdum risus, sit amet semper nisl tincidunt id. Fusce laoreet ligula ut elementum mattis.</span></p>', '2020-12-11 01:15:02', 1, 133),
-(10, '<p><span style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc cursus aliquam mauris ut ultrices. Proin volutpat fermentum malesuada. Vivamus placerat maximus dignissim. Fusce sit amet blandit dui, non consequat nisi. Sed pellentesque tortor ac nibh volutpat iaculis. Fusce porta aliquam sem sit amet dignissim. Integer a sodales nulla, eu placerat nisi. Fusce hendrerit suscipit commodo. Fusce ut iaculis urna. Praesent pellentesque erat vitae massa venenatis, convallis tristique nibh mollis.</span></p>', '<p><span style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc cursus aliquam mauris ut ultrices. Proin volutpat fermentum malesuada. Vivamus placerat maximus dignissim. Fusce sit amet blandit dui, non consequat nisi. Sed pellentesque tortor ac nibh volutpat iaculis. Fusce porta aliquam sem sit amet dignissim. Integer a sodales nulla, eu placerat nisi. Fusce hendrerit suscipit commodo. Fusce ut iaculis urna. Praesent pellentesque erat vitae massa venenatis, convallis tristique nibh mollis.</span></p>', '<p><span style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc cursus aliquam mauris ut ultrices. Proin volutpat fermentum malesuada. Vivamus placerat maximus dignissim. Fusce sit amet blandit dui, non consequat nisi. Sed pellentesque tortor ac nibh volutpat iaculis. Fusce porta aliquam sem sit amet dignissim. Integer a sodales nulla, eu placerat nisi. Fusce hendrerit suscipit commodo. Fusce ut iaculis urna. Praesent pellentesque erat vitae massa venenatis, convallis tristique nibh mollis.</span></p>', '2020-12-11 01:40:14', 1, 137),
-(11, '<p><span style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc cursus aliquam mauris ut ultrices. Proin volutpat fermentum malesuada. Vivamus placerat maximus dignissim. Fusce sit amet blandit dui, non consequat nisi. Sed pellentesque tortor ac nibh volutpat iaculis. Fusce porta aliquam sem sit amet dignissim. Integer a sodales nulla, eu placerat nisi. Fusce hendrerit suscipit commodo. Fusce ut iaculis urna. Praesent pellentesque erat vitae massa venenatis, convallis tristique nibh mollis.</span></p>', '<p><span style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc cursus aliquam mauris ut ultrices. Proin volutpat fermentum malesuada. Vivamus placerat maximus dignissim. Fusce sit amet blandit dui, non consequat nisi. Sed pellentesque tortor ac nibh volutpat iaculis. Fusce porta aliquam sem sit amet dignissim. Integer a sodales nulla, eu placerat nisi. Fusce hendrerit suscipit commodo. Fusce ut iaculis urna. Praesent pellentesque erat vitae massa venenatis, convallis tristique nibh mollis.</span></p>', '<p><span style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc cursus aliquam mauris ut ultrices. Proin volutpat fermentum malesuada. Vivamus placerat maximus dignissim. Fusce sit amet blandit dui, non consequat nisi. Sed pellentesque tortor ac nibh volutpat iaculis. Fusce porta aliquam sem sit amet dignissim. Integer a sodales nulla, eu placerat nisi. Fusce hendrerit suscipit commodo. Fusce ut iaculis urna. Praesent pellentesque erat vitae massa venenatis, convallis tristique nibh mollis.</span></p>', '2020-12-11 01:41:42', 1, 139);
+(12, '<p><strong style=\"margin: 0px; padding: 0px; font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">Lorem Ipsum</strong><span style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span></p>', '<p><strong style=\"margin: 0px; padding: 0px; font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">Lorem Ipsum</strong><span style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span></p>', '<p><strong style=\"margin: 0px; padding: 0px; font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">Lorem Ipsum</strong><span style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span></p>', '2020-12-12 04:41:05', 2, 144);
 
 -- --------------------------------------------------------
 
@@ -86,9 +82,7 @@ CREATE TABLE `floors` (
 --
 
 INSERT INTO `floors` (`id`, `name`, `description`, `admin`) VALUES
-(1, 'Basement', 'Parking area and toilet', 'USER-00200'),
-(2, 'Lantai 1', 'Cafetaria, tempat nongkrong, tempat santai', 'USER-00211'),
-(3, 'Lantai 2', 'Kantin, tempat makan, tempat merokok', 'USER-00211');
+(4, 'Lantai 1', 'Ruangan yang berada di lantai 1', 'USER-00028');
 
 -- --------------------------------------------------------
 
@@ -107,10 +101,7 @@ CREATE TABLE `image_attachments` (
 --
 
 INSERT INTO `image_attachments` (`id`, `image_path`, `report`) VALUES
-(15, 'RoofTile4.bmp', 12),
-(16, 'stones.bmp', 12),
-(17, 'rasulullah-jatuh-pingsan-mendengar-keadaan-neraka-dan-penghuninya-1-z0G-thumb.jpg', 13),
-(18, '8199OS_12_01.jpg', 14);
+(20, 'rasulullah-jatuh-pingsan-mendengar-keadaan-neraka-dan-penghuninya-1-z0G-thumb.jpg', 16);
 
 -- --------------------------------------------------------
 
@@ -132,40 +123,14 @@ CREATE TABLE `notifications` (
 --
 
 INSERT INTO `notifications` (`id`, `notification_message`, `report`, `read_status`, `datetime`, `user`) VALUES
-(89, 1, 12, 0, '2020-12-11 07:50:18', 'USER-00210'),
-(90, 7, 12, 0, '2020-12-11 07:50:18', 'USER-00211'),
-(91, 7, 12, 0, '2020-12-11 07:50:18', 'USER-00101'),
-(92, 2, 12, 0, '2020-12-11 07:57:41', 'USER-00210'),
-(93, 3, 12, 0, '2020-12-11 07:59:22', 'USER-00210'),
-(94, 6, 12, 0, '2020-12-11 07:59:22', 'USER-00210'),
-(95, 9, 12, 0, '2020-12-11 07:59:22', 'USER-00211'),
-(96, 9, 12, 0, '2020-12-11 07:59:22', 'USER-00101'),
-(97, 1, 13, 0, '2020-12-11 08:13:01', 'USER-00210'),
-(98, 7, 13, 0, '2020-12-11 08:13:01', 'USER-00211'),
-(99, 7, 13, 1, '2020-12-11 08:13:01', 'USER-00101'),
-(100, 2, 13, 0, '2020-12-11 08:13:20', 'USER-00210'),
-(101, 3, 13, 1, '2020-12-11 08:13:31', 'USER-00210'),
-(102, 4, 13, 0, '2020-12-11 08:13:31', 'USER-00210'),
-(103, 10, 13, 0, '2020-12-11 08:13:31', 'USER-00211'),
-(104, 10, 13, 0, '2020-12-11 08:13:31', 'USER-00211'),
-(105, 8, 13, 0, '2020-12-11 08:13:31', 'USER-00101'),
-(106, 5, 13, 0, '2020-12-11 08:15:02', 'USER-00210'),
-(107, 6, 13, 0, '2020-12-11 08:15:02', 'USER-00210'),
-(108, 9, 13, 0, '2020-12-11 08:15:02', 'USER-00211'),
-(109, 9, 13, 0, '2020-12-11 08:15:02', 'USER-00101'),
-(110, 1, 14, 0, '2020-12-11 08:37:31', 'USER-00210'),
-(111, 7, 14, 0, '2020-12-11 08:37:31', 'USER-00211'),
-(112, 7, 14, 0, '2020-12-11 08:37:31', 'USER-00101'),
-(113, 2, 14, 0, '2020-12-11 08:39:56', 'USER-00210'),
-(114, 3, 14, 0, '2020-12-11 08:40:14', 'USER-00210'),
-(115, 4, 14, 0, '2020-12-11 08:40:14', 'USER-00210'),
-(116, 10, 14, 0, '2020-12-11 08:40:14', 'USER-00211'),
-(117, 10, 14, 0, '2020-12-11 08:40:14', 'USER-00211'),
-(118, 8, 14, 0, '2020-12-11 08:40:14', 'USER-00101'),
-(119, 5, 14, 0, '2020-12-11 08:41:42', 'USER-00210'),
-(120, 6, 14, 0, '2020-12-11 08:41:42', 'USER-00210'),
-(121, 9, 14, 0, '2020-12-11 08:41:42', 'USER-00211'),
-(122, 9, 14, 0, '2020-12-11 08:41:42', 'USER-00101');
+(126, 1, 16, 0, '2020-12-12 11:17:50', 'USER-00212'),
+(127, 7, 16, 0, '2020-12-12 11:17:50', 'USER-00028'),
+(128, 7, 16, 0, '2020-12-12 11:17:50', 'USER-00101'),
+(129, 2, 16, 0, '2020-12-12 11:19:33', 'USER-00212'),
+(130, 3, 16, 0, '2020-12-12 11:40:57', 'USER-00212'),
+(131, 6, 16, 0, '2020-12-12 11:40:57', 'USER-00212'),
+(132, 9, 16, 0, '2020-12-12 11:40:57', 'USER-00028'),
+(133, 9, 16, 0, '2020-12-12 11:40:57', 'USER-00101');
 
 -- --------------------------------------------------------
 
@@ -236,9 +201,7 @@ CREATE TABLE `reports` (
 --
 
 INSERT INTO `reports` (`id`, `date`, `originator`, `room`, `description`, `priority`, `current_status`) VALUES
-(12, '2020-12-11 00:50:18', 'USER-00210', 1, '<p>Tembok sebelah selatan parkiran hampir roboh</p>\r\n<p>tembok mulai terjadi keretakan, dan tiang penyangga mulai miring</p>', 1, 6),
-(13, '2020-12-11 01:13:01', 'USER-00210', 6, '<p>Gas yang ada diruangan security mengalami kebocoran, ditakutkan akan meledak</p>', 3, 6),
-(14, '2020-12-11 01:37:31', 'USER-00210', 6, '<p><span style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc cursus aliquam mauris ut ultrices. Proin volutpat fermentum malesuada. Vivamus placerat maximus dignissim. Fusce sit amet blandit dui, non consequat nisi. Sed pellentesque tortor ac nibh volutpat iaculis. Fusce porta aliquam sem sit amet dignissim. Integer a sodales nulla, eu placerat nisi. Fusce hendrerit suscipit commodo. Fusce ut iaculis urna. Praesent pellentesque erat vitae massa venenatis, convallis tristique nibh mollis.</span></p>', 3, 6);
+(16, '2020-12-12 04:17:50', 'USER-00212', 14, '<p>AC ruangan sepertinya mati, suhu didalam terasa sangat panas</p>', 2, 6);
 
 --
 -- Triggers `reports`
@@ -311,22 +274,10 @@ CREATE TABLE `report_progresses` (
 --
 
 INSERT INTO `report_progresses` (`id`, `status`, `report`, `date`) VALUES
-(125, 1, 12, '2020-12-11 14:50:18'),
-(126, 2, 12, '2020-12-11 14:57:41'),
-(127, 3, 12, '2020-12-11 14:59:22'),
-(128, 6, 12, '2020-12-11 14:59:22'),
-(129, 1, 13, '2020-12-11 15:13:01'),
-(130, 2, 13, '2020-12-11 15:13:20'),
-(131, 3, 13, '2020-12-11 15:13:31'),
-(132, 4, 13, '2020-12-11 15:13:31'),
-(133, 5, 13, '2020-12-11 15:15:02'),
-(134, 6, 13, '2020-12-11 15:15:02'),
-(135, 1, 14, '2020-12-11 15:37:31'),
-(136, 2, 14, '2020-12-11 15:39:56'),
-(137, 3, 14, '2020-12-11 15:40:14'),
-(138, 4, 14, '2020-12-11 15:40:14'),
-(139, 5, 14, '2020-12-11 15:41:42'),
-(140, 6, 14, '2020-12-11 15:41:42');
+(142, 1, 16, '2020-12-12 18:17:50'),
+(143, 2, 16, '2020-12-12 18:19:33'),
+(144, 3, 16, '2020-12-12 18:40:57'),
+(145, 6, 16, '2020-12-12 18:40:57');
 
 -- --------------------------------------------------------
 
@@ -367,10 +318,9 @@ CREATE TABLE `rooms` (
 --
 
 INSERT INTO `rooms` (`id`, `name`, `description`, `floor`) VALUES
-(1, 'Parking area', 'parking area', 2),
-(5, 'Toilet 1', 'Toilet sebelah kiri', 3),
-(6, 'Security room', 'sebelah kanan pintu masuk', 2),
-(10, 'Dummy room', 'this for testing purpose only', 1);
+(13, 'Toilet utara', 'Toilet yang berada disisi utara', 4),
+(14, 'Ruangan kontrol cctv', 'Ruangan khusus kontrol cctv semua gedung', 4),
+(15, 'Ruangan security', 'Ruangan untuk koordinasi security', 4);
 
 -- --------------------------------------------------------
 
@@ -416,10 +366,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `username`, `phone`, `roles`) VALUES
+('USER-00021', 'Agustinus Yoga Pangestu', 'yogapanges1@gmail.com', 'yogapanges', NULL, 3),
+('USER-00028', 'Adnan Ghofar Mana', 'adnangofar.ag@gmail.com', 'sweetcassava', NULL, 2),
 ('USER-00101', 'Kelvin Kurniawan Oktavianto', '672018149@student.uksw.edu', 'kelvink', '082226733123', 1),
-('USER-00200', 'Adnan Gofar Manaf', 'adnan@mail.com', 'adnan', '082123131231', 2),
 ('USER-00210', 'Hazard Report Employee ', 'segywu@digital10network.com', 'hremp1', '082123231313', 3),
-('USER-00211', 'Hazard Report FW', 'beledufy@ivyandmarj.com', 'hrfw1', '0888888213', 2);
+('USER-00211', 'Hazard Report FW', 'beledufy@ivyandmarj.com', 'hrfw1', '0888888213', 2),
+('USER-00212', 'Hazard Report Employee 2', 'ziratyme@ivyandmarj.com', 'hremp2', '08123443243', 3);
 
 --
 -- Indexes for dumped tables
@@ -526,7 +478,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `actions`
 --
 ALTER TABLE `actions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `action_types`
@@ -538,19 +490,19 @@ ALTER TABLE `action_types`
 -- AUTO_INCREMENT for table `floors`
 --
 ALTER TABLE `floors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `image_attachments`
 --
 ALTER TABLE `image_attachments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
 
 --
 -- AUTO_INCREMENT for table `notification_messages`
@@ -568,13 +520,13 @@ ALTER TABLE `priorities`
 -- AUTO_INCREMENT for table `reports`
 --
 ALTER TABLE `reports`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `report_progresses`
 --
 ALTER TABLE `report_progresses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=146;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -586,7 +538,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `statuses`
