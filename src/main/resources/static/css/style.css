@@ -2,9 +2,6 @@
     opacity: 1;
     position: relative;
 }
-.unread{
-    background:#f1f0f0;
-}
 .new-notif{
     color: #51cbce;
 }
@@ -12,4 +9,21 @@
     position: fixed;
     bottom: 30px;
     right: 30px;
+}
+.hidden{
+    display: none;
+    transition: .5 all;
+}
+.user-profile-icon{
+    font-size: 24px;
+}
+.navbar-profile-name{
+    font-weight: 700;
+    font-size: 12px;
+}
+.navbar-profile-role, .navbar-profile-role a{
+    font-size: 10px!important;
+}
+.navbar-profile-role a{
+    color: #51cbce!important;
 }

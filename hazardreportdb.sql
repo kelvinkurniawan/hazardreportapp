@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 11, 2020 at 04:57 AM
+-- Generation Time: Dec 11, 2020 at 06:59 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -38,6 +38,17 @@ CREATE TABLE `actions` (
   `report_progress` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `actions`
+--
+
+INSERT INTO `actions` (`id`, `description`, `result`, `risk`, `date`, `action_type`, `report_progress`) VALUES
+(7, '<p><span style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc cursus aliquam mauris ut ultrices. Proin volutpat fermentum malesuada. Vivamus placerat maximus dignissim. Fusce sit amet blandit dui, non consequat nisi. Sed pellentesque tortor ac nibh volutpat iaculis. Fusce porta aliquam sem sit amet dignissim. Integer a sodales nulla, eu placerat nisi. Fusce hendrerit suscipit commodo. Fusce ut iaculis urna. Praesent pellentesque erat vitae massa venenatis, convallis tristique nibh mollis.</span></p>', '<p><span style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">Integer elit urna, efficitur a odio congue, dapibus imperdiet orci. Etiam egestas finibus interdum. Pellentesque tempus lobortis nulla, in suscipit nisl tristique at. Sed euismod neque non gravida ullamcorper. Sed rutrum dui a hendrerit vehicula. Pellentesque quis sollicitudin nibh, fringilla aliquet ante. Ut gravida orci urna, vitae pretium justo lacinia eu. Cras iaculis pretium dui, non accumsan orci viverra pharetra. Aenean quis lorem et tortor euismod aliquet. Donec auctor euismod sapien a finibus. In scelerisque hendrerit leo, eget fermentum magna dignissim nec.</span></p>', '<p><span style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam et dolor venenatis, gravida dui ac, luctus velit. Donec congue mollis orci, a tincidunt leo maximus ac. Nullam ullamcorper eu elit sit amet fringilla. Phasellus quis vehicula nunc, quis lobortis felis. Vivamus feugiat at lectus facilisis sagittis. Pellentesque ac dui iaculis, pharetra magna vitae, condimentum tellus. Nunc sollicitudin justo scelerisque, tempor dolor varius, semper dolor. Pellentesque lobortis tincidunt convallis.</span></p>', '2020-12-11 00:59:22', 2, 127),
+(8, '<p><span style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">Integer elit urna, efficitur a odio congue, dapibus imperdiet orci. Etiam egestas finibus interdum. Pellentesque tempus lobortis nulla, in suscipit nisl tristique at. Sed euismod neque non gravida ullamcorper. Sed rutrum dui a hendrerit vehicula. Pellentesque quis sollicitudin nibh, fringilla aliquet ante. Ut gravida orci urna, vitae pretium justo lacinia eu. Cras iaculis pretium dui, non accumsan orci viverra pharetra. Aenean quis lorem et tortor euismod aliquet. Donec auctor euismod sapien a finibus. In scelerisque hendrerit leo, eget fermentum magna dignissim nec.</span></p>', '<p><span style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">Integer elit urna, efficitur a odio congue, dapibus imperdiet orci. Etiam egestas finibus interdum. Pellentesque tempus lobortis nulla, in suscipit nisl tristique at. Sed euismod neque non gravida ullamcorper. Sed rutrum dui a hendrerit vehicula. Pellentesque quis sollicitudin nibh, fringilla aliquet ante. Ut gravida orci urna, vitae pretium justo lacinia eu. Cras iaculis pretium dui, non accumsan orci viverra pharetra. Aenean quis lorem et tortor euismod aliquet. Donec auctor euismod sapien a finibus. In scelerisque hendrerit leo, eget fermentum magna dignissim nec.</span></p>', '<p><span style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">Integer elit urna, efficitur a odio congue, dapibus imperdiet orci. Etiam egestas finibus interdum. Pellentesque tempus lobortis nulla, in suscipit nisl tristique at. Sed euismod neque non gravida ullamcorper. Sed rutrum dui a hendrerit vehicula. Pellentesque quis sollicitudin nibh, fringilla aliquet ante. Ut gravida orci urna, vitae pretium justo lacinia eu. Cras iaculis pretium dui, non accumsan orci viverra pharetra. Aenean quis lorem et tortor euismod aliquet. Donec auctor euismod sapien a finibus. In scelerisque hendrerit leo, eget fermentum magna dignissim nec.</span></p>', '2020-12-11 01:13:31', 1, 131),
+(9, '<p><span style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">Aliquam ut gravida sapien. Donec pharetra tortor at consequat accumsan. Donec nec porta mauris, at pretium nulla. Donec sit amet porta risus, et condimentum velit. Sed commodo arcu eu erat imperdiet semper. Nulla hendrerit interdum risus, sit amet semper nisl tincidunt id. Fusce laoreet ligula ut elementum mattis.</span></p>', '<p><span style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">Aliquam ut gravida sapien. Donec pharetra tortor at consequat accumsan. Donec nec porta mauris, at pretium nulla. Donec sit amet porta risus, et condimentum velit. Sed commodo arcu eu erat imperdiet semper. Nulla hendrerit interdum risus, sit amet semper nisl tincidunt id. Fusce laoreet ligula ut elementum mattis.</span></p>', '<p><span style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">Aliquam ut gravida sapien. Donec pharetra tortor at consequat accumsan. Donec nec porta mauris, at pretium nulla. Donec sit amet porta risus, et condimentum velit. Sed commodo arcu eu erat imperdiet semper. Nulla hendrerit interdum risus, sit amet semper nisl tincidunt id. Fusce laoreet ligula ut elementum mattis.</span></p>', '2020-12-11 01:15:02', 1, 133),
+(10, '<p><span style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc cursus aliquam mauris ut ultrices. Proin volutpat fermentum malesuada. Vivamus placerat maximus dignissim. Fusce sit amet blandit dui, non consequat nisi. Sed pellentesque tortor ac nibh volutpat iaculis. Fusce porta aliquam sem sit amet dignissim. Integer a sodales nulla, eu placerat nisi. Fusce hendrerit suscipit commodo. Fusce ut iaculis urna. Praesent pellentesque erat vitae massa venenatis, convallis tristique nibh mollis.</span></p>', '<p><span style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc cursus aliquam mauris ut ultrices. Proin volutpat fermentum malesuada. Vivamus placerat maximus dignissim. Fusce sit amet blandit dui, non consequat nisi. Sed pellentesque tortor ac nibh volutpat iaculis. Fusce porta aliquam sem sit amet dignissim. Integer a sodales nulla, eu placerat nisi. Fusce hendrerit suscipit commodo. Fusce ut iaculis urna. Praesent pellentesque erat vitae massa venenatis, convallis tristique nibh mollis.</span></p>', '<p><span style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc cursus aliquam mauris ut ultrices. Proin volutpat fermentum malesuada. Vivamus placerat maximus dignissim. Fusce sit amet blandit dui, non consequat nisi. Sed pellentesque tortor ac nibh volutpat iaculis. Fusce porta aliquam sem sit amet dignissim. Integer a sodales nulla, eu placerat nisi. Fusce hendrerit suscipit commodo. Fusce ut iaculis urna. Praesent pellentesque erat vitae massa venenatis, convallis tristique nibh mollis.</span></p>', '2020-12-11 01:40:14', 1, 137),
+(11, '<p><span style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc cursus aliquam mauris ut ultrices. Proin volutpat fermentum malesuada. Vivamus placerat maximus dignissim. Fusce sit amet blandit dui, non consequat nisi. Sed pellentesque tortor ac nibh volutpat iaculis. Fusce porta aliquam sem sit amet dignissim. Integer a sodales nulla, eu placerat nisi. Fusce hendrerit suscipit commodo. Fusce ut iaculis urna. Praesent pellentesque erat vitae massa venenatis, convallis tristique nibh mollis.</span></p>', '<p><span style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc cursus aliquam mauris ut ultrices. Proin volutpat fermentum malesuada. Vivamus placerat maximus dignissim. Fusce sit amet blandit dui, non consequat nisi. Sed pellentesque tortor ac nibh volutpat iaculis. Fusce porta aliquam sem sit amet dignissim. Integer a sodales nulla, eu placerat nisi. Fusce hendrerit suscipit commodo. Fusce ut iaculis urna. Praesent pellentesque erat vitae massa venenatis, convallis tristique nibh mollis.</span></p>', '<p><span style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc cursus aliquam mauris ut ultrices. Proin volutpat fermentum malesuada. Vivamus placerat maximus dignissim. Fusce sit amet blandit dui, non consequat nisi. Sed pellentesque tortor ac nibh volutpat iaculis. Fusce porta aliquam sem sit amet dignissim. Integer a sodales nulla, eu placerat nisi. Fusce hendrerit suscipit commodo. Fusce ut iaculis urna. Praesent pellentesque erat vitae massa venenatis, convallis tristique nibh mollis.</span></p>', '2020-12-11 01:41:42', 1, 139);
+
 -- --------------------------------------------------------
 
 --
@@ -48,6 +59,14 @@ CREATE TABLE `action_types` (
   `id` int(11) NOT NULL,
   `name` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `action_types`
+--
+
+INSERT INTO `action_types` (`id`, `name`) VALUES
+(1, 'LONG_TERM'),
+(2, 'IMMEDIATE_ACTION');
 
 -- --------------------------------------------------------
 
@@ -62,6 +81,15 @@ CREATE TABLE `floors` (
   `admin` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `floors`
+--
+
+INSERT INTO `floors` (`id`, `name`, `description`, `admin`) VALUES
+(1, 'Basement', 'Parking area and toilet', 'USER-00200'),
+(2, 'Lantai 1', 'Cafetaria, tempat nongkrong, tempat santai', 'USER-00211'),
+(3, 'Lantai 2', 'Kantin, tempat makan, tempat merokok', 'USER-00211');
+
 -- --------------------------------------------------------
 
 --
@@ -73,6 +101,16 @@ CREATE TABLE `image_attachments` (
   `image_path` varchar(100) NOT NULL,
   `report` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `image_attachments`
+--
+
+INSERT INTO `image_attachments` (`id`, `image_path`, `report`) VALUES
+(15, 'RoofTile4.bmp', 12),
+(16, 'stones.bmp', 12),
+(17, 'rasulullah-jatuh-pingsan-mendengar-keadaan-neraka-dan-penghuninya-1-z0G-thumb.jpg', 13),
+(18, '8199OS_12_01.jpg', 14);
 
 -- --------------------------------------------------------
 
@@ -88,6 +126,46 @@ CREATE TABLE `notifications` (
   `datetime` timestamp NOT NULL DEFAULT current_timestamp(),
   `user` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `notifications`
+--
+
+INSERT INTO `notifications` (`id`, `notification_message`, `report`, `read_status`, `datetime`, `user`) VALUES
+(89, 1, 12, 0, '2020-12-11 07:50:18', 'USER-00210'),
+(90, 7, 12, 0, '2020-12-11 07:50:18', 'USER-00211'),
+(91, 7, 12, 0, '2020-12-11 07:50:18', 'USER-00101'),
+(92, 2, 12, 0, '2020-12-11 07:57:41', 'USER-00210'),
+(93, 3, 12, 0, '2020-12-11 07:59:22', 'USER-00210'),
+(94, 6, 12, 0, '2020-12-11 07:59:22', 'USER-00210'),
+(95, 9, 12, 0, '2020-12-11 07:59:22', 'USER-00211'),
+(96, 9, 12, 0, '2020-12-11 07:59:22', 'USER-00101'),
+(97, 1, 13, 0, '2020-12-11 08:13:01', 'USER-00210'),
+(98, 7, 13, 0, '2020-12-11 08:13:01', 'USER-00211'),
+(99, 7, 13, 1, '2020-12-11 08:13:01', 'USER-00101'),
+(100, 2, 13, 0, '2020-12-11 08:13:20', 'USER-00210'),
+(101, 3, 13, 1, '2020-12-11 08:13:31', 'USER-00210'),
+(102, 4, 13, 0, '2020-12-11 08:13:31', 'USER-00210'),
+(103, 10, 13, 0, '2020-12-11 08:13:31', 'USER-00211'),
+(104, 10, 13, 0, '2020-12-11 08:13:31', 'USER-00211'),
+(105, 8, 13, 0, '2020-12-11 08:13:31', 'USER-00101'),
+(106, 5, 13, 0, '2020-12-11 08:15:02', 'USER-00210'),
+(107, 6, 13, 0, '2020-12-11 08:15:02', 'USER-00210'),
+(108, 9, 13, 0, '2020-12-11 08:15:02', 'USER-00211'),
+(109, 9, 13, 0, '2020-12-11 08:15:02', 'USER-00101'),
+(110, 1, 14, 0, '2020-12-11 08:37:31', 'USER-00210'),
+(111, 7, 14, 0, '2020-12-11 08:37:31', 'USER-00211'),
+(112, 7, 14, 0, '2020-12-11 08:37:31', 'USER-00101'),
+(113, 2, 14, 0, '2020-12-11 08:39:56', 'USER-00210'),
+(114, 3, 14, 0, '2020-12-11 08:40:14', 'USER-00210'),
+(115, 4, 14, 0, '2020-12-11 08:40:14', 'USER-00210'),
+(116, 10, 14, 0, '2020-12-11 08:40:14', 'USER-00211'),
+(117, 10, 14, 0, '2020-12-11 08:40:14', 'USER-00211'),
+(118, 8, 14, 0, '2020-12-11 08:40:14', 'USER-00101'),
+(119, 5, 14, 0, '2020-12-11 08:41:42', 'USER-00210'),
+(120, 6, 14, 0, '2020-12-11 08:41:42', 'USER-00210'),
+(121, 9, 14, 0, '2020-12-11 08:41:42', 'USER-00211'),
+(122, 9, 14, 0, '2020-12-11 08:41:42', 'USER-00101');
 
 -- --------------------------------------------------------
 
@@ -109,7 +187,7 @@ INSERT INTO `notification_messages` (`id`, `message`) VALUES
 (2, 'Report was successfully added to queue'),
 (3, 'Your report has been responded to by the floor warden'),
 (4, 'Your report is being forwarded to HSE'),
-(5, 'Your report has been responded to by the HSE'),
+(5, 'Your report has been responded by HSE'),
 (6, 'Your report is complete'),
 (7, 'There\'s a new report'),
 (8, 'Floor warden forwarded report to you'),
@@ -127,6 +205,16 @@ CREATE TABLE `priorities` (
   `name` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `priorities`
+--
+
+INSERT INTO `priorities` (`id`, `name`) VALUES
+(1, 'Low'),
+(2, 'Medium'),
+(3, 'High'),
+(4, 'Default');
+
 -- --------------------------------------------------------
 
 --
@@ -142,6 +230,15 @@ CREATE TABLE `reports` (
   `priority` int(11) DEFAULT NULL,
   `current_status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `reports`
+--
+
+INSERT INTO `reports` (`id`, `date`, `originator`, `room`, `description`, `priority`, `current_status`) VALUES
+(12, '2020-12-11 00:50:18', 'USER-00210', 1, '<p>Tembok sebelah selatan parkiran hampir roboh</p>\r\n<p>tembok mulai terjadi keretakan, dan tiang penyangga mulai miring</p>', 1, 6),
+(13, '2020-12-11 01:13:01', 'USER-00210', 6, '<p>Gas yang ada diruangan security mengalami kebocoran, ditakutkan akan meledak</p>', 3, 6),
+(14, '2020-12-11 01:37:31', 'USER-00210', 6, '<p><span style=\"font-family: \'Open Sans\', Arial, sans-serif; font-size: 14px; text-align: justify; background-color: #ffffff;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc cursus aliquam mauris ut ultrices. Proin volutpat fermentum malesuada. Vivamus placerat maximus dignissim. Fusce sit amet blandit dui, non consequat nisi. Sed pellentesque tortor ac nibh volutpat iaculis. Fusce porta aliquam sem sit amet dignissim. Integer a sodales nulla, eu placerat nisi. Fusce hendrerit suscipit commodo. Fusce ut iaculis urna. Praesent pellentesque erat vitae massa venenatis, convallis tristique nibh mollis.</span></p>', 3, 6);
 
 --
 -- Triggers `reports`
@@ -209,6 +306,28 @@ CREATE TABLE `report_progresses` (
   `date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `report_progresses`
+--
+
+INSERT INTO `report_progresses` (`id`, `status`, `report`, `date`) VALUES
+(125, 1, 12, '2020-12-11 14:50:18'),
+(126, 2, 12, '2020-12-11 14:57:41'),
+(127, 3, 12, '2020-12-11 14:59:22'),
+(128, 6, 12, '2020-12-11 14:59:22'),
+(129, 1, 13, '2020-12-11 15:13:01'),
+(130, 2, 13, '2020-12-11 15:13:20'),
+(131, 3, 13, '2020-12-11 15:13:31'),
+(132, 4, 13, '2020-12-11 15:13:31'),
+(133, 5, 13, '2020-12-11 15:15:02'),
+(134, 6, 13, '2020-12-11 15:15:02'),
+(135, 1, 14, '2020-12-11 15:37:31'),
+(136, 2, 14, '2020-12-11 15:39:56'),
+(137, 3, 14, '2020-12-11 15:40:14'),
+(138, 4, 14, '2020-12-11 15:40:14'),
+(139, 5, 14, '2020-12-11 15:41:42'),
+(140, 6, 14, '2020-12-11 15:41:42');
+
 -- --------------------------------------------------------
 
 --
@@ -220,6 +339,15 @@ CREATE TABLE `roles` (
   `name` varchar(100) NOT NULL,
   `description` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `name`, `description`) VALUES
+(1, 'HSE', 'HSE Position'),
+(2, 'FW', 'FLOOR WARDEN POSITION'),
+(3, 'EMPLOYEE', 'EMPLOYEE POSITION');
 
 -- --------------------------------------------------------
 
@@ -233,6 +361,16 @@ CREATE TABLE `rooms` (
   `description` varchar(255) DEFAULT NULL,
   `floor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `rooms`
+--
+
+INSERT INTO `rooms` (`id`, `name`, `description`, `floor`) VALUES
+(1, 'Parking area', 'parking area', 2),
+(5, 'Toilet 1', 'Toilet sebelah kiri', 3),
+(6, 'Security room', 'sebelah kanan pintu masuk', 2),
+(10, 'Dummy room', 'this for testing purpose only', 1);
 
 -- --------------------------------------------------------
 
@@ -388,31 +526,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `actions`
 --
 ALTER TABLE `actions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `action_types`
 --
 ALTER TABLE `action_types`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `floors`
 --
 ALTER TABLE `floors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `image_attachments`
 --
 ALTER TABLE `image_attachments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
 
 --
 -- AUTO_INCREMENT for table `notification_messages`
@@ -424,31 +562,31 @@ ALTER TABLE `notification_messages`
 -- AUTO_INCREMENT for table `priorities`
 --
 ALTER TABLE `priorities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `reports`
 --
 ALTER TABLE `reports`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `report_progresses`
 --
 ALTER TABLE `report_progresses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `statuses`

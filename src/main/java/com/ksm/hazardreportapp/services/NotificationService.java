@@ -20,8 +20,20 @@ public class NotificationService {
         return userRepository.findById(userId).get().getNotificationsList();
     }
 
+    public List<Notifications> getByUserUnSeen(String userId, int limit) {
+        if (limit == 0) {
+            return notificationRepository.findByUserIdAndReadStatusOrderByIdDesc(userId, 0);
+        } else {
+            if (notificationRepository.findByUserIdAndReadStatusOrderByIdDesc(userId, 0).size() < 5) {
+                return notificationRepository.findByUserIdAndReadStatusOrderByIdDesc(userId, 0);
+            } else {
+                return notificationRepository.findByUserIdAndReadStatusOrderByIdDesc(userId, 0).subList(0, limit);
+            }
+        }
+    }
+
     public List<Notifications> getByUserId(String userId) {
-        return notificationRepository.findByUserId(userId);
+        return notificationRepository.findByUserIdOrderByIdDesc(userId);
     }
 
     public boolean readNotification(int id) {
