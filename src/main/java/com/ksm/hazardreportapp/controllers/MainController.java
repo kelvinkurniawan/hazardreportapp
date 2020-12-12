@@ -6,20 +6,34 @@
 package com.ksm.hazardreportapp.controllers;
 
 import com.ksm.hazardreportapp.entities.Notifications;
+import com.ksm.hazardreportapp.entities.Reports;
 import com.ksm.hazardreportapp.providers.CustomUser;
 import com.ksm.hazardreportapp.repositories.NotificationRepository;
 import com.ksm.hazardreportapp.services.ImageStorageService;
 import com.ksm.hazardreportapp.services.NotificationService;
+import com.ksm.hazardreportapp.services.ReportService;
+import com.ksm.hazardreportapp.utils.GeneratePdfReport;
+import com.ksm.hazardreportapp.utils.GenerateSheetReport;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -38,6 +52,9 @@ public class MainController {
 
     @Autowired
     NotificationRepository notificationRepository;
+
+    @Autowired
+    ReportService reportService;
 
     // Rouotes for admin as HSE
     @GetMapping("/admin")
@@ -76,5 +93,42 @@ public class MainController {
     @GetMapping("/access_denied")
     public String accessDenied() {
         return "access_denied";
+    }
+
+    @RequestMapping(value = "/admin/generate/pdfreport", method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_PDF_VALUE)
+    public ResponseEntity<InputStreamResource> citiesReport() {
+
+        List<Reports> reports = reportService.getAll();
+        ByteArrayInputStream bis = GeneratePdfReport.printReport(reports);
+
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "inline; filename=Reports_" + currentDateTime + ".pdf");
+
+        return ResponseEntity
+                .ok()
+                .headers(headers)
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(new InputStreamResource(bis));
+    }
+
+    @GetMapping("/admin/generate/excel")
+    public void exportToExcel(HttpServletResponse response) throws IOException {
+        response.setContentType("application/octet-stream");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=Reports_" + currentDateTime + ".xlsx";
+        response.setHeader(headerKey, headerValue);
+
+        List<Reports> listUsers = reportService.getAll();
+
+        GenerateSheetReport excelExporter = new GenerateSheetReport(listUsers);
+
+        excelExporter.export(response);
     }
 }
