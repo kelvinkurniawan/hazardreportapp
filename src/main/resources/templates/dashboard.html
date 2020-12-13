@@ -120,6 +120,38 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-md-12">
+                            <div class="card card-stats">
+                                <div class="card-header ">
+                                    <h5 class="card-title">News</h5>
+                                    <p class="card-category">
+                                        displays the latest news
+                                    </p>
+                                </div>
+                                <div class="card-body">
+                                    <div class="list-group">
+                                        <div class="list-group-item list-group-item-action flex-column align-items-start" th:each="as : ${newsReport}">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h5 class="mb-1" th:text="'Masalah di ' + ${as.room.floor.name} + ', ' + ${as.room.name} + ' ' + ' terselesaikan' "></h5>
+                                                <small
+                                                    th:text="${#calendars.format(as.reportProgressesList[#lists.size(as.reportProgressesList) - 1].date, 'HH:mm, dd MMMM yyyy')}"></small>
+                                            </div>
+                                            <p class="mb-1" th:utext="${as.description}"></p>
+                                            <small th:text="'Originator : ' + ${as.originator.name}"></small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer ">
+                                    <hr>
+                                    <div class="stats">
+                                        <i class="fa fa-refresh"></i>
+                                        News Updated!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-8">
                             <div class="card ">
                                 <div class="card-header ">

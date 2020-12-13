@@ -5,6 +5,7 @@
  */
 package com.ksm.hazardreportapp.repositories;
 
+import com.ksm.hazardreportapp.entities.Priorities;
 import com.ksm.hazardreportapp.entities.Reports;
 import com.ksm.hazardreportapp.entities.Rooms;
 import com.ksm.hazardreportapp.entities.Statuses;
@@ -28,4 +29,8 @@ public interface ReportRepository extends JpaRepository<Reports, Integer> {
     public List<Reports> findByOriginator(@Param("originator") Users originator);
 
     public List<Reports> findByCurrentStatusIn(List<Statuses> currentStatus);
+
+    public List<Reports> findByPriorityAndCurrentStatusIn(Priorities priority, List<Statuses> currentStatus);
+
+    public List<Reports> findTop5ByCurrentStatusOrderByIdDesc(Statuses status);
 }

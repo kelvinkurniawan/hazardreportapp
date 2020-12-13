@@ -7,6 +7,8 @@ package com.ksm.hazardreportapp.services;
 
 import com.ksm.hazardreportapp.entities.Roles;
 import com.ksm.hazardreportapp.repositories.RoleRepository;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,14 @@ public class RoleService {
 
     public List<Roles> getAll() {
         return repository.findAll();
+    }
+
+    public List<Roles> getOption(){
+        List<Integer> id = new ArrayList<>();
+        id.add(2);
+        id.add(3);
+
+        return repository.findByIdIn(id);
     }
 
     public Roles getById(int id) {

@@ -43,7 +43,7 @@
                                         <tbody>
                                             <tr th:each="as, iterator : ${reports}">
                                                 <th scope="row" th:text="${iterator.index+1}"></th>
-                                                <td th:text="${as.date}"></td>
+                                                <td th:text="${#calendars.format(as.date, 'HH:mm, dd MMM yy')}"></td>
                                                 <td th:text="${as.originator.name}"></td>
                                                 <td th:text="${as.room.name}"></td>
                                                 <td th:text="${as.priority.name}"></td>

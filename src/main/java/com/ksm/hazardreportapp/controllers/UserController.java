@@ -38,7 +38,7 @@ public class UserController {
     @GetMapping("admin/user/{username}")
     public String viewUser(@PathVariable("username") String username, Model model) {
         model.addAttribute("user", userService.getByUsername(username));
-        model.addAttribute("roles", roleService.getAll());
+        model.addAttribute("roles", roleService.getOption());
         model.addAttribute("title", "User Detail");
         return "viewUser";
     }
@@ -55,24 +55,6 @@ public class UserController {
     public String performAddUser(RegisterInput input) {
         System.out.println("Post Method Running");
         userService.register(input);
-                
-        try {
-            mailingService.sendEmail(
-                    "adnangofar.ag@gmail.com"
-                    ,"<html>"+
-                            "<body>"+
-                            "<h3>Hello "+",</h3>"+
-                            "<h2>Report is added with Description :</h2>"+
-                            
-                            "</body>"+
-                     "<html>"
-                    ,"this Topic"
-                    
-            );
-        } catch (MessagingException | UnsupportedEncodingException ex) {
-            Logger.getLogger(ReportController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
         return "redirect:/admin/user?res=added";
     }
 

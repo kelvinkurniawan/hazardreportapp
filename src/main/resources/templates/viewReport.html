@@ -24,7 +24,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Date</label>
-                                                    <div th:text="${as.date}"></div>
+                                                    <div th:text="${#dates.format(as.date, 'HH:mm, dd MMMM yyyy')}"></div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Originator</label>
@@ -34,7 +34,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Room Location</label>
-                                                    <div th:text="${as.room.name}"></div>
+                                                    <div th:text="${as.room.floor.name} + ', ' + ${as.room.name}"></div>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
@@ -113,7 +113,11 @@
                                     <p class="card-category">below is a list of actions</p>
                                 </div>
                                 <div class="card-body">
-                                    <a th:if="${as.currentStatus.id != 6}" th:href="@{/admin/report/} + ${reportId} + @{/action/new/}" class="btn btn-danger" sec:authorize="hasAnyAuthority('HSE', 'FW')">Add Action</a>
+                                    <div th:if="${as.currentStatus.id != 6}">
+                                        <a th:if="${as.currentStatus.id >= 4 and as.priority.id == 3}" th:href="@{/admin/report/} + ${reportId} + @{/action/new/}" class="btn btn-danger" sec:authorize="hasAuthority('HSE')">Add Action</a>
+                                        <a th:if="${as.currentStatus.id < 4 and as.priority.id != 3}" th:href="@{/admin/report/} + ${reportId} + @{/action/new/}" class="btn btn-danger" sec:authorize="hasAuthority('FW')">Add Action</a>
+                                        <a th:if="${as.currentStatus.id < 4 and as.priority.id == 3}" th:href="@{/admin/report/} + ${reportId} + @{/action/new/}" class="btn btn-danger" sec:authorize="hasAuthority('FW')">Add Temporary Action</a>
+                                    </div>
                                     <div class="list-group list-group-flush">
                                         <a th:each="as, iterator : ${action}"
                                            th:href="@{/admin/report/} + ${reportId} + @{/action/view/} + ${as.id}"

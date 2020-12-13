@@ -81,6 +81,7 @@
 
     $(document).ready(function () {
 
+
         // Alerts Handling
 
         var url_string = window.location.href;
@@ -119,17 +120,19 @@
 
         // Pusher Config
         // Enable pusher logging - don't include this in production
-        Pusher.logToConsole = false;
+        Pusher.logToConsole = true;
 
         var pusher = new Pusher('75b839e2c030a656a41c', {
             cluster: 'ap1'
         });
-
         var channel = pusher.subscribe('my-channel');
         channel.bind('updateNotif', function (data) {
             if (data.message == 'success') {
-                loadNotification();
+                const audio = new Audio(window.location.origin + "/notif.mp3");
+                audio.play();
                 $('.notif').addClass('new-notif');
+
+                loadNotification();
             }
         });
 

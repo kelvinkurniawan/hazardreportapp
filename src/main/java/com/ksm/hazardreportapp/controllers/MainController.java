@@ -64,6 +64,11 @@ public class MainController {
     @Autowired
     MailingService mailingService;
 
+    @GetMapping("")
+    public String redirectToIndex() {
+        return "redirect:/admin";
+    }
+
     // Rouotes for admin as HSE
     @GetMapping("/admin")
     public String index(Model model) {
@@ -74,6 +79,7 @@ public class MainController {
         System.out.println("ROLES : " + user.getAuthorities());
         model.addAttribute("title", "Dashboard");
 
+        model.addAttribute("newsReport", reportService.getNews());
         model.addAttribute("totalReport", reportService.getAll().size());
         model.addAttribute("finishedReport", reportService.getFinished().size());
         model.addAttribute("newReport", reportService.getNew().size());
