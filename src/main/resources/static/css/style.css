@@ -52,3 +52,15 @@
     right: 1px;
     width: 20px;
 }
+
+.main-panel > .navbar {
+    margin-bottom: 0;
+    margin-left: 260px;
+    width: calc(100% - 260px);
+}
+
+.navbar.navbar-transparent {
+    background-color: #f4f3ef!important;
+    box-shadow: none;
+    border-bottom: 1px solid #ddd;
+}

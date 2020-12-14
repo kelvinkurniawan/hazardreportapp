@@ -47,9 +47,9 @@ public class GenerateSheetReport {
         createCell(row, 1, "Date", style);
         createCell(row, 2, "Originator", style);
         createCell(row, 3, "Description", style);
-        createCell(row, 5, "Location", style);
-        createCell(row, 6, "Priority", style);
-        createCell(row, 7, "Current Status", style);
+        createCell(row, 4, "Location", style);
+        createCell(row, 5, "Priority", style);
+        createCell(row, 6, "Current Status", style);
 
     }
 
