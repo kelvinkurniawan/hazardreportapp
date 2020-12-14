@@ -69,6 +69,14 @@ public class MainController {
         return "redirect:/admin";
     }
 
+    @GetMapping("/admin/notification")
+    public String displayNotification(Model model) {
+        CustomUser user = (CustomUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String id = user.getId();
+        model.addAttribute("notifications", notificationService.getByUserId(id));
+        return "notification";
+    }
+
     // Rouotes for admin as HSE
     @GetMapping("/admin")
     public String index(Model model) {

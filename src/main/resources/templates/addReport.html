@@ -39,8 +39,8 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Select Room</label>
-                                                    <select class="form-control" name="room">
-                                                        <option th:each="as : ${rooms}" th:value="${as.id}" th:text="${as.name}"></option>
+                                                    <select class="form-control enable-select2" name="room">
+                                                        <option th:each="as : ${rooms}" th:value="${as.id}" th:text="${as.name} + ', ' + ${as.floor.name} "></option>
                                                     </select>
                                                 </div>
                                             </div>

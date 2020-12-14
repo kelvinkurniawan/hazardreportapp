@@ -43,6 +43,7 @@ public class SecurityService extends WebSecurityConfigurerAdapter {
                 .antMatchers("/fonts/**").permitAll()
                 .antMatchers("/demo/**").permitAll()
                 .antMatchers("/serviceWorker.js").permitAll()
+                .antMatchers("/favicon.ico").permitAll()
                 .antMatchers("/manifest.json").permitAll()
                 .antMatchers("/img/**").permitAll()
                 .antMatchers("/icons/**").permitAll()
