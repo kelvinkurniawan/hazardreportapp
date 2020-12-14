@@ -79,11 +79,28 @@ public class MainController {
         System.out.println("ROLES : " + user.getAuthorities());
         model.addAttribute("title", "Dashboard");
 
+        int totalReport = 0, finishedReport = 0, newReport = 0, onProcessReport = 0;
+
+        if (user.getAuthorities().stream().anyMatch(role -> role.getAuthority().equalsIgnoreCase("FW"))) {
+            totalReport = reportService.getReportFiltered(id, "all").size();
+            finishedReport = reportService.getReportFiltered(id, "finished").size();
+            newReport = reportService.getReportFiltered(id, "new").size();
+            onProcessReport = reportService.getReportFiltered(id, "onProcess").size();
+        }
+
+        if (user.getAuthorities().stream().anyMatch(role -> role.getAuthority().equalsIgnoreCase("HSE"))) {
+            totalReport = reportService.getAll().size();
+            finishedReport = reportService.getFinished().size();
+            newReport = reportService.getNew().size();
+            onProcessReport = reportService.getOnProcess().size();
+        }
+
+        model.addAttribute("totalReport", totalReport);
+        model.addAttribute("finishedReport", finishedReport);
+        model.addAttribute("newReport", newReport);
+        model.addAttribute("onProcessReport", onProcessReport);
+
         model.addAttribute("newsReport", reportService.getNews());
-        model.addAttribute("totalReport", reportService.getAll().size());
-        model.addAttribute("finishedReport", reportService.getFinished().size());
-        model.addAttribute("newReport", reportService.getNew().size());
-        model.addAttribute("onProcessReport", reportService.getOnProcess().size());
         model.addAttribute("user", userService.getById(id));
         model.addAttribute("notifications", notificationService.getByUserUnSeen(id, 5));
 

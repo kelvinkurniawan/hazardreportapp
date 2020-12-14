@@ -69,6 +69,49 @@ public class ReportService {
         return repository.findTop5ByCurrentStatusOrderByIdDesc(statusRepository.findById(6).get());
     }
 
+    public List<Reports> getReportFiltered(String id, String type) {
+
+        Users user = userService.getById(id);
+
+        List<Floors> floors = user.getFloorsList();
+        List<Statuses> currentStatus = new ArrayList<>();
+
+        List<Rooms> finalRooms = new ArrayList<>();
+
+        floors.forEach((floor) -> {
+            List<Rooms> rooms = floor.getRoomsList();
+            rooms.forEach((room) -> {
+                finalRooms.add(room);
+            });
+        });
+
+        if (type.equalsIgnoreCase("finished")) {
+            currentStatus.add(statusRepository.findById(6).get());
+        }
+
+        if (type.equalsIgnoreCase("onProcess")) {
+            currentStatus.add(statusRepository.findById(2).get());
+            currentStatus.add(statusRepository.findById(3).get());
+            currentStatus.add(statusRepository.findById(4).get());
+            currentStatus.add(statusRepository.findById(5).get());
+        }
+
+        if (type.equalsIgnoreCase("new")) {
+            currentStatus.add(statusRepository.findById(1).get());
+        }
+
+        if (type.equalsIgnoreCase("all")) {
+            currentStatus.add(statusRepository.findById(1).get());
+            currentStatus.add(statusRepository.findById(2).get());
+            currentStatus.add(statusRepository.findById(3).get());
+            currentStatus.add(statusRepository.findById(4).get());
+            currentStatus.add(statusRepository.findById(5).get());
+            currentStatus.add(statusRepository.findById(6).get());
+        }
+
+        return repository.findByRoomInAndCurrentStatusIn(finalRooms, currentStatus);
+    }
+
     public List<Reports> getAllByOriginator(Users user) {
         return repository.findByOriginator(user);
     }

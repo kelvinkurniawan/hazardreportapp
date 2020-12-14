@@ -156,5 +156,48 @@
         }
         // End Navigation
 
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/serviceWorker.js').then(() => {
+                    console.log('Service Worker Registered');
+                });
+            });
+
+        }
+
+        var deferredPrompt;
+
+        window.addEventListener('beforeinstallprompt', function (e) {
+
+            console.log('please install application');
+
+            $('.alert-install').addClass('show');
+            setTimeout(function () {
+                $('.alert-install').removeClass('show');
+            }, 5000);
+
+            e.preventDefault();
+            deferredPrompt = e;
+        });
+
+        $('.install-app').on('click', (e) => {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice
+                    .then((choiceResult) => {
+                        if (choiceResult.outcome === 'accepted') {
+                            console.log('User accepted the A2HS prompt');
+                        } else {
+                            console.log('User dismissed the A2HS prompt');
+                        }
+                        deferredPrompt = null;
+                    });
+        });
+
+        window.addEventListener('appinstalled', (evt) => {
+            // Log install to analytics
+        });
+
+
+
     });
 </script>

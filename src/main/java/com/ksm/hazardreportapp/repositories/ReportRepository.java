@@ -33,4 +33,6 @@ public interface ReportRepository extends JpaRepository<Reports, Integer> {
     public List<Reports> findByPriorityAndCurrentStatusIn(Priorities priority, List<Statuses> currentStatus);
 
     public List<Reports> findTop5ByCurrentStatusOrderByIdDesc(Statuses status);
+
+    public List<Reports> findByRoomInAndCurrentStatusIn(@Param("room") List<Rooms> room, @Param("status") List<Statuses> currentStatus);
 }

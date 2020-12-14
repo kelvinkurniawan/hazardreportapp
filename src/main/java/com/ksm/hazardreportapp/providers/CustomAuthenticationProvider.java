@@ -58,6 +58,10 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         if (loginOutput.getStatus().equalsIgnoreCase("Verified")) {
 
             user = userService.getByEmail(name);
+            if (user == null) {
+                return null;
+            }
+
             if (!user.getId().equalsIgnoreCase(loginOutput.getUser().getId())) {
                 System.out.println("Local id = " + user.getId());
                 System.out.println("Server id = " + loginOutput.getUser().getId());
