@@ -72,7 +72,7 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div th:each="as : ${report}" class="card" sec:authorize="hasAnyAuthority('HSE', 'FW')">
+                            <div th:if="${as.priority.id == 4}" th:each="as : ${report}" class="card" sec:authorize="hasAnyAuthority('HSE', 'FW')">
                                 <div class="card-header">
                                     <h5 class="card-title">Set Priority</h5>
                                     <p class="card-category">Before set priority, check the report first</p>

@@ -129,7 +129,7 @@ public class ReportController {
                             reports.getOriginator().getName(),
                             reports.getDescription(),
                             reports.getId()),
-                    "New Report!!"
+                    "New Report!!#Report" + reports.getId()
             );
 
             mailingService.sendEmail(
@@ -139,7 +139,7 @@ public class ReportController {
                             reports.getOriginator().getName(),
                             reports.getDescription(),
                             reports.getId()),
-                    "New Report!!"
+                    "New Report!!#Report" + reports.getId()
             );
 
             mailingService.sendEmail(
@@ -149,7 +149,7 @@ public class ReportController {
                             reports.getOriginator().getName(),
                             reports.getDescription(),
                             reports.getId()),
-                    "New Report!!"
+                    "New Report!!#Report" + reports.getId()
             );
 
         } catch (Exception ex) {
@@ -184,7 +184,7 @@ public class ReportController {
                             date,
                             "Your report is added to queue",
                             reports.getId()),
-                    "Report Progress update"
+                    "Report Progress update #Report" + id
             );
         } catch (Exception ex) {
             System.out.println("Mail error :" + ex);

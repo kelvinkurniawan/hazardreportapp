@@ -90,7 +90,7 @@ public class ActionController {
                                     new Date(System.currentTimeMillis()),
                                     "The floor warden has responded and taken temporary action on your report, and the report will now be forwarded to HSE",
                                     reports.getId()),
-                            "Report Progress update"
+                            "Report Progress update #Report" + id
                     );
                 } catch (Exception ex) {
                     Logger.getLogger(ReportController.class.getName()).log(Level.SEVERE, null, ex);
@@ -105,7 +105,7 @@ public class ActionController {
                                     new Date(System.currentTimeMillis()),
                                     "Your report has been responded to by HSE, and the report will be closed",
                                     reports.getId()),
-                            "Report Progress update"
+                            "Report Progress update #Report" + id
                     );
                     mailingService.sendEmail(
                             reports.getOriginator().getEmail(),
@@ -113,7 +113,7 @@ public class ActionController {
                                     new Date(System.currentTimeMillis()),
                                     "thank you for reporting, and now the problem has been handled and resolved by HSE",
                                     reports.getId()),
-                            "Report Progress update"
+                            "Report Closed #Report" + id
                     );
                 } catch (Exception ex) {
                     Logger.getLogger(ReportController.class.getName()).log(Level.SEVERE, null, ex);
@@ -129,7 +129,7 @@ public class ActionController {
                                 new Date(System.currentTimeMillis()),
                                 "Your report has been responded to by Floor warden, and the report will be closed",
                                 reports.getId()),
-                        "Report Progress update"
+                        "Report Progress update #Report" + id
                 );
                 mailingService.sendEmail(
                         reports.getOriginator().getEmail(),
@@ -137,7 +137,7 @@ public class ActionController {
                                 new Date(System.currentTimeMillis()),
                                 "thank you for reporting, and now the problem has been handled and resolved by Floor warden",
                                 reports.getId()),
-                        "Report Progress update"
+                        "Report Closed #Report" + id
                 );
             } catch (Exception ex) {
                 Logger.getLogger(ReportController.class.getName()).log(Level.SEVERE, null, ex);

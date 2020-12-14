@@ -66,7 +66,8 @@ public class ReportService {
     }
 
     public List<Reports> getNews() {
-        return repository.findTop5ByCurrentStatusOrderByIdDesc(statusRepository.findById(6).get());
+        List<Reports> news = repository.findTop5ByCurrentStatusOrderByIdDesc(statusRepository.findById(6).get());
+        return news;
     }
 
     public List<Reports> getReportFiltered(String id, String type) {
